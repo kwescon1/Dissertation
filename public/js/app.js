@@ -27870,6 +27870,19 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
   \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/app.css":
+/*!*******************************!*\
+  !*** ./resources/css/app.css ***!
+  \*******************************/
 /***/ (() => {
 
 throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nError: Cannot find module '@tailwindcss/forms'\nRequire stack:\n- C:\\Users\\user\\Dissertation\\tailwind.config.js\n- C:\\Users\\user\\Dissertation\\node_modules\\tailwindcss\\lib\\lib\\setupTrackingContext.js\n- C:\\Users\\user\\Dissertation\\node_modules\\tailwindcss\\lib\\index.js\n- C:\\Users\\user\\Dissertation\\webpack.mix.js\n- C:\\Users\\user\\Dissertation\\node_modules\\laravel-mix\\setup\\webpack.config.js\n- C:\\Users\\user\\Dissertation\\node_modules\\webpack-cli\\lib\\webpack-cli.js\n- C:\\Users\\user\\Dissertation\\node_modules\\webpack-cli\\lib\\bootstrap.js\n- C:\\Users\\user\\Dissertation\\node_modules\\webpack-cli\\bin\\cli.js\n- C:\\Users\\user\\Dissertation\\node_modules\\webpack\\bin\\webpack.js\n    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)\n    at Function.Module._load (node:internal/modules/cjs/loader:778:27)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at require (node:internal/modules/cjs/helpers:102:18)\n    at Object.<anonymous> (C:\\Users\\user\\Dissertation\\tailwind.config.js:61:9)\n    at Module._compile (node:internal/modules/cjs/loader:1101:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at require (node:internal/modules/cjs/helpers:102:18)\n    at getTailwindConfig (C:\\Users\\user\\Dissertation\\node_modules\\tailwindcss\\lib\\lib\\setupTrackingContext.js:67:53)\n    at C:\\Users\\user\\Dissertation\\node_modules\\tailwindcss\\lib\\lib\\setupTrackingContext.js:96:92\n    at C:\\Users\\user\\Dissertation\\node_modules\\tailwindcss\\lib\\processTailwindFeatures.js:46:11\n    at plugins (C:\\Users\\user\\Dissertation\\node_modules\\tailwindcss\\lib\\index.js:38:63)\n    at LazyResult.runOnRoot (C:\\Users\\user\\Dissertation\\node_modules\\postcss\\lib\\lazy-result.js:339:16)\n    at LazyResult.runAsync (C:\\Users\\user\\Dissertation\\node_modules\\postcss\\lib\\lazy-result.js:393:26)\n    at LazyResult.async (C:\\Users\\user\\Dissertation\\node_modules\\postcss\\lib\\lazy-result.js:221:30)\n    at LazyResult.then (C:\\Users\\user\\Dissertation\\node_modules\\postcss\\lib\\lazy-result.js:206:17)\n    at processResult (C:\\Users\\user\\Dissertation\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at C:\\Users\\user\\Dissertation\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at C:\\Users\\user\\Dissertation\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\Users\\user\\Dissertation\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\Users\\user\\Dissertation\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\Users\\user\\Dissertation\\node_modules\\postcss-loader\\dist\\index.js:142:7)");
