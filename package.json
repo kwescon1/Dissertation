@@ -27,6 +27,7 @@
         "tailwindcss-pseudo-elements": "^2.0.0"
     },
     "dependencies": {
+        "react-router-dom": "^6.8.1",
         "tw-elements": "^1.0.0-alpha13"
     }
 }
