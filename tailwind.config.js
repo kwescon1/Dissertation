@@ -8,7 +8,16 @@ module.exports = {
         "./node_modules/tw-elements/dist/js/**/*.js",
     ],
     theme: {
-        extend: {},
+        container: {
+            center: true,
+          },
+        extend: {
+            colors: {
+                'primary': '#2D87FF',
+                'secondary': '#207FB3',
+                'tertiary': '#049CA3',
+            }
+        },
     },
     plugins: [],
 };
