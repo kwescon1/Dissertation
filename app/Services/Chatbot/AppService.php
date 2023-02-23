@@ -70,7 +70,11 @@ class AppService extends BotService
 
         $nextQuestion = Question::find($nextQuestionId);
 
-        $str = $nextQuestion->question . "\n\n" . $nextQuestion->options;
+        $userName = ""; //get user name
+
+        // $str = $nextQuestion->question . "\n\n" . $nextQuestion->options;
+
+        $str = str_replace("\$name", $userName, $nextQuestion->question) . "\n\n" . $nextQuestion->options;
 
         return  $str;
     }
