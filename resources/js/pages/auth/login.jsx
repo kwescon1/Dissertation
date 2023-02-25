@@ -1,7 +1,7 @@
 import { Form } from "react-router-dom";
 import AuthBackground from "../../components/authBackground";
-import AuthButton from "../../components/authbutton";
-import AuthInput from "../../components/authInput";
+import AuthButton from "../../components/buttons/authbutton";
+import AuthInput from "../../components/inputs/authInput";
 
 const Login = () => {
     return ( 
