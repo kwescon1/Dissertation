@@ -39,7 +39,7 @@ const SidebarNavLink = ({ NavLinks, setNavLinks }) => {
                             ) : (
                                 <NavLink
                                     to={Nav.path}
-                                    className="flex px-2 font-semibold py-2 rounded-lg hover:bg-blue-600 active:bg-blue-600 space-x-2"
+                                    className={({ isActive }) => isActive ? "flex px-2 font-semibold py-2 rounded-lg bg-blue-600 space-x-2" : "flex px-2 font-semibold py-2 rounded-lg hover:bg-blue-600  space-x-2"}
                                 >
                                     <span>{Nav.icon}</span>
                                     <span>{Nav.name}</span>

@@ -1,6 +1,6 @@
 export const navLinksSet1 = [
     {
-        path: "/",
+        path: "/dashboard",
         name: "Dashboard",
         icon: (
             <svg
@@ -18,7 +18,7 @@ export const navLinksSet1 = [
         ),
     },
     {
-        path: "/",
+        path: "/clients",
         name: "Clients",
         icon: (
             <svg
@@ -32,7 +32,7 @@ export const navLinksSet1 = [
         ),
     },
     {
-        path: "/",
+        path: "/appointments",
         name: "Appointments",
         icon: (
             <svg
@@ -51,7 +51,7 @@ export const navLinksSet1 = [
         ),
     },
     {
-        path: "/",
+        path: "/waitinglist",
         name: "Waiting List",
         icon: (
             <svg
@@ -72,7 +72,7 @@ export const navLinksSet1 = [
 
 export const navLinksSet2 = [
     {
-        path: "/",
+        
         name: "Inventory",
         icon: (
             <svg
@@ -89,17 +89,17 @@ export const navLinksSet2 = [
         toggle: false,
         subLinks: [
             {
-                path: "/",
+                path: "/inventories/items",
                 name: "Items",
             },
             {
-                path: "/",
+                path: "/inventories/categories",
                 name: "Categories",
             },
         ],
     },
     {
-        path: "/",
+        
         name: "Sales",
         icon: (
             <svg
@@ -118,26 +118,26 @@ export const navLinksSet2 = [
         toggle: false,
         subLinks: [
             {
-                path: "/",
+                path: "/sales/receipt",
                 name: "Reciepts",
             },
             {
-                path: "/",
+                path: "/sales/invoices",
                 name: "Invoices",
             },
 
             {
-                path: "/",
+                path: "/sales/transactions",
                 name: "Transactions",
             },
             {
-                path: "/",
+                path: "/sales/customers",
                 name: "Customers",
             },
         ],
     },
     {
-        path: "/",
+        
         name: "Services & Providers",
         icon: (
             <svg
@@ -157,11 +157,11 @@ export const navLinksSet2 = [
         toggle: false,
         subLinks: [
             {
-                path: "/",
+                path: "/providers",
                 name: "Providers",
             },
             {
-                path: "/",
+                path: "/services",
                 name: "Services",
             },
         ],
@@ -187,13 +187,13 @@ export const navLinksSet3 = [
                 name: "Users",
             },
             {
-                path: "/",
+                path: "/roles",
                 name: "Roles",
             },
         ],
     },
     {
-        path: "/",
+        path: "/settings",
         name: "Settings",
         icon: (
             <svg
@@ -211,7 +211,7 @@ export const navLinksSet3 = [
         ),
     },
     {
-        path: "/",
+        path: "",
         name: "Logout",
         icon: (
             <svg
