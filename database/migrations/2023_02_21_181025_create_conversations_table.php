@@ -14,11 +14,11 @@ class CreateConversationsTable extends Migration
     public function up()
     {
         Schema::create('conversations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('SmsMessageSid');
-            $table->text('Body')->nullable();
-            $table->text('Media')->nullable();
-            $table->string('From');
+            $table->text('body')->nullable();
+            $table->text('media')->nullable();
+            $table->string('from');
             $table->timestamps();
         });
     }

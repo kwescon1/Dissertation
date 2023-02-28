@@ -13,11 +13,11 @@ class CoreService
      * @param string $from
      * @return void
      * 
-     * end current user section
+     * end current user session
      */
     function setToDone(string $from): void
     {
-        $replies = Reply::where('from', $from)->delete();
+        Reply::where('from', $from)->delete();
     }
 
     /**
@@ -61,20 +61,31 @@ class CoreService
 
         $twilio = $this->configureTwilio();
 
-        if (!$media) {
-            return $twilio->messages->create($from, array(
-                "body" => $message,
-                "from" => $twilio_number,
-                "statusCallback" => url("/api/status")
-            ));
-        }
+        return $twilio->messages->create($from, $this->checkMedia($message, $twilio_number, $media));
+    }
 
-        return $twilio->messages->create($from, array(
+    /**
+     * @param string $message
+     * @param string $number
+     * @param $media
+     * 
+     * @return array
+     * 
+     * adds media to returned array if media exists
+     */
+    function checkMedia(string $message, string $number, $media = NULL): array
+    {
+
+        return !isset($media) ? array(
             "body" => $message,
-            "from" => $twilio_number,
-            "MediaUrl" =>  asset("storage/$media"),
+            "from" => $number,
             "statusCallback" => url("/api/status")
-        ));
+        ) : array(
+            "body" => $message,
+            "from" => $number,
+            "MediaUrl" =>  asset("storage/media/$media"),
+            "statusCallback" => url("/api/status")
+        );
     }
 
     /**
@@ -108,9 +119,9 @@ class CoreService
     {
         Conversation::create([
             'SmsMessageSid' => $request->SmsMessageSid,
-            'Body' => $request->Body,
-            'From' => $request->From,
-            'Media' => $request->MediaUrl0
+            'body' => $request->Body,
+            'from' => $request->From,
+            'media' => $request->MediaUrl0
         ]);
     }
 
