@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+/**
+ * configure routes for chatbot
+ */
+Route::post('/messages', [App\Http\Controllers\Chatbot\ChatbotController::class, 'onMessageReceived']);
+
+//status of message
+Route::post('/status', [App\Http\Controllers\Chatbot\ChatbotController::class, 'status']);
