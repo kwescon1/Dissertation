@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Utils\BaseModel;
+use App\Utils\GeneratesUiud;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Conversation extends Model
+class Conversation extends BaseModel
 {
-    use HasFactory;
-
-    protected $guarded = ['id'];
+    use HasFactory, GeneratesUiud;
 }
