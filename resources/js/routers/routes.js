@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import Index from "../pages";
+import Index from "../layouts/index";
 import ForgotPassword from "../pages/auth/forgotPassword";
 import Login from "../pages/auth/login";
 import ResetPassword from "../pages/auth/resetPassword";
 import SetNewPassword from "../pages/auth/setNewPassword";
+import AllUsers from "../pages/users/allUsers";
 
 
   
@@ -11,6 +12,12 @@ import SetNewPassword from "../pages/auth/setNewPassword";
     {
       path: "/",
       element: <Index  />,
+      children: [
+        {
+          path: "users",
+          element: <AllUsers />,
+        },
+      ],
     },
     {
       path: "/login",

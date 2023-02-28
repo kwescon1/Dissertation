@@ -1,6 +1,6 @@
 import { Form } from "react-router-dom";
-import AuthBackground from "../../components/authBackground";
-import AuthButton from "../../components/buttons/authbutton";
+import AuthBackground from "../../components/authCard";
+import AuthButton from "../../components/buttons/authButton";
 import AuthInput from "../../components/inputs/authInput";
 
 const SetNewPassword = () => {

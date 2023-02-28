@@ -4,4 +4,4 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./layouts/Root');
+require('./layouts/root');
