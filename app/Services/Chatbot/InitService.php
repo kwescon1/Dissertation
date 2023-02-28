@@ -27,6 +27,10 @@ class InitService extends CoreService
                 return Constants::ABOUT_US;
                 break;
 
+            case '3':
+                return Constants::DONE;
+                break;
+
             default:
                 //choose from options
                 return Constants::CHOOSE_FROM_AVAILABLE_OPTIONS;
