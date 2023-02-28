@@ -4339,7 +4339,10 @@ var SidebarNavLink = function SidebarNavLink(_ref) {
             })]
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.NavLink, {
             to: Nav.path,
-            className: "flex px-2 font-semibold py-2 rounded-lg hover:bg-blue-600 active:bg-blue-600 space-x-2",
+            className: function className(_ref2) {
+              var isActive = _ref2.isActive;
+              return isActive ? "flex px-2 font-semibold py-2 rounded-lg bg-blue-600 space-x-2" : "flex px-2 font-semibold py-2 rounded-lg hover:bg-blue-600  space-x-2";
+            },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
               children: Nav.icon
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
@@ -4378,7 +4381,10 @@ var SubMenu = function SubMenu(_ref) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.NavLink, {
           to: subNav.path,
-          className: "block px-10 font-semibold py-2 rounded-lg hover:bg-blue-600 active:bg-blue-600 space-x-2",
+          className: function className(_ref2) {
+            var isActive = _ref2.isActive;
+            return isActive ? "flex px-10 font-semibold py-2 rounded-lg bg-blue-600 space-x-2" : "flex px-10 font-semibold py-2 rounded-lg hover:bg-blue-600  space-x-2";
+          },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
             children: subNav.name
           })
@@ -4741,6 +4747,29 @@ if (document.getElementById("root")) {
 
 /***/ }),
 
+/***/ "./resources/js/pages/appointments/allAppointments.jsx":
+/*!*************************************************************!*\
+  !*** ./resources/js/pages/appointments/allAppointments.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllAppointments = function AllAppointments() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Appointment"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllAppointments);
+
+/***/ }),
+
 /***/ "./resources/js/pages/auth/forgotPassword.jsx":
 /*!****************************************************!*\
   !*** ./resources/js/pages/auth/forgotPassword.jsx ***!
@@ -4961,10 +4990,286 @@ var SetNewPassword = function SetNewPassword() {
 
 /***/ }),
 
-/***/ "./resources/js/pages/users/allUsers.jsx":
-/*!***********************************************!*\
-  !*** ./resources/js/pages/users/allUsers.jsx ***!
-  \***********************************************/
+/***/ "./resources/js/pages/clients/AllClients.jsx":
+/*!***************************************************!*\
+  !*** ./resources/js/pages/clients/AllClients.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllClients = function AllClients() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Clients"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllClients);
+
+/***/ }),
+
+/***/ "./resources/js/pages/dashboard/dashboard.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/dashboard/dashboard.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var Dashboard = function Dashboard() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Dashboard"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
+
+/***/ }),
+
+/***/ "./resources/js/pages/inventories/categories/allCategories.jsx":
+/*!*********************************************************************!*\
+  !*** ./resources/js/pages/inventories/categories/allCategories.jsx ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllCategories = function AllCategories() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Categories"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllCategories);
+
+/***/ }),
+
+/***/ "./resources/js/pages/inventories/items/allItems.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/pages/inventories/items/allItems.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllItems = function AllItems() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Items"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllItems);
+
+/***/ }),
+
+/***/ "./resources/js/pages/sales/customers/allCustomers.jsx":
+/*!*************************************************************!*\
+  !*** ./resources/js/pages/sales/customers/allCustomers.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllCustomers = function AllCustomers() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Customers"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllCustomers);
+
+/***/ }),
+
+/***/ "./resources/js/pages/sales/invoices/allInvoices.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/pages/sales/invoices/allInvoices.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllInvoices = function AllInvoices() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Invoices"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllInvoices);
+
+/***/ }),
+
+/***/ "./resources/js/pages/sales/receipts/allReceipts.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/pages/sales/receipts/allReceipts.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllReceipts = function AllReceipts() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Receipts"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllReceipts);
+
+/***/ }),
+
+/***/ "./resources/js/pages/sales/transactions/allTransaction.jsx":
+/*!******************************************************************!*\
+  !*** ./resources/js/pages/sales/transactions/allTransaction.jsx ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllTransactions = function AllTransactions() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Transactions"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllTransactions);
+
+/***/ }),
+
+/***/ "./resources/js/pages/services&providers/providers/allproviders.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/pages/services&providers/providers/allproviders.jsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllProviders = function AllProviders() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Providers"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllProviders);
+
+/***/ }),
+
+/***/ "./resources/js/pages/services&providers/services/allServices.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/pages/services&providers/services/allServices.jsx ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllServices = function AllServices() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Services"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllServices);
+
+/***/ }),
+
+/***/ "./resources/js/pages/settings/tempSettings.jsx":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/settings/tempSettings.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var TempSettings = function TempSettings() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Temp Settings"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TempSettings);
+
+/***/ }),
+
+/***/ "./resources/js/pages/users&roles/roles/allRoles.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/pages/users&roles/roles/allRoles.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AllRoles = function AllRoles() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Roles"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllRoles);
+
+/***/ }),
+
+/***/ "./resources/js/pages/users&roles/users/allUsers.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/pages/users&roles/users/allUsers.jsx ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4984,6 +5289,29 @@ var AllUsers = function AllUsers() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/waitingLists/waitingList.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/pages/waitingLists/waitingList.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var WaitingList = function WaitingList() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: "Waiting List"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WaitingList);
+
+/***/ }),
+
 /***/ "./resources/js/routers/routes.js":
 /*!****************************************!*\
   !*** ./resources/js/routers/routes.js ***!
@@ -4995,14 +5323,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _layouts_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../layouts/index */ "./resources/js/layouts/index.jsx");
-/* harmony import */ var _pages_auth_forgotPassword__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/auth/forgotPassword */ "./resources/js/pages/auth/forgotPassword.jsx");
-/* harmony import */ var _pages_auth_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/auth/login */ "./resources/js/pages/auth/login.jsx");
-/* harmony import */ var _pages_auth_resetPassword__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/auth/resetPassword */ "./resources/js/pages/auth/resetPassword.jsx");
-/* harmony import */ var _pages_auth_setNewPassword__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/auth/setNewPassword */ "./resources/js/pages/auth/setNewPassword.jsx");
-/* harmony import */ var _pages_users_allUsers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/users/allUsers */ "./resources/js/pages/users/allUsers.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _pages_appointments_allAppointments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/appointments/allAppointments */ "./resources/js/pages/appointments/allAppointments.jsx");
+/* harmony import */ var _pages_auth_forgotPassword__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/auth/forgotPassword */ "./resources/js/pages/auth/forgotPassword.jsx");
+/* harmony import */ var _pages_auth_login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/auth/login */ "./resources/js/pages/auth/login.jsx");
+/* harmony import */ var _pages_auth_resetPassword__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/auth/resetPassword */ "./resources/js/pages/auth/resetPassword.jsx");
+/* harmony import */ var _pages_auth_setNewPassword__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/auth/setNewPassword */ "./resources/js/pages/auth/setNewPassword.jsx");
+/* harmony import */ var _pages_clients_AllClients__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/clients/AllClients */ "./resources/js/pages/clients/AllClients.jsx");
+/* harmony import */ var _pages_dashboard_dashboard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/dashboard/dashboard */ "./resources/js/pages/dashboard/dashboard.jsx");
+/* harmony import */ var _pages_inventories_categories_allCategories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pages/inventories/categories/allCategories */ "./resources/js/pages/inventories/categories/allCategories.jsx");
+/* harmony import */ var _pages_inventories_items_allItems__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pages/inventories/items/allItems */ "./resources/js/pages/inventories/items/allItems.jsx");
+/* harmony import */ var _pages_sales_customers_allCustomers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../pages/sales/customers/allCustomers */ "./resources/js/pages/sales/customers/allCustomers.jsx");
+/* harmony import */ var _pages_sales_invoices_allInvoices__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../pages/sales/invoices/allInvoices */ "./resources/js/pages/sales/invoices/allInvoices.jsx");
+/* harmony import */ var _pages_sales_receipts_allReceipts__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../pages/sales/receipts/allReceipts */ "./resources/js/pages/sales/receipts/allReceipts.jsx");
+/* harmony import */ var _pages_sales_transactions_allTransaction__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../pages/sales/transactions/allTransaction */ "./resources/js/pages/sales/transactions/allTransaction.jsx");
+/* harmony import */ var _pages_services_providers_providers_allproviders__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../pages/services&providers/providers/allproviders */ "./resources/js/pages/services&providers/providers/allproviders.jsx");
+/* harmony import */ var _pages_services_providers_services_allServices__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../pages/services&providers/services/allServices */ "./resources/js/pages/services&providers/services/allServices.jsx");
+/* harmony import */ var _pages_settings_tempSettings__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../pages/settings/tempSettings */ "./resources/js/pages/settings/tempSettings.jsx");
+/* harmony import */ var _pages_users_roles_roles_allRoles__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../pages/users&roles/roles/allRoles */ "./resources/js/pages/users&roles/roles/allRoles.jsx");
+/* harmony import */ var _pages_users_roles_users_allUsers__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../pages/users&roles/users/allUsers */ "./resources/js/pages/users&roles/users/allUsers.jsx");
+/* harmony import */ var _pages_waitingLists_waitingList__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../pages/waitingLists/waitingList */ "./resources/js/pages/waitingLists/waitingList.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -5011,25 +5353,87 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var routes = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.createBrowserRouter)([{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var routes = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.createBrowserRouter)([{
   path: "/",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_layouts_index__WEBPACK_IMPORTED_MODULE_0__["default"], {}),
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_layouts_index__WEBPACK_IMPORTED_MODULE_0__["default"], {}),
   children: [{
+    path: "appointments",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_appointments_allAppointments__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+  }, {
+    path: "clients",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_clients_AllClients__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+  }, {
+    path: "dashboard",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_dashboard_dashboard__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+  }, {
+    path: "inventories",
+    children: [{
+      path: "categories",
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_inventories_categories_allCategories__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+    }, {
+      path: "items",
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_inventories_items_allItems__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+    }]
+  }, {
+    path: "sales",
+    children: [{
+      path: "customers",
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_sales_customers_allCustomers__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+    }, {
+      path: "invoices",
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_sales_invoices_allInvoices__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+    }, {
+      path: "receipt",
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_sales_receipts_allReceipts__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+    }, {
+      path: "transactions",
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_sales_transactions_allTransaction__WEBPACK_IMPORTED_MODULE_13__["default"], {})
+    }]
+  }, {
+    path: "providers",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_services_providers_providers_allproviders__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+  }, {
+    path: "services",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_services_providers_services_allServices__WEBPACK_IMPORTED_MODULE_15__["default"], {})
+  }, {
+    path: "settings",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_settings_tempSettings__WEBPACK_IMPORTED_MODULE_16__["default"], {})
+  }, {
+    path: "roles",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_users_roles_roles_allRoles__WEBPACK_IMPORTED_MODULE_17__["default"], {})
+  }, {
     path: "users",
-    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_users_allUsers__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_users_roles_users_allUsers__WEBPACK_IMPORTED_MODULE_18__["default"], {})
+  }, {
+    path: "waitinglist",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_waitingLists_waitingList__WEBPACK_IMPORTED_MODULE_19__["default"], {})
   }]
 }, {
   path: "/login",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_auth_login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_auth_login__WEBPACK_IMPORTED_MODULE_3__["default"], {})
 }, {
   path: "/password/forgot",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_auth_forgotPassword__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_auth_forgotPassword__WEBPACK_IMPORTED_MODULE_2__["default"], {})
 }, {
   path: "/password/reset",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_auth_resetPassword__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_auth_resetPassword__WEBPACK_IMPORTED_MODULE_4__["default"], {})
 }, {
   path: "/password/new",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_auth_setNewPassword__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_pages_auth_setNewPassword__WEBPACK_IMPORTED_MODULE_5__["default"], {})
 }]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
@@ -5052,7 +5456,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var navLinksSet1 = [{
-  path: "/",
+  path: "/dashboard",
   name: "Dashboard",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -5066,7 +5470,7 @@ var navLinksSet1 = [{
     })
   })
 }, {
-  path: "/",
+  path: "/clients",
   name: "Clients",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -5078,7 +5482,7 @@ var navLinksSet1 = [{
     })
   })
 }, {
-  path: "/",
+  path: "/appointments",
   name: "Appointments",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -5094,7 +5498,7 @@ var navLinksSet1 = [{
     })]
   })
 }, {
-  path: "/",
+  path: "/waitinglist",
   name: "Waiting List",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -5109,7 +5513,6 @@ var navLinksSet1 = [{
   })
 }];
 var navLinksSet2 = [{
-  path: "/",
   name: "Inventory",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -5126,14 +5529,13 @@ var navLinksSet2 = [{
   }),
   toggle: false,
   subLinks: [{
-    path: "/",
+    path: "/inventories/items",
     name: "Items"
   }, {
-    path: "/",
+    path: "/inventories/categories",
     name: "Categories"
   }]
 }, {
-  path: "/",
   name: "Sales",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -5148,20 +5550,19 @@ var navLinksSet2 = [{
   }),
   toggle: false,
   subLinks: [{
-    path: "/",
+    path: "/sales/receipt",
     name: "Reciepts"
   }, {
-    path: "/",
+    path: "/sales/invoices",
     name: "Invoices"
   }, {
-    path: "/",
+    path: "/sales/transactions",
     name: "Transactions"
   }, {
-    path: "/",
+    path: "/sales/customers",
     name: "Customers"
   }]
 }, {
-  path: "/",
   name: "Services & Providers",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -5178,10 +5579,10 @@ var navLinksSet2 = [{
   }),
   toggle: false,
   subLinks: [{
-    path: "/",
+    path: "/providers",
     name: "Providers"
   }, {
-    path: "/",
+    path: "/services",
     name: "Services"
   }]
 }];
@@ -5201,11 +5602,11 @@ var navLinksSet3 = [{
     path: "/users",
     name: "Users"
   }, {
-    path: "/",
+    path: "/roles",
     name: "Roles"
   }]
 }, {
-  path: "/",
+  path: "/settings",
   name: "Settings",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -5219,7 +5620,7 @@ var navLinksSet3 = [{
     })
   })
 }, {
-  path: "/",
+  path: "",
   name: "Logout",
   icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
