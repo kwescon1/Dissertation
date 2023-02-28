@@ -1,16 +1,26 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import NavBar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 
 const Index = () => {
     return (
-        <div className="relative">
+        <>
+         {/* <Navigate to="/login" replace={true} /> */}
+         <div className="relative">
             <NavBar />
-            {/* <Navigate to="/login" replace={true} /> */}
-            <div className="flex">
+            <div className="flex w-full mt-16">
+                <div className="w-72">
                 <Sidebar />
+                </div>
+                
+                <div className=" w-full">
+                    <Outlet  />
+                </div>
+
             </div>
         </div>
+        </>
+        
     );
 };
 

@@ -4644,9 +4644,9 @@ var Sidebar = function Sidebar() {
     NavLinksSet3 = _useState6[0],
     setNavLinksSet3 = _useState6[1];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
-    className: " min-h-screen w-56 bg-primary ",
+    className: " min-h-screen w-full bg-primary ",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "p-4 mt-16 text-white space-y-2",
+      className: "p-4 text-white space-y-2",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "flex flex-col flex-wrap space-y-2 text-sm",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -4684,6 +4684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _components_navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/navbar */ "./resources/js/components/navbar.jsx");
 /* harmony import */ var _components_sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/sidebar */ "./resources/js/components/sidebar.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -4692,13 +4693,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var Index = function Index() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "relative",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_navbar__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "flex",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {})
-    })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "relative",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_navbar__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "flex w-full mt-16",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "w-72",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: " w-full",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Outlet, {})
+        })]
+      })]
+    })
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
@@ -4951,6 +4961,29 @@ var SetNewPassword = function SetNewPassword() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/users/allUsers.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/pages/users/allUsers.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var AllUsers = function AllUsers() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "",
+    children: "users"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AllUsers);
+
+/***/ }),
+
 /***/ "./resources/js/routers/routes.js":
 /*!****************************************!*\
   !*** ./resources/js/routers/routes.js ***!
@@ -4962,13 +4995,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _layouts_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../layouts/index */ "./resources/js/layouts/index.jsx");
 /* harmony import */ var _pages_auth_forgotPassword__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/auth/forgotPassword */ "./resources/js/pages/auth/forgotPassword.jsx");
 /* harmony import */ var _pages_auth_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/auth/login */ "./resources/js/pages/auth/login.jsx");
 /* harmony import */ var _pages_auth_resetPassword__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/auth/resetPassword */ "./resources/js/pages/auth/resetPassword.jsx");
 /* harmony import */ var _pages_auth_setNewPassword__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/auth/setNewPassword */ "./resources/js/pages/auth/setNewPassword.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _pages_users_allUsers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/users/allUsers */ "./resources/js/pages/users/allUsers.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -4976,21 +5010,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var routes = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.createBrowserRouter)([{
+
+var routes = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.createBrowserRouter)([{
   path: "/",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_layouts_index__WEBPACK_IMPORTED_MODULE_0__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_layouts_index__WEBPACK_IMPORTED_MODULE_0__["default"], {}),
+  children: [{
+    path: "users",
+    element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_users_allUsers__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+  }]
 }, {
   path: "/login",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_auth_login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_auth_login__WEBPACK_IMPORTED_MODULE_2__["default"], {})
 }, {
   path: "/password/forgot",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_auth_forgotPassword__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_auth_forgotPassword__WEBPACK_IMPORTED_MODULE_1__["default"], {})
 }, {
   path: "/password/reset",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_auth_resetPassword__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_auth_resetPassword__WEBPACK_IMPORTED_MODULE_3__["default"], {})
 }, {
   path: "/password/new",
-  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_auth_setNewPassword__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+  element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_pages_auth_setNewPassword__WEBPACK_IMPORTED_MODULE_4__["default"], {})
 }]);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
@@ -5159,7 +5198,7 @@ var navLinksSet3 = [{
   }),
   toggle: false,
   subLinks: [{
-    path: "/",
+    path: "/users",
     name: "Users"
   }, {
     path: "/",

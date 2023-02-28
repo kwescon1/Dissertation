@@ -183,7 +183,7 @@ export const navLinksSet3 = [
         toggle: false,
         subLinks: [
             {
-                path: "/",
+                path: "/users",
                 name: "Users",
             },
             {

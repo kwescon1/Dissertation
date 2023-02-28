@@ -823,6 +823,12 @@ select {
 .w-1\/3 {
   width: 33.333333%;
 }
+.w-64 {
+  width: 16rem;
+}
+.w-72 {
+  width: 18rem;
+}
 .origin-top-right {
   transform-origin: top right;
 }
