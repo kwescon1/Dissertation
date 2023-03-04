@@ -19,6 +19,7 @@ services:
     working_dir: /var/www/foviar
     depends_on:
       - db
+      - redis
 
     volumes:
       - ./:/var/www/foviar
@@ -77,28 +78,14 @@ services:
       - foviar
 
 
-
-
-
-
-# version: '3.8'
-# services:
-#   postgres:
-#     container_name: postgres
-#     image: postgres
-#     restart: always
-#     environment:
-#       POSTGRES_USER: postgres
-#       POSTGRES_PASSWORD: postgres
-#       POSTGRES_DB: book-db
-#     ports:
-#       - 5432:5432
-#   pgadmin:
-#     container_name: pgadmin
-#     image: dpage/pgadmin4
-#     restart: always
-#     environment:
-#       PGADMIN_DEFAULT_EMAIL: miightyjava@gmail.com
-#       PGADMIN_DEFAULT_PASSWORD: password
-#     ports:
-#       - 80:80
+  redis:
+    container_name: foviar_redis
+    image: redis:alpine
+    env_file:
+      - .env
+    ports:
+      - "6383:6379"
+    volumes:
+      - ./storage/redis/data:/data
+    networks:
+      - foviar
