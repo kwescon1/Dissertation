@@ -10,6 +10,7 @@ module.exports = {
     theme: {
         container: {
             center: true,
+            padding: '2rem',
         },
         extend: {
             colors: {
@@ -26,7 +27,20 @@ module.exports = {
                     
                     
                 },
-                secondary: "#207FB3",
+                secondary: {
+                    10: "#E0EAEF",
+                    20: "#CADDE8",
+                    30: "#B6D2E2",
+                    40: "#A0C6DB",
+                    50: "#8AB9D3",
+                    60: "#75AECD",
+                    70: "#60A3C7",
+                    80: "#4B97C0",
+                    DEFAULT: "#368BBA",
+                    100: "#207FB3",
+                    
+                    
+                } ,
                 tertiary: "#049CA3",
             },
         },

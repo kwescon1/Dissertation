@@ -8,7 +8,7 @@ const Sidebar = () => {
     const [NavLinksSet3, setNavLinksSet3 ] = useState(navLinksSet3)
     
     return (
-        <nav className=" min-h-screen w-full bg-primary ">
+        <nav className=" min-h-screen h-full w-full bg-primary ">
             <div className="p-4 text-white space-y-2">
                 <div className="flex flex-col flex-wrap space-y-2 text-sm">
                     <div className=" font-semibold">

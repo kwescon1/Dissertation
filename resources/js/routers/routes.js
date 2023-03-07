@@ -5,7 +5,8 @@ import ForgotPassword from "../pages/auth/forgotPassword";
 import Login from "../pages/auth/login";
 import ResetPassword from "../pages/auth/resetPassword";
 import SetNewPassword from "../pages/auth/setNewPassword";
-import AllClients from "../pages/clients/AllClients";
+import AddClient from "../pages/clients/addclient";
+import AllClients from "../pages/clients/allclients";
 import Dashboard from "../pages/dashboard/dashboard";
 import AllCategories from "../pages/inventories/categories/allCategories";
 import AllItems from "../pages/inventories/items/allItems";
@@ -36,6 +37,7 @@ import WaitingList from "../pages/waitingLists/waitingList";
           path: "clients",
           element: <AllClients />,
         },
+        
         {
           path: "dashboard",
           element: <Dashboard />,
@@ -101,6 +103,10 @@ import WaitingList from "../pages/waitingLists/waitingList";
 
 
       ],
+    },
+    {
+      path: "/client/new",
+      element: <AddClient />,
     },
     {
       path: "/login",
