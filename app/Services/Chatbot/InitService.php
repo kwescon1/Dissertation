@@ -2,16 +2,37 @@
 
 namespace App\Services\Chatbot;
 
+use Carbon\Carbon;
 use App\Services\Chatbot\Constants;
+use Illuminate\Support\Facades\URL;
 
 class InitService extends CoreService
 {
     public function ON_WELCOME_MESSAGE_PROVIDED($data)
-    {
+    { //TODO check if its possible to get the whatsapp number that is sending the response and use to get the facility branch... if its not there add it to the parameters inside data
 
         switch ($data['body']) {
             case '1':
-                return Constants::REGISTER;;
+
+                //generate expiry URL
+
+                /**
+                 * we assume the current whatsapp number in use belongs to one facility branch. Get that facility branch's id
+                 */
+
+                // $url = URL::temporarySignedRoute(
+                //     'client/new/register',
+                //     Carbon::now()->addMinutes(10),['branch' => $branchId]),
+                //     [
+                //         'id' => $notifiable->getKey(),
+                //         'hash' => sha1($notifiable->getEmailForVerification()), false
+                //     ]
+                // );
+
+                // str_replace(env('API_URL'), env('FRONT_URL'), $url);
+
+                // $this->sendReply();
+
                 break;
 
             case '2':
