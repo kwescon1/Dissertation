@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AppService extends BotService
 {
-
     /**
      * @param $data
      * 
@@ -17,6 +16,14 @@ class AppService extends BotService
      */
     public function messageReceived($data)
     {
+
+        // get last message sent to bot by client
+        $lastMessage = $this->lastSentMessage($data->From);
+
+        if ($lastMessage) {
+            $this->verifyTimeDifference($lastMessage->created_at, $data->From);
+        }
+
 
         $this->createConversation($data);
 
@@ -32,9 +39,8 @@ class AppService extends BotService
 
         if ($nextQuestionId == Constants::CHOOSE_FROM_AVAILABLE_OPTIONS) {
             $str = "Please choose from the options provided ❤️";
-            $media = "";
 
-            $this->sendReply($data->From, $str, $media);
+            $this->sendReply($data->From, $str);
 
             return;
         }
@@ -43,9 +49,7 @@ class AppService extends BotService
 
             $string = "Thank you for using our services❤️";
 
-            $media = "";
-
-            $this->sendReply($data->From, $string, $media);
+            $this->sendReply($data->From, $string);
 
             return $this->setToDone($data->From);
         }
@@ -72,7 +76,14 @@ class AppService extends BotService
 
         $userName = ""; //get user name
 
-        // $str = $nextQuestion->question . "\n\n" . $nextQuestion->options;
+
+        // if ($nextQuestionId == Constants::REGISTERED_USER_START_QUESTION_ID) {
+        //     //the variable there is the name
+        //     $whatsappNumber = $this->getRealWhatsappNumber($from);
+        //     $client = Client::where("whatsapp_number", $whatsappNumber)->orderBy("created_at", "desc")->first();
+
+        //     $userName = $client->full_name;
+        // }
 
         $str = str_replace("\$name", $userName, $nextQuestion->question) . "\n\n" . $nextQuestion->options;
 

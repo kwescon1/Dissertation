@@ -2,8 +2,10 @@
 
 namespace App\Services\Chatbot;
 
+use Carbon\Carbon;
 use App\Models\Reply;
 use App\Models\Question;
+use App\Models\Conversation;
 use App\Services\Chatbot\Constants;
 use Illuminate\Support\Facades\Log;
 
@@ -16,6 +18,16 @@ class BotService extends InitService
         $reply = Reply::latest()->where('from', $request->From)->first();
 
         if (!$reply) {
+
+            //check for user registration
+            // $whatsappNumber = $this->getRealWhatsappNumber($request->From);
+
+            // $client = Client::where("whatsapp_number", $whatsappNumber)->orderBy("created_at", "desc")->first();
+
+            // if (isset($client)) {
+            //     //return init question id for registered User
+            //     return Constants::REGISTERED_USER_START_QUESTION_ID;
+            // }
 
             //user hasn't started any session yet
             return Constants::INIT;
@@ -55,6 +67,35 @@ class BotService extends InitService
         logger("media is $media");
 
         $this->sendReply($from, $message, $media);
+    }
+
+    /**
+     * 
+     * @param $client
+     * @return object|NULL
+     */
+
+    function lastSentMessage(string $from): ?object
+    {
+        return Conversation::latest()->where('from', $from)->first();
+    }
+
+    /**
+     * @param $timeCreated
+     * @param $from
+     * 
+     * ends the users previous session if time difference between previous and current session is >= 30 minutes
+     */
+    function verifyTimeDifference($timeCreated, $from)
+    {
+        $past_time = Carbon::parse($timeCreated);
+        $current_time = Carbon::now();
+
+        $time_diff = $past_time->diffInMinutes($current_time);
+
+        if ($time_diff >= 30) {
+            $this->setToDone($from);
+        }
     }
 
     //runs specific methods

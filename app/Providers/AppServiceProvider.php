@@ -3,10 +3,21 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
-use Illuminate\Http\Response;
+use App\Models\UserFacilityBranch;
+use App\Services\Api\Auth\AuthService;
+use App\Services\Api\User\UserService;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Response;
+use App\Services\Api\Facility\FacilityService;
+use App\Services\Api\Auth\AuthServiceInterface;
+use App\Services\Api\User\UserServiceInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Services\Api\Facility\FacilityServiceInterface;
+use App\Services\Api\FacilityBranch\FacilityBranchService;
+use App\Services\Api\UserFacilityBranch\UserFacilityBranchService;
+use App\Services\Api\FacilityBranch\FacilityBranchServiceInterface;
+use App\Services\Api\UserFacilityBranch\UserFacilityBranchServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +29,14 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind(AuthServiceInterface::class, AuthService::class);
+        $this->app->bind(UserServiceInterface::class, UserService::class);
+        $this->app->bind(FacilityServiceInterface::class, FacilityService::class);
+        $this->app->bind(FacilityBranchServiceInterface::class, FacilityBranchService::class);
+        $this->app->bind(UserFacilityBranchServiceInterface::class, UserFacilityBranchService::class);
+
+
+        $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
     }
 
     /**
@@ -34,31 +53,30 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         JsonResource::withoutwrapping();
 
-        Response::macro('success', function ($data, $customCode = NULL) {
+        Response::macro('success', function ($data) {
             return response()->json([
                 'data' => $data ?: null,
-                // 'customCode' => $customCode,
+
             ]);
         });
 
-        Response::macro('created', function ($data, $customCode = NULL) {
+        Response::macro('created', function ($data) {
             return response()->json([
                 'data' => $data ?: null,
-                // 'customCode' => $customCode
             ], \Illuminate\Http\Response::HTTP_CREATED);
         });
 
-        Response::macro('notfound', function ($error, $customCode = NULL) {
+        Response::macro('notfound', function ($error) {
             return response()->json([
                 'error' => $error,
-                // 'customCode' => $customCode
+
             ], \Illuminate\Http\Response::HTTP_NOT_FOUND);
         });
 
-        Response::macro('error', function ($error, $statusCode = \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR, $customCode = 9999) {
+        Response::macro('error', function ($error, $statusCode = \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR) {
             return response()->json([
                 'error' => $error,
-                // 'customCode' => $customCode,
+
             ], $statusCode);
         });
     }
