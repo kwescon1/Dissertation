@@ -104,7 +104,7 @@ class AuthService extends CoreService implements AuthServiceInterface
         $loggedInBranchId = $this->logUserLoginTime($user->id, $user->facility_id, $facility_branch_id);
 
         // get facility branch
-        $facilityBranch = $this->facilityBranchService->getFacilityBranch($loggedInBranchId);
+        $facilityBranch = $this->facilityBranchService->getFacilityBranch($facility->id, $loggedInBranchId);
 
         if (!$facilityBranch) {
             throw new NotFoundException("Facility Branch with id: $user->facility_branch_id not found");
