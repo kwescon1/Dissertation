@@ -31,15 +31,13 @@ class StoreClientRequest extends FormRequest
             'date_of_birth' => 'date',
             'sex' => 'required|string|max:1',
             'phone' => 'required|max:20',
-
+            'facility_id' => 'required',
+            // 'facility_branch_id' => 'required',
             'email' => 'nullable|max:255|regex:/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}/',
 
 
             'emergency_contact_name' => 'string|required',
             'emergency_contact_phone' => 'max:20|required',
-
-            'facility_id' => 'string|required',
-            'facility_branch_id' => 'string|required',
 
 
             //residence
