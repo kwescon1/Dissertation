@@ -13,4 +13,9 @@ class FacilityService extends CoreService implements FacilityServiceInterface
     {
         return Facility::whereId($facilityId)->first();
     }
+
+    public function facilityExists(string $facilityId): bool
+    {
+        return Facility::whereId($facilityId)->exists();
+    }
 }
