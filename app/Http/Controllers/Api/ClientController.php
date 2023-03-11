@@ -2,12 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreClientRequest;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use App\Exceptions\NotFoundException;
+use App\Exceptions\BadRequestException;
+use App\Http\Requests\StoreClientRequest;
+use Illuminate\Auth\Access\AuthorizationException;
+use App\Services\Api\Client\ClientServiceInterface;
 
 class ClientController extends Controller
 {
+
+    private $clientService;
+
+    public function __construct(ClientServiceInterface $clientService)
+    {
+        $this->clientService = $clientService;
+    }
 
     public function verifyClientRegistrationLink()
     {
@@ -31,6 +45,22 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         //
+
+        $data = $request->validated();
+
+
+        try {
+            return response()->success($this->clientService->storeClient($data));
+        } catch (NotFoundException $e) {
+            return response()->notfound($e->getMessage());
+        } catch (BadRequestException $e) {
+            return response()->error($e->getMessage(), Response::HTTP_BAD_REQUEST);
+        } catch (AuthorizationException $e) {
+            return response()->error($e->getMessage(), Response::HTTP_UNAUTHORIZED, 102);
+        } catch (Exception $e) {
+            Log::error($e->getMessage() . "\n" . $e->getTraceAsString());
+            return response()->error($e->getMessage());
+        }
     }
 
     /**
