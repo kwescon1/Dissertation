@@ -32,3 +32,11 @@ Route::post('/messages', [App\Http\Controllers\Chatbot\ChatbotController::class,
 
 //status of message
 Route::post('/status', [App\Http\Controllers\Chatbot\ChatbotController::class, 'status']);
+
+
+/**
+ * Client registration route
+ */
+Route::get('verify/client-registration-link', [App\Http\Controllers\Api\ClientController::class, 'verifyClientRegistrationLink']);
+
+Route::apiResource('clients', App\Http\Controllers\Api\ClientController::class);
