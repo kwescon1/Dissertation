@@ -7,7 +7,7 @@ class Constants
     //registration
     const INIT = 1;
     const ABOUT_US = 2;
-    const REGISTER = 3;
+    // const REGISTER = 3;
 
 
 
