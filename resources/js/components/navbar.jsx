@@ -8,8 +8,8 @@ const NavBar = () => {
     const [toggleProfileBtn, setToggleProfileBtn] = useState(false);
     const newBtnDropdownContents = [
         {
-            path: "/",
-            name: "User",
+            path: "client/new",
+            name: "Client",
         },
     ];
     const ProfileBtnDropdownContents = [
