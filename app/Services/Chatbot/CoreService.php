@@ -57,6 +57,17 @@ class CoreService
     }
 
     /**
+     * @param string $number
+     * @return string
+     * 
+     * get replace whatsapp numbers of users
+     */
+    function replaceActualWhatsappNumber(string $number): string
+    {
+        return str_replace('+', 'whatsapp:+', $number);
+    }
+
+    /**
      * @param string $from
      * @param string $message
      * @param string $media

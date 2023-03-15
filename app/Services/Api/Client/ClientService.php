@@ -4,13 +4,17 @@ namespace App\Services\Api\Client;
 
 use App\Models\Client;
 
+use App\Models\Facility;
+use App\Models\FacilityBranch;
 use App\Services\Api\CoreService;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\DB;
 use App\Pipes\Client\StoreResidence;
+use App\Services\Chatbot\AppService;
 use App\Exceptions\NotFoundException;
 use App\Pipes\Client\RemoveResidence;
 use App\Pipes\Client\GenerateNhsNumber;
+use App\Exceptions\InvalidLinkException;
 use App\Pipes\Client\StoreEmergencyContact;
 use App\Pipes\Client\RemoveEmergencyContact;
 use App\Services\Api\Client\ClientServiceInterface;
@@ -22,15 +26,19 @@ class ClientService extends CoreService implements ClientServiceInterface
 
     private $facilityService;
     private $clientFacilityBranchService;
+    private $appService;
+    private const INVALID_URL = "Invalid Registration Link";
 
-    public function __construct(FacilityServiceInterface $facilityService, ClientFacilityBranchServiceInterface $clientFacilityBranchService)
+    public function __construct(FacilityServiceInterface $facilityService, ClientFacilityBranchServiceInterface $clientFacilityBranchService, AppService $appService)
     {
         $this->facilityService = $facilityService;
 
         $this->clientFacilityBranchService = $clientFacilityBranchService;;
+
+        $this->appService = $appService;
     }
 
-    public function storeClient(array $data)
+    public function storeClient(array $data): ?object
     {
 
         //check if facility exists
@@ -62,6 +70,38 @@ class ClientService extends CoreService implements ClientServiceInterface
                 return $client;
             });
         });
+    }
+
+    /**
+     * @param $request
+     * @throws ValidationException
+     */
+    public function verifyRegistrationLink($request): array
+    {
+
+        $clientNumber = $request->route('client');
+        $facilityId = $request->route('facilityId');
+
+        $facility = Facility::whereId($facilityId)->first();
+
+        $facilityBranchId = $request->route('branchId');
+
+        $facilityBranch = FacilityBranch::whereId($facilityBranchId)->whereFacilityId($facilityId)->first();
+
+        if (!$request->hasValidSignature() || !$facility || !$facilityBranch) {
+
+            $number = $this->appService->replaceActualWhatsappNumber($clientNumber);
+
+            $this->appService->sendReply($number, self::INVALID_URL);
+
+            throw new InvalidLinkException(self::INVALID_URL);
+        }
+
+        return [
+            "facility_id" => $facility->id,
+            "facility_branch_id" => $facilityBranch->id,
+            "client_number" => $clientNumber
+        ];
     }
 
     private function saveClient(array $data)

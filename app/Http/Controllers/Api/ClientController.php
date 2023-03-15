@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
+use App\Exceptions\ValidationException;
 use App\Http\Requests\StoreClientRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Services\Api\Client\ClientServiceInterface;
+use Illuminate\Routing\Exceptions\InvalidSignatureException;
 
 class ClientController extends Controller
 {
@@ -21,11 +23,24 @@ class ClientController extends Controller
     public function __construct(ClientServiceInterface $clientService)
     {
         $this->clientService = $clientService;
+        $this->middleware('auth', ['except' => [
+            'verifyClientRegistrationLink', 'store'
+        ]]);
     }
 
-    public function verifyClientRegistrationLink()
+    public function verifyClientRegistrationLink(Request $request)
     {
+        try {
+            return response()->success($this->clientService->verifyRegistrationLink($request));
+        } catch (InvalidSignatureException $e) {
+            return response()->error($e->getMessage(), \Illuminate\Http\Response::HTTP_FORBIDDEN);
+        } catch (ValidationException $e) {
+            return response()->error($e->getMessage(), \Illuminate\Http\Response::HTTP_BAD_REQUEST);
+        } catch (\Exception $e) {
+            return response()->error($e->getMessage());
+        }
     }
+
     /**
      * Display a listing of the resource.
      *
