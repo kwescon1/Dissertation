@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAboutUsToQuestionsTable extends Migration
+class AddRegisteredUserStartQuestionToQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,9 +20,10 @@ class AddAboutUsToQuestionsTable extends Migration
         });
 
         DB::table('questions')->insert([
-            "question" => "*Our AI chatbot is HIPAA-compliant, meaning all your medical data is secure and protected.*\n\n```Experience the convenience of healthcare like never before. Try our AI chatbot today and see the difference for yourself!```",
-            "options" => "*1.Back* \n*2.Quit*",
-            "method" => "onComplianceMessageProvided"
+            "question" => "Welcome \$name 😊,\n\nHow may we be of assitance to you today❓\n\nType *restart* to begin a new session by cancelling current session",
+            "media" => "welcome.jpg",
+            "options" => "*1.Book Appointment📕🕰️* \n*2.Ask a question🙋🏻‍♂️* \n*3.Quit❌*",
+            "method" => "registeredClientStartQuestion"
         ]);
     }
 
@@ -33,6 +34,6 @@ class AddAboutUsToQuestionsTable extends Migration
      */
     public function down()
     {
-        Question::whereMethod('onComplianceMessageProvided')->delete();
+        Question::whereMethod('registeredClientStartQuestion')->delete();
     }
 }
