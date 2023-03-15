@@ -68,7 +68,7 @@ class BotService extends InitService
 
         $media = $file['media'];
 
-        logger("media is $media");
+        Log::info("media is $media");
 
         $this->sendReply($from, $message, $media);
     }
@@ -105,7 +105,7 @@ class BotService extends InitService
     //runs specific methods
     public function runMethod($data)
     {
-        Log::warning("data is" . json_encode($data));
+        Log::info("data is" . json_encode($data));
 
         return call_user_func([$this, $data['question']->method], $data);
     }

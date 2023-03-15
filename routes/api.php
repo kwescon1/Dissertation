@@ -35,8 +35,9 @@ Route::post('/status', [App\Http\Controllers\Chatbot\ChatbotController::class, '
 
 
 /**
- * Client registration route
+ * Verify client registration route
  */
-Route::get('verify/client-registration-link', [App\Http\Controllers\Api\ClientController::class, 'verifyClientRegistrationLink']);
+Route::get('client-registration-link/{facilityId}/{branchId}/{client}/{hash}', [App\Http\Controllers\Api\ClientController::class, 'verifyClientRegistrationLink'])->middleware(['throttle:6,1'])->name('client.registration.verify');
+
 
 Route::apiResource('clients', App\Http\Controllers\Api\ClientController::class);
