@@ -3,35 +3,52 @@
 namespace App\Services\Chatbot;
 
 use Carbon\Carbon;
+use App\Models\FacilityBranch;
 use App\Services\Chatbot\Constants;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 
 class InitService extends RegisteredClientInitService
 {
     public function onWelcomeMessageProvided($data)
-    { //TODO check if its possible to get the whatsapp number that is sending the response and use to get the facility branch... if its not there add it to the parameters inside data
-
+    {
         switch ($data['body']) {
             case '1':
 
-                //generate expiry URL
-
                 /**
-                 * we assume the current whatsapp number in use belongs to one facility branch. Get that facility branch's id
+                 * we assume the current whatsapp number in use belongs to one facility branch. Get that facility branch's id to generate an expiry URL
                  */
+                $branch = FacilityBranch::wherePhone($this->getActualWhatsappNumber($data['to']))->first();
 
-                // $url = URL::temporarySignedRoute(
-                //     'client/new/register',
-                //     Carbon::now()->addMinutes(10),['branch' => $branchId]),
-                //     [
-                //         'id' => $notifiable->getKey(),
-                //         'hash' => sha1($notifiable->getEmailForVerification()), false
-                //     ]
-                // );
+                if (!$branch) {
+                    $str = "Oops😬! I'm sorry, I am unable to help at this time due to issues beyond my control. Please try again next time😊";
 
-                // str_replace(env('API_URL'), env('FRONT_URL'), $url);
+                    //TODO try creating a different log file for this purpose.
+                    Log::emergency("Facility Branch with phone number " . $this->getActualWhatsappNumber($data['to']) . " does not exist");
 
-                // $this->sendReply();
+                    $this->sendReply($data['from'], $str);
+
+                    $this->setToDone($data['from']);
+                    die;
+                }
+
+                $url = URL::temporarySignedRoute(
+                    'client.registration.verify',
+                    Carbon::now()->addMinutes(20),
+                    [
+                        'facilityId' => $branch->facility_id,
+                        'branchId' => $branch->id,
+                        'client' => $this->getActualWhatsappNumber($data['from']),
+                        'hash' => sha1(`{$branch->id}{$data['to']}{$data['from']}`), false
+                    ]
+                );
+
+                $url = str_replace(env('APP_URL') . '/api', env('APP_URL'), $url);
+
+                $str = "Please use the below link🔗 to register®. \n\n‼️The link would be available for 2️⃣0️⃣ minutes.\n\n$url";
+
+                $this->sendReply($data['from'], $str);
+                $this->setToDone($data['from']);
 
                 break;
 

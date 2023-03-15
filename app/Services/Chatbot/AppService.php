@@ -54,11 +54,11 @@ class AppService extends BotService
             return $this->setToDone($data->From);
         }
 
-        logger("chatbot nextQuestionId is $nextQuestionId");
+        Log::info("chatbot nextQuestionId is $nextQuestionId");
 
         $nextQuestion = $this->generateNextQuestion($nextQuestionId, $this->getActualWhatsappNumber($data->From), $this->getActualWhatsappNumber($data->To));
 
-        logger("chatbot next question \n" . $nextQuestion);
+        Log::info("chatbot next question \n" . $nextQuestion);
 
         $this->sendMessageReply($data->From, $nextQuestion, $nextQuestionId);
     }
@@ -69,8 +69,12 @@ class AppService extends BotService
      * 
      * @return string
      */
-    private function generateNextQuestion(int $nextQuestionId, string $from, string $to = NULL): string
+    private function generateNextQuestion(?int $nextQuestionId, string $from, string $to = NULL): string
     {
+
+        if (!$nextQuestionId) {
+            die;
+        }
 
         $nextQuestion = Question::find($nextQuestionId);
 

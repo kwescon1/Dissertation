@@ -15,10 +15,10 @@ class ClientNumberUtils
      *client numbers are 13 characters
      *chars 1-3 represent the Facility Account Code ex: "ABC" for "ABC Hospital". 
      *only uppercase alphabets  (A-Z) can be used
-     *this is stored in the accounts table as code
+     *this is stored in the facility table as code
      *chars 4-5 represent the Branch Code ex. "99" for the Tema branch of ABC Hospital
      *this can be any uppercase A-Z, 0-9 characters
-     *this is stored in the accounts_branch table as code
+     *this is stored in the facility_branch table as code
      *chars 6-7 is the last 2 digits of the year the client was registered ex. "21" for year 2021
      *char 8 '-' is a separator
      *chars 9-13 represent the client number
