@@ -4,6 +4,7 @@ namespace App\Services\Chatbot;
 
 use Carbon\Carbon;
 use App\Models\Reply;
+use App\Models\Client;
 use App\Models\Question;
 use App\Models\Conversation;
 use App\Services\Chatbot\Constants;
@@ -20,17 +21,19 @@ class BotService extends InitService
         if (!$reply) {
 
             //check for user registration
-            // $whatsappNumber = $this->getRealWhatsappNumber($request->From);
+            $clientNumber = $this->getActualWhatsappNumber($request->From);
 
-            // $client = Client::where("whatsapp_number", $whatsappNumber)->orderBy("created_at", "desc")->first();
+            $branchNumber = $this->getActualWhatsappNumber($request->To);
 
-            // if (isset($client)) {
-            //     //return init question id for registered User
-            //     return Constants::REGISTERED_USER_START_QUESTION_ID;
-            // }
+            $client = $this->getClient($branchNumber, $clientNumber);
 
-            //user hasn't started any session yet
-            return Constants::INIT;
+            if (!$client) {
+                //user hasn't registered
+                return Constants::INIT;
+            }
+
+            //return init question id for registered User
+            return Constants::REGISTERED_USER_START_QUESTION_ID;
         }
 
         $questionNumber = $reply->question_id;
@@ -44,7 +47,8 @@ class BotService extends InitService
             'question' => $question,
             'body' => trim($request->Body),
             'mediaUrl' => "$request->MediaUrl0",
-            'from' => $request->From
+            'from' => $request->From,
+            'to' => $request->To
         ]);
 
         return $nextId;
@@ -104,5 +108,18 @@ class BotService extends InitService
         Log::warning("data is" . json_encode($data));
 
         return call_user_func([$this, $data['question']->method], $data);
+    }
+
+
+    /**
+     * @param $branchPhoneNumber
+     * $clientPhoneNumber
+     * @return object|NULL
+     * 
+     * get client belonging to a facility branch
+     */
+    protected function getClient(string $branchPhoneNumber, string $clientPhoneNumber): ?object
+    {
+        return Client::join('facility_branches', 'clients.facility_id', '=', 'facility_branches.facility_id')->where("facility_branches.phone", $branchPhoneNumber)->where('clients.phone', $clientPhoneNumber)->first();
     }
 }
