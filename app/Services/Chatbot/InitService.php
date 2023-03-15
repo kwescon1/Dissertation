@@ -6,9 +6,9 @@ use Carbon\Carbon;
 use App\Services\Chatbot\Constants;
 use Illuminate\Support\Facades\URL;
 
-class InitService extends CoreService
+class InitService extends RegisteredClientInitService
 {
-    public function ON_WELCOME_MESSAGE_PROVIDED($data)
+    public function onWelcomeMessageProvided($data)
     { //TODO check if its possible to get the whatsapp number that is sending the response and use to get the facility branch... if its not there add it to the parameters inside data
 
         switch ($data['body']) {
@@ -59,7 +59,7 @@ class InitService extends CoreService
         }
     }
 
-    public function ON_COMPLIANCE_MESSAGE_PROVIDED($data)
+    public function onComplianceMessageProvided($data)
     {
         switch ($data['body']) {
             case '1':
