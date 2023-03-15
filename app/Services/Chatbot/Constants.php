@@ -7,7 +7,10 @@ class Constants
     //registration
     const INIT = 1;
     const ABOUT_US = 2;
-    // const REGISTER = 3;
+    const REGISTERED_USER_START_QUESTION_ID = 3;
+
+    //open AI constant
+    const OPEN_AI_CHAT = 4;
 
 
 

@@ -3,12 +3,23 @@
 namespace App\Services\Chatbot;
 
 use App\Models\Reply;
+use App\Models\Client;
+use Illuminate\Support\Arr;
 use App\Models\Conversation;
+use Exception;
+use Orhanerday\OpenAi\OpenAi;
 use Twilio\Rest\Client as CLi;
-// use Twilio\TwiML\MessagingResponse;
+
 
 class CoreService
 {
+
+    private $openAi;
+
+    public function __construct()
+    {
+        $this->openAi = $this->configureOpenAi();
+    }
     /**
      * @param string $from
      * @return void
@@ -102,6 +113,7 @@ class CoreService
         if (isset($reply)) {
             $reply->answer = $data["body"];
             $reply->next_id = $nextId;
+            // $user_feedback->media = $data['mediaUrl'];
             $reply->save();
         }
 
@@ -132,7 +144,7 @@ class CoreService
      * 
      * restart user current session
      */
-    function startAgain(string $from)
+    function restart(string $from)
     {
         $one = Reply::latest()->where("from", $from)->first();
 
@@ -174,5 +186,61 @@ class CoreService
         $auth_token = config('twilio.twilio_auth_token');
 
         return new CLi($account_sid, $auth_token);
+    }
+
+    /**
+     * configure open AI
+     */
+
+    private function configureOpenAI()
+    {
+        return new OpenAi(config('openai.open_ai_key'));
+    }
+
+    function openAiCompletion($prompt)
+    {
+        return retry(3, function () use ($prompt) {
+            $result = $this->openAi->chat([
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    [
+                        "role" => "system",
+                        "content" => "Your name is Clinton. You are a strictly a helpful eye clinic assistant, nothing else. You answer questions relating to eye health only! Any question not relating to eye health must not be answered! Give sacarstic responses to questions unrelated to eye health!"
+                    ],
+                    [
+                        "role" => "user",
+                        "content" => $prompt,
+                    ]
+                ],
+                'temperature' => 1.0,
+                'max_tokens' => 4000,
+                'frequency_penalty' => 0,
+                'presence_penalty' => 0,
+            ]);
+
+
+            $output = json_decode($result, true);
+
+            if (Arr::get($output, 'error')) {
+                throw new Exception("Open AI threw an error response");
+            } else {
+                $msg =  $output['choices'][0]['message']['content'];
+
+                return $msg;
+            }
+        }, 2000);
+    }
+
+    function openAiQueryCompletion($prompt)
+    {
+        $basePromt = "This is a laravel application";
+        $complete = $this->openAi->completion([
+            'model' => 'text-davinci-002',
+            'prompt' => "",
+            'temperature' => 0.9,
+            'max_tokens' => 150,
+            'frequency_penalty' => 0,
+            'presence_penalty' => 0.6,
+        ]);
     }
 }

@@ -27,12 +27,12 @@ class AppService extends BotService
 
         $this->createConversation($data);
 
-        if (trim(strtolower($data->Body)) == "startagain" || trim(strtolower($data->Body)) == "start again") {
+        if (trim(strtolower($data->Body)) == "restart") {
 
             $this->setToDone($data->From);
         } else if (trim(strtolower($data->Body)) == "back" || trim(strtolower($data->Body)) == "go back") {
 
-            $this->startAgain($data->From);
+            $this->restart($data->From);
         }
 
         $nextQuestionId = $this->getOrcreateSession($data);
@@ -56,7 +56,7 @@ class AppService extends BotService
 
         logger("chatbot nextQuestionId is $nextQuestionId");
 
-        $nextQuestion = $this->generateNextQuestion($nextQuestionId, $data->From);
+        $nextQuestion = $this->generateNextQuestion($nextQuestionId, $this->getActualWhatsappNumber($data->From), $this->getActualWhatsappNumber($data->To));
 
         logger("chatbot next question \n" . $nextQuestion);
 
@@ -69,21 +69,22 @@ class AppService extends BotService
      * 
      * @return string
      */
-    private function generateNextQuestion(int $nextQuestionId, string $from): string
+    private function generateNextQuestion(int $nextQuestionId, string $from, string $to = NULL): string
     {
 
         $nextQuestion = Question::find($nextQuestionId);
 
         $userName = ""; //get user name
 
+        if ($nextQuestionId == Constants::REGISTERED_USER_START_QUESTION_ID) {
 
-        // if ($nextQuestionId == Constants::REGISTERED_USER_START_QUESTION_ID) {
-        //     //the variable there is the name
-        //     $whatsappNumber = $this->getRealWhatsappNumber($from);
-        //     $client = Client::where("whatsapp_number", $whatsappNumber)->orderBy("created_at", "desc")->first();
+            //the variable there is the name
+            $client = $this->getClient($to, $from);
 
-        //     $userName = $client->full_name;
-        // }
+            if ($client) {
+                $userName = $client->lastname . " " . $client->firstname . " " . $client->othernames;
+            }
+        }
 
         $str = str_replace("\$name", $userName, $nextQuestion->question) . "\n\n" . $nextQuestion->options;
 
