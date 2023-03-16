@@ -21,109 +21,104 @@ import AllRoles from "../pages/users&roles/roles/allRoles";
 import AllUsers from "../pages/users&roles/users/allUsers";
 import WaitingList from "../pages/waitingLists/waitingList";
 
+const routes = createBrowserRouter([
+    {
+        path: "/",
+        element: <Index />,
+        children: [
+            {
+                path: "appointments",
+                element: <AllAppointments />,
+            },
+            {
+                path: "clients",
+                element: <AllClients />,
+            },
 
-  
-  const routes = createBrowserRouter([
+            {
+                path: "dashboard",
+                element: <Dashboard />,
+            },
+            {
+                path: "inventories",
+                children: [
+                    {
+                        path: "categories",
+                        element: <AllCategories />,
+                    },
+                    {
+                        path: "items",
+                        element: <AllItems />,
+                    },
+                ],
+            },
+            {
+                path: "sales",
+                children: [
+                    {
+                        path: "customers",
+                        element: <AllCustomers />,
+                    },
+                    {
+                        path: "invoices",
+                        element: <AllInvoices />,
+                    },
+                    {
+                        path: "receipt",
+                        element: <AllReceipts />,
+                    },
+                    {
+                        path: "transactions",
+                        element: <AllTransactions />,
+                    },
+                ],
+            },
+            {
+                path: "providers",
+                element: <AllProviders />,
+            },
+            {
+                path: "services",
+                element: <AllServices />,
+            },
+            {
+                path: "settings",
+                element: <TempSettings />,
+            },
+            {
+                path: "roles",
+                element: <AllRoles />,
+            },
+            {
+                path: "users",
+                element: <AllUsers />,
+            },
+            {
+                path: "waitinglist",
+                element: <WaitingList />,
+            },
+        ],
+    },
     {
-      path: "/",
-      element: <Index  />,
-      children: [
-        
-        {
-          path: "appointments",
-          element: <AllAppointments />,
-        },
-        {
-          path: "clients",
-          element: <AllClients />,
-        },
-        
-        {
-          path: "dashboard",
-          element: <Dashboard />,
-        },
-        {
-          path: "inventories",
-          children: [
-            {
-              path: "categories",
-              element: <AllCategories />,
-            },
-            {
-              path: "items",
-              element: <AllItems />,
-            },
-          ]
-        },
-        {
-          path: "sales",
-          children: [
-            {
-              path: "customers",
-              element: <AllCustomers />,
-            },
-            {
-              path: "invoices",
-              element: <AllInvoices />,
-            },
-            {
-              path: "receipt",
-              element: <AllReceipts />,
-            },
-            {
-              path: "transactions",
-              element: <AllTransactions />,
-            }, 
-          ]
-        },
-        {
-          path: "providers",
-          element: <AllProviders />
-        },
-        {
-          path: "services",
-          element: <AllServices />
-        },
-        {
-          path: "settings",
-          element: <TempSettings />
-        },
-        {
-          path: "roles",
-          element: <AllRoles />
-        },
-        {
-          path: "users",
-          element: <AllUsers />,
-        },
-        {
-          path: "waitinglist",
-          element: <WaitingList />,
-        },
+        path: "/client-registration-link/:facilityId/:branchId/:client/:hash",
+        element: <AddClient />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/password/forgot",
+        element: <ForgotPassword />,
+    },
+    {
+        path: "/password/reset",
+        element: <ResetPassword />,
+    },
+    {
+        path: "/password/new",
+        element: <SetNewPassword />,
+    },
+]);
 
-
-      ],
-    },
-    {
-      path: "/client/new",
-      element: <AddClient />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/password/forgot",
-      element: <ForgotPassword />,
-    },
-    {
-      path: "/password/reset",
-      element: <ResetPassword />,
-    },
-    {
-      path: "/password/new",
-      element: <SetNewPassword />,
-    },
-  ]);
-
-export default routes
+export default routes;

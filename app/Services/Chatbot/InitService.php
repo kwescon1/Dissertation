@@ -43,7 +43,7 @@ class InitService extends RegisteredClientInitService
                     ]
                 );
 
-                $url = str_replace(env('APP_URL') . '/api', env('APP_URL'), $url);
+                $url = str_replace(env('MIX_BASE_URL'), env('APP_URL'), $url);
 
                 $str = "Please use the below link🔗 to register®. \n\n‼️The link would be available for 2️⃣0️⃣ minutes.\n\n$url";
 
@@ -62,7 +62,7 @@ class InitService extends RegisteredClientInitService
                     sleep(2);
                 }
 
-                return Constants::ABOUT_US;
+                return $this->saveAnswer($data, Constants::ABOUT_US);
                 break;
 
             case '3':

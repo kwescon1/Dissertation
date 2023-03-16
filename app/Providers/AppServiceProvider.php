@@ -82,6 +82,7 @@ class AppServiceProvider extends ServiceProvider
         Response::macro('error', function ($error, $statusCode = \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR) {
             return response()->json([
                 'error' => $error,
+                'status' => $statusCode,
 
             ], $statusCode);
         });
