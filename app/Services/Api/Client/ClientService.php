@@ -100,7 +100,7 @@ class ClientService extends CoreService implements ClientServiceInterface
         return [
             "facility_id" => $facility->id,
             "facility_branch_id" => $facilityBranch->id,
-            "client_number" => $clientNumber
+            "phone" => $clientNumber
         ];
     }
 
