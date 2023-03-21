@@ -7,7 +7,6 @@ import PageInput, {
 import Logo from "../../components/logo/NavBarLogo";
 import PageTitle from "../../components/typography/pagetitle";
 import PageContainer from "../../layouts/pagecontaner";
-import { Form } from "react-router-dom";
 
 function AddClient(){
     const [isLoading,setIsLoading] = useState(true);
@@ -19,7 +18,7 @@ function AddClient(){
         lastname:"",
         othertnames:"",
         date_of_birth:"",
-sex:"",
+sex:"M",
 email:"",
 first_address_line:"",
 second_address_line:"",
@@ -41,6 +40,8 @@ phone:"",
           [event.target.name]: event.target.value
         });
       };
+
+          
 
       const handleSubmit = event => {
         event.preventDefault();
@@ -66,11 +67,12 @@ phone:"",
             try {
                 const response = await axios.get(apiCallRoute);
 
-                const { facility_id, facility_branch_id, phone } = response?.data;
+                const { facility_id, facility_branch_id, phone } = response?.data.data;
 
-                console.log(response,response?.data)
+               
                 
                 setFormData({...formData,facility_id,facility_branch_id,phone,});
+                console.log(formData)
 
                 setIsLoading(false);
 
@@ -125,7 +127,7 @@ phone:"",
                 <div className="mt-16">
                     <PageContainer>
                         <PageTitle title="New Client" />
-                        <Form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-8 w-full ">
                                 <div className="space-y-4">
                                     <PageSelectInput
@@ -134,7 +136,9 @@ phone:"",
                                         id="title"
                                         options={titleOptions}
                                         value={formData.title}
-                                        onChange={handleInputChange}
+                                        onchange={(event) => {
+                                            setFormData({...formData, title:event.target.value } );
+                                          }}
                                     />
                                     <PageInput
                                         label="First Name"
@@ -142,6 +146,10 @@ phone:"",
                                         placeholder="First Name"
                                         name="firstname"
                                         id="firstname"
+                                        value={formData.firstname}
+                                        onchange={(event) => {
+                                            setFormData({...formData, firstname:event.target.value } );
+                                          }}
                                     />
                                     <PageInput
                                         label="Last Name"
@@ -149,7 +157,10 @@ phone:"",
                                         placeholder="Last Name"
                                         name="lastname"
                                         id="lastname"
-                                        value={formData.firstname}
+                                        value={formData.lastname}
+                                        onchange={(event) => {
+                                            setFormData({...formData, lastname:event.target.value } );
+                                          }}
                                     />
                                     <PageInput
                                         label="Other Names"
@@ -157,6 +168,11 @@ phone:"",
                                         placeholder="Other Name"
                                         name="othertnames"
                                         id="othertnames"
+                                        value={formData.othertnames}
+                                        onchange={(event) => {
+                                            setFormData({...formData, othertnames:event.target.value } );
+                                          }}
+                                        
                                     />
                                     <div className="block space-y-1 py-2">
                                         <label
@@ -173,7 +189,9 @@ phone:"",
                                             name="date_of_birth"
                                             id="dateofBirth"
                                             value={formData.date_of_birth}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, date_of_birth:event.target.value } );
+                                          }}
                                         />
                                     </div>
                                     <div className="block space-y-1 py-2">
@@ -189,32 +207,34 @@ phone:"",
                                                 id="male"
                                                 label="Male"
                                                 value="M"
+                                                checked={ formData.sex === "M" }
+                                                onchange={(event) => {
+                                                    setFormData({...formData, sex:event.target.value } );
+                                                  }}
                                             />
                                             <RadioInput
                                                 name="sex"
                                                 id="female"
                                                 label="Female"
                                                 value="F"
+                                                checked={ formData.sex === "F" }
+                                                onchange={(event) => {
+                                                    setFormData({...formData, sex:event.target.value } );
+                                                  }}
                                             />
                                             <RadioInput
                                                 name="sex"
                                                 id="other"
                                                 label="Other"
                                                 value="O"
-                                            onChange={handleInputChange}
+                                                checked={ formData.sex === "O"}
+                                            onchange={(event) => {
+                                            setFormData({...formData, sex:event.target.value } );
+                                          }}
                                             />
-                                        </div>
+                                        </div> 
                                     </div>
-                                    <PageInput
-                                        label="Phone"
-                                        type="phone"
-                                        placeholder="+233247635185"
-                                        name="phone"
-                                        id="phone"
-                                        readOnly
-                                        value={formData.phone}
-                                            onChange={handleInputChange}
-                                    />
+                                    
                                     <PageInput
                                         label="Email"
                                         type="email"
@@ -222,7 +242,9 @@ phone:"",
                                         name="email"
                                         id="email"
                                         value={formData.email}
-                                            onChange={handleInputChange}
+                                        onchange={(event) => {
+                                            setFormData({...formData, email:event.target.value } );
+                                          }}
                                     />
                                 </div>
     
@@ -259,7 +281,9 @@ phone:"",
                                                 name="first_address_line"
                                                 id="first_address_line"
                                                 value={formData.first_address_line}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, first_address_line:event.target.value } );
+                                          }}
                                             />
                                             <PageInput
                                                 label="Second Address Line"
@@ -268,7 +292,9 @@ phone:"",
                                                 name="second_address_line"
                                                 id="second_address_line"
                                                 value={formData.second_address_line}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, second_address_line:event.target.value } );
+                                          }}
                                             />
                                             <PageInput
                                                 label="Third Address Line"
@@ -277,7 +303,9 @@ phone:"",
                                                 name="third_address_line"
                                                 id="third_address_line"
                                                 value={formData.third_address_line}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, third_address_line:event.target.value } );
+                                          }}
                                             />
                                             <PageInput
                                                 label="Town"
@@ -286,7 +314,9 @@ phone:"",
                                                 name="town"
                                                 id="town"
                                                 value={formData.town}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, town:event.target.value } );
+                                          }}
                                             />
                                             <PageInput
                                                 label="County"
@@ -295,7 +325,9 @@ phone:"",
                                                 name="county"
                                                 id="county"
                                                 value={formData.county}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, county:event.target.value } );
+                                          }}
                                             />
                                             <PageInput
                                                 label="Postcode"
@@ -304,7 +336,9 @@ phone:"",
                                                 name="postcode"
                                                 id="postcode"
                                                 value={formData.postcode}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, postcode:event.target.value } );
+                                          }}
                                             />
                                         </div>
                                     </div>
@@ -318,7 +352,9 @@ phone:"",
                                         name="emergency_contact_name"
                                         id="emergency_contact_name"
                                         value={formData.emergency_contact_name}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, emergency_contact_name:event.target.value } );
+                                          }}
                                     />
                                     <PageInput
                                         label="Emergency Contact Phone"
@@ -327,7 +363,9 @@ phone:"",
                                         name="emergency_contact_phone"
                                         id="emergency_contact_phone"
                                         value={formData.emergency_contact_phone}
-                                            onChange={handleInputChange}
+                                            onchange={(event) => {
+                                            setFormData({...formData, emergency_contact_phone:event.target.value } );
+                                          }}
                                     />
                                 </div>
                             </div>
@@ -335,7 +373,7 @@ phone:"",
                             <div className="w-ful py-6 flex justify-end">
                                 <FormButton cancelTo="/" />
                             </div>
-                        </Form>
+                        </form>
                     </PageContainer>
                 </div>
             </div>
