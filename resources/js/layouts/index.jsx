@@ -18,7 +18,7 @@ const Index = () => {
          {/* <Navigate to="/login" replace={true} /> */}
          <div className="relative">
             <NavBar />
-            <div className="flex w-full mt-16">
+            <div className="flex w-full mt-16 z-0">
                 <div className="w-72">
                 <Sidebar />
                 </div>
