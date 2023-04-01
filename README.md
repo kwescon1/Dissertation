@@ -1,64 +1,82 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# OPTIX
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project work is a comprehensive solution for managing an eye clinic with the integration of WhatsApp and OpenAI. The system has been set up using Docker, which allows for easy installation and deployment. The web server is powered by Nginx, and the database uses Postgres. Adminer is used for database management. Redis is also used for caching.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   Appointment scheduling: Patients can book appointments online and receive reminders via WhatsApp.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   Patient management: Manage patient records, including medical history, prescriptions, and test results.
+    -   Inventory management: Keep track of inventory levels and receive alerts when supplies are running low.
+    -   Automated diagnosis: Use OpenAI to assist doctors in making diagnoses and recommending treatments.
+-   Secure messaging: Communicate securely with patients via WhatsApp, with end-to-end encryption.
+-   Reporting: Generate reports on patient visits, revenue, and inventory levels.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### NB: The above features are still in the pipeline
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+To install the OPTIX, follow these steps:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Install Docker and Docker Compose on your system.
 
-## Laravel Sponsors
+2. Clone the repository to your local machine.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. Navigate to the project directory
 
-### Premium Partners
+4. Create a .env file based off .env.example
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5. Start docker engine
 
-## Contributing
+6. Build containers
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    - docker-compose build
 
-## Code of Conduct
+7. Bring up containers in detached mode
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    - docker-compose up -d
 
-## Security Vulnerabilities
+8. SSH into the optix app container
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    - docker exec -it -u ubuntu optix /bin/bash
 
-## License
+9. Run the following commands
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    - composer install
+    - php artisan key:generate
+    - npm install
+    - npm run watch
+
+10. Visit the following urls to ensure everything is correctly setup:
+
+    - **[Optix](http://localhost:9007)**
+
+## Database management
+
+To manage the database, use Adminer, which can be accessed at **[DB Management Interface](http://localhost:8095)**. Login with the following credentials:
+
+-   System: PostgreSQL
+-   Server: db
+-   Username: optix_user
+-   Password: root
+-   Database: optix_db
+
+## Env File Configurations
+
+There are some keys in the env that has to be provided with values.
+
+### Twilio Keys
+
+-   TWILIO_ACC_SID (Twilio account SID)
+-   TWILIO_ACC_AUTH_TOKEN (Twilio account authentication token)
+-   TWILIO_NUMBER (Twilio number eg: whatsapp+000000000000)
+
+Obtain the above from twilio.
+
+### Open AI key
+
+-   OPEN_AI_KEY (Authentication key from open AI)
+
+Obtain the above from Open AI.
+
+-   Thank you for using the Optix!
