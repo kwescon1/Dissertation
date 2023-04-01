@@ -7,10 +7,13 @@ import PageInput, {
 import Logo from "../../components/logo/NavBarLogo";
 import PageTitle from "../../components/typography/pagetitle";
 import PageContainer from "../../layouts/pagecontaner";
+import { Link } from 'react-router-dom';
 
 function AddClient(){
+    let number = "";
     const [isLoading,setIsLoading] = useState(true);
     const [isInvalidLink, setIsInvalidLink] = useState(false);
+    const [hasRegistered, setHasRegistered] = useState(false);
     const [errorMessage, setErrorMessage] = useState(""); // i doubt id use this
     const [formData, setFormData] = useState({
         title:"",
@@ -46,15 +49,21 @@ phone:"",
       const handleSubmit = event => {
         event.preventDefault();
 
-        console.log(formData);
-        // axios.post("clients", formData)
-        //   .then(response => {
-        //     console.log(response.data);
-        //     // redirect to success page or display success message
-        //   })
-        //   .catch(error => {
-        //     setErrorMessage("Oops. something went wrong");
-        //   });
+        axios.post("clients", formData)
+          .then(response => {
+            let n = response?.data?.data?.phone;
+        
+
+            number = n.replace("+","");
+            // console.log(number);
+            // redirect to success page or display success message
+            //set form to empty object
+            setHasRegistered(true);
+          })
+          .catch(error => {
+            console.log(error);
+            // setErrorMessage("Oops. something went wrong");
+          });
       };
 
     useEffect(() => {
@@ -92,6 +101,12 @@ phone:"",
 
     if (isInvalidLink) {
         return <div>Oops. the link is invalid</div>;
+    }
+
+    if(hasRegistered){
+        return <div>
+            Registration Successful <button><Link to={"https://api.whatsapp.com/send?phone="+ number}>Click Here</Link></button>
+        </div>
     }
 
     const titleOptions = [

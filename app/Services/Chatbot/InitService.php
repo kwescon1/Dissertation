@@ -34,7 +34,7 @@ class InitService extends RegisteredClientInitService
 
                 $url = URL::temporarySignedRoute(
                     'client.registration.verify',
-                    Carbon::now()->addMinutes(20),
+                    Carbon::now()->addHour(1),
                     [
                         'facilityId' => $branch->facility_id,
                         'branchId' => $branch->id,

@@ -40,9 +40,11 @@ class ClientService extends CoreService implements ClientServiceInterface
 
     public function storeClient(array $data): ?object
     {
+        logger($data);
 
         //check if facility exists
         $facilityExists = $this->facilityService->facilityExists($data['facility_id']);
+
 
         if (!$facilityExists) {
             throw new NotFoundException("Facility not found");
@@ -67,6 +69,13 @@ class ClientService extends CoreService implements ClientServiceInterface
                     'facility_id' => $client->facility_id,
                     'facility_branch_id' => $facilityBranchId
                 ]);
+
+                $str = "Thank you for registering for this service😊♥️\n\nPlease take note of the below..\n\nYour *🏥NHS  number is $client->nhs_number*";
+                $media = "thank_you.jpeg";
+
+                $number = $this->appService->replaceActualWhatsappNumber($client->phone);
+                $this->appService->sendReply($number, $str, $media);
+
                 return $client;
             });
         });

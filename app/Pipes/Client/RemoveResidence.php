@@ -4,6 +4,7 @@ namespace App\Pipes\Client;
 
 use Closure;
 use App\Pipes\Pipe;
+use Illuminate\Support\Arr;
 
 class RemoveResidence implements Pipe
 {
@@ -25,9 +26,9 @@ class RemoveResidence implements Pipe
         ];
 
         foreach ($data as $d) {
-            if (isset($content[$d])) {
-                unset($content[$d]);
-            }
+            // if (Arr::get($content, $content[$d])) {
+            unset($content[$d]);
+            // }
         }
 
         return $content;

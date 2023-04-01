@@ -12,6 +12,7 @@ use App\Exceptions\BadRequestException;
 use App\Exceptions\ValidationException;
 use App\Exceptions\InvalidLinkException;
 use App\Http\Requests\StoreClientRequest;
+use App\Http\Resources\StoreClientResource;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Services\Api\Client\ClientServiceInterface;
 use Illuminate\Routing\Exceptions\InvalidSignatureException;
@@ -64,7 +65,7 @@ class ClientController extends Controller
 
 
         try {
-            return response()->success($this->clientService->storeClient($data));
+            return response()->success(new StoreClientResource($this->clientService->storeClient($data)));
         } catch (NotFoundException $e) {
             return response()->notfound($e->getMessage());
         } catch (BadRequestException $e) {

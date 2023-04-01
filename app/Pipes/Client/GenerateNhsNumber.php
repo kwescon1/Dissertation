@@ -100,7 +100,7 @@ class GenerateNhsNumber implements Pipe
         return Cache::remember(self::CACHE_KEY_UNIQUE_CLIENT_NUMBER . $facilityBranchId, self::CACHE_SECONDS, function () use ($facilityId, $facilityBranchId) {
             $lastSavedClient = $this->lastSavedClient($facilityId, $facilityBranchId);
 
-            return $lastSavedClient ? ClientNumberUtils::extractUniqueClientNumber($lastSavedClient->client_number) : 10001;
+            return $lastSavedClient ? ClientNumberUtils::extractUniqueClientNumber($lastSavedClient->nhs_number) : 10001;
         });
     }
 
