@@ -29,6 +29,7 @@
         "tailwindcss-pseudo-elements": "^2.0.0"
     },
     "dependencies": {
+        "crypto-js": "^4.1.1",
         "react-router-dom": "^6.8.1",
         "tw-elements": "^1.0.0-alpha13"
     }
