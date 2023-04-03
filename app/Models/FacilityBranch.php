@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Utils\BaseModel;
 use App\Utils\GeneratesUiud;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class FacilityBranch extends BaseModel
+class FacilityBranch extends Model
 {
     use HasFactory, GeneratesUiud, SoftDeletes;
 
