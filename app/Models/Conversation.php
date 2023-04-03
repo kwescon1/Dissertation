@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Conversation extends Model
 {
     use HasFactory, GeneratesUiud;
+
+    protected $table = 'conversations';
+    protected $keyType = "string";
+    protected $guarded = ['id'];
 }

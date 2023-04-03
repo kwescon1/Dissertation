@@ -14,10 +14,12 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, GeneratesUiud;
 
     protected $table = 'users';
-    protected $guarded = [];
-    public $incrementing = false;
-    protected $keyType = 'string';
-    protected $primaryKey = 'id';
-
+    protected $keyType = "string";
+    protected $guarded = ['id'];
     protected $dates = ['current_login_at', 'last_login_at'];
+
+    public function facility()
+    {
+        return $this->belongsTo(Facility::class, 'facility_id');
+    }
 }

@@ -12,4 +12,6 @@ class FacilityBranch extends Model
     use HasFactory, GeneratesUiud, SoftDeletes;
 
     protected $table = 'facility_branches';
+    protected $keyType = "string";
+    protected $guarded = ['id'];
 }

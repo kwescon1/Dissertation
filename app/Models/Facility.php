@@ -12,7 +12,6 @@ class Facility extends Model
     use HasFactory, SoftDeletes, GeneratesUiud;
 
     protected $table = 'facilities';
-
-
-    // protected $guard_name = 'api';
+    protected $keyType = "string";
+    protected $guarded = ['id'];
 }

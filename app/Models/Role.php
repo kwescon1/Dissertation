@@ -13,6 +13,8 @@ class Role extends SpatieRole
     use HasFactory, GeneratesUiud;
 
     protected $tableName = 'roles';
+    protected $keyType = "string";
+    protected $guarded = ['id'];
 
 
 

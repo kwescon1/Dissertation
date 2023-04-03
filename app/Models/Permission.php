@@ -11,4 +11,6 @@ class Permission extends SpatiePermission
     use HasFactory, GeneratesUiud;
 
     protected $tableName = 'permissions';
+    protected $keyType = "string";
+    protected $guarded = ['id'];
 }

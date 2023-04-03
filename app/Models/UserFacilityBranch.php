@@ -13,6 +13,8 @@ class UserFacilityBranch extends Model
     use HasFactory, GeneratesUiud, SoftDeletes, HasRoles;
 
     protected $table = 'user_facility_branches';
+    protected $keyType = "string";
+    protected $guarded = ['id'];
 
 
     public function user()
