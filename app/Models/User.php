@@ -22,4 +22,13 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Facility::class, 'facility_id');
     }
+
+    /**
+     * user belongs to many facility branches
+     */
+    public function facilityBranches()
+    {
+        return $this->belongsToMany(FacilityBranch::class, 'user_facility_branches', 'user_id', 'facility_branch_id')
+            ->as('facility_branch')->withPivot('last_login_at')->orderBy('name', 'ASC');
+    }
 }
