@@ -39,7 +39,7 @@ class CreatePermissionTables extends Migration
             $table->foreignUuid('facility_branch_id')->constrained('facility_branches');
             $table->timestamps();
 
-            $table->unique(['name', 'guard_name']);
+            $table->unique(['name', 'guard_name', 'facility_branch_id']);
         });
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
@@ -61,13 +61,11 @@ class CreatePermissionTables extends Migration
         });
 
         Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
-            $table->uuid('role_id');
-
             $table->string('model_type');
             $table->uuid($columnNames['model_morph_key']);
             $table->index([$columnNames['model_morph_key'], 'model_type',]);
 
-            $table->foreign('role_id')
+            $table->foreignUuid('role_id')
                 ->references('id')
                 ->on($tableNames['roles'])
                 ->onDelete('cascade');
@@ -80,14 +78,13 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
             $table->unsignedBigInteger(PermissionRegistrar::$pivotPermission);
-            $table->uuid('role_id');
 
             $table->foreign(PermissionRegistrar::$pivotPermission)
                 ->references('id')
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
 
-            $table->foreign('role_id')
+            $table->foreignUuid('role_id')
                 ->references('id')
                 ->on($tableNames['roles'])
                 ->onDelete('cascade');
