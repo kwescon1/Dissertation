@@ -2,7 +2,7 @@
 FROM php:7.4-fpm
 
 # Set working directory
-WORKDIR /var/www/foviar
+WORKDIR /var/www/optix
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -35,8 +35,8 @@ RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo,www-data -u 1000 ub
 RUN groupadd ubuntu
 # RUN usermod -a -G ubuntu
 
-# RUN chmod -R 775 /var/www/foviar
-# RUN chown -R ubuntu:www-data /var/www/foviar
+# RUN chmod -R 775 /var/www/optix
+# RUN chown -R ubuntu:www-data /var/www/optix
 
 
 # Get latest Composer

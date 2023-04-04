@@ -1,7 +1,7 @@
 version: '3.9'
 
 networks:
-  foviar:
+  optix:
     driver: "bridge"
     
 
@@ -13,25 +13,25 @@ services:
 #PHP-FPM service
   app:
     build: .
-    container_name: foviar
+    container_name: optix
     restart: unless-stopped
     tty: true
-    working_dir: /var/www/foviar
+    working_dir: /var/www/optix
     depends_on:
       - db
       - redis
 
     volumes:
-      - ./:/var/www/foviar
+      - ./:/var/www/optix
       - ./docker-files/php/local.ini:/usr/local/etc/php/conf.d/local.ini
 
     networks:
-      - foviar
+      - optix
 
 #   #NGINX service
-  foviar_webserver: 
+  optix_webserver: 
     image: nginx
-    container_name: foviar_webserver
+    container_name: optix_webserver
     restart: unless-stopped
     # tty: true
     
@@ -40,14 +40,14 @@ services:
       - '9008:443'
     
     volumes:
-      - ./:/var/www/foviar
+      - ./:/var/www/optix
       - ./docker-files/nginx/conf.d/app.conf:/etc/nginx/conf.d/app.conf
     
     networks:
-      - foviar
+      - optix
   db:
     platform: linux/x86_64 #comment this line out if using windows
-    container_name: foviar_db
+    container_name: optix_db
     image: postgres:latest
     environment:
       POSTGRES_DB: ${DB_DATABASE}
@@ -63,11 +63,11 @@ services:
       -  ./storage/dbdata:/var/lib/pgsql
       -  ./docker-files/pgsql/pgsql.cnf:/etc/pgsql/pgsql.cnf
     networks:
-      - foviar
+      - optix
 
 #setup db management interface
   adminer:
-    container_name: foviar_adminer
+    container_name: optix_adminer
     image: adminer:latest
     restart: always
     ports:
@@ -75,11 +75,11 @@ services:
     environment:
       ADMINER_DEFAULT_SERVER: db
     networks:
-      - foviar
+      - optix
 
 
   redis:
-    container_name: foviar_redis
+    container_name: optix_redis
     image: redis:alpine
     env_file:
       - .env
@@ -88,4 +88,4 @@ services:
     volumes:
       - ./storage/redis/data:/data
     networks:
-      - foviar
+      - optix
