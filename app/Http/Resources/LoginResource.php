@@ -25,7 +25,8 @@ class LoginResource extends JsonResource
             // 'username' => $this->username,
             'status' => $this->status,
             'position' => $this->position,
-            'token' => $this->token
+            'token' => $this->token,
+            'role' => new LoginRoleResource($this->role)
         ];
     }
 }

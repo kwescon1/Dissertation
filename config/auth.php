@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -69,6 +74,16 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'roles' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Role::class,
+        ],
+
+        'permissions' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Permission::class,
+        ],
     ],
 
     /*
