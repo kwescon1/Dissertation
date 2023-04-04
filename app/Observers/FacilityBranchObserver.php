@@ -81,5 +81,9 @@ class FacilityBranchObserver
         $role = Role::factory()->create([
             'facility_branch_id' => $facilityBranchId
         ]);
+
+        //assign permissions
+        echo "Assigning permissions\n";
+        $role->givePermissionTo(Permission::all());
     }
 }
