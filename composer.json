@@ -12,6 +12,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "orhanerday/open-ai": "^4.7",
+        "twilio/sdk": "^7.0",
         "predis/predis": "^2.1",
         "spatie/laravel-permission": "^5.10"
     },
