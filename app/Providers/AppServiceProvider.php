@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
-use App\Models\UserFacilityBranch;
 use App\Services\Api\Auth\AuthService;
 use App\Services\Api\User\UserService;
 use Illuminate\Support\Facades\Schema;
@@ -17,6 +16,8 @@ use App\Services\Api\Facility\FacilityServiceInterface;
 use App\Services\Api\FacilityBranch\FacilityBranchService;
 use App\Services\Api\UserFacilityBranch\UserFacilityBranchService;
 use App\Services\Api\FacilityBranch\FacilityBranchServiceInterface;
+use App\Services\Api\Role\RoleService;
+use App\Services\Api\Role\RoleServiceInterface;
 use App\Services\Api\UserFacilityBranch\UserFacilityBranchServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(FacilityServiceInterface::class, FacilityService::class);
         $this->app->bind(FacilityBranchServiceInterface::class, FacilityBranchService::class);
         $this->app->bind(UserFacilityBranchServiceInterface::class, UserFacilityBranchService::class);
+        $this->app->bind(RoleServiceInterface::class, RoleService::class);
 
 
         $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
