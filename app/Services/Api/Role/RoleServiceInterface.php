@@ -7,4 +7,6 @@ use Illuminate\Support\Collection;
 interface RoleServiceInterface
 {
     public function listRoles(string $facilityBranchId): ?Collection;
+
+    public function role(string $id, string $facilityBranchId): ?object;
 }
