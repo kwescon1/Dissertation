@@ -31,4 +31,11 @@ class User extends Authenticatable
         return $this->belongsToMany(FacilityBranch::class, 'user_facility_branches', 'user_id', 'facility_branch_id')
             ->as('facility_branch')->withPivot('last_login_at')->orderBy('name', 'ASC');
     }
+    /**
+     * return current logged in branch
+     */
+    public function loggedInBranch()
+    {
+        return $this->hasOne(UserFacilityBranch::class, 'user_id')->latest('current_login_at');
+    }
 }
