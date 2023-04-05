@@ -41,7 +41,7 @@ class RoleService extends CoreService implements RoleServiceInterface
      */
     public function role(string $id, string $facilityBranchId): ?object
     {
-        $role = Role::whereId($id)->whereFacilityBranchId($facilityBranchId)->with('permissions')->with('users.user')->first();
+        $role = Role::whereId($id)->whereFacilityBranchId($facilityBranchId)->with('permissions', 'users.user')->first();
 
 
         if (!$role) {
@@ -53,5 +53,25 @@ class RoleService extends CoreService implements RoleServiceInterface
         Gate::authorize($this->view, $role);
 
         return $role;
+    }
+
+    /**
+     * delete a specified role
+     * @param string $id
+     * @param string $facilityBranchId
+     * @return bool
+     */
+    public function destroyRole(string $id, string $facilityBranchId): bool
+    {
+        $role = Role::whereId($id)->whereFacilityBranchId($facilityBranchId)->withCount('users')->first();
+
+        if (!$role) {
+            $this->throwNotFoundException("Role", $id);
+        }
+
+
+        Gate::authorize('delete', $role);
+
+        return $role->users_count > 0 ?  $this->throwForbiddenException("This role cannot be deleted") : $role->delete();
     }
 }
