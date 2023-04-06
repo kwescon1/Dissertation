@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -12,7 +13,7 @@ class RoleFactory extends Factory
      *
      * @var string
      */
-    protected $model = Roles::class;
+    protected $model = Role::class;
 
     /**
      * Define the model's default state.
@@ -28,7 +29,7 @@ class RoleFactory extends Factory
             'name' => "Administrator",
             'description' => "Role manages facility",
             'guard_name' => 'api',
-            'facilitiy_branch_id' => ''
+            'facility_branch_id' => ''
         ];
     }
 }

@@ -4,13 +4,24 @@ namespace App\Models;
 
 use App\Utils\GeneratesUiud;
 use Spatie\Permission\Guard;
+use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Models\Role as SpatieRole;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends SpatieRole
 {
-    use HasFactory, GeneratesUiud;
+
+    public function __construct(array $attributes = [])
+    {
+        $attributes['guard_name'] = $attributes['guard_name'] ?? 'api';
+
+        parent::__construct($attributes);
+    }
+
+    use HasFactory, GeneratesUiud, SoftDeletes;
 
     protected $tableName = 'roles';
     protected $keyType = "string";
@@ -37,5 +48,20 @@ class Role extends SpatieRole
         }
 
         return static::query()->create($attributes);
+    }
+
+    /**
+     * A role belongs to some users of the model associated with its guard.
+     */
+    public function users(): BelongsToMany
+    {
+
+        return $this->morphedByMany(
+            UserFacilityBranch::class,
+            'model',
+            config('permission.table_names.model_has_roles'),
+            PermissionRegistrar::$pivotRole,
+            config('permission.column_names.model_morph_key')
+        );
     }
 }
