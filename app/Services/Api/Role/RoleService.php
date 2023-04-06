@@ -3,6 +3,8 @@
 namespace App\Services\Api\Role;
 
 use App\Models\Role;
+use App\Pipes\Role\FindRole;
+use App\Pipes\Role\UpdateRole;
 use App\Pipes\Role\CreateNewRole;
 use App\Services\Api\CoreService;
 use Illuminate\Pipeline\Pipeline;
@@ -10,18 +12,22 @@ use Illuminate\Support\Facades\Log;
 use App\Pipes\Role\FetchPermissions;
 use Illuminate\Support\Facades\Gate;
 use App\Exceptions\NotFoundException;
+use App\Pipes\Role\VerifyRoleForUpdate;
 use Illuminate\Database\Eloquent\Model;
 use App\Pipes\Role\VerifyRoleDoesNotExist;
+use App\Pipes\Role\VerifyRoleNameForUpdate;
 use Illuminate\Database\Eloquent\Collection;
 
 class RoleService extends CoreService implements RoleServiceInterface
 {
-    private $viewAny, $view;
+    private $viewAny, $view, $delete, $create, $update;
 
     public function __construct()
     {
         $this->viewAny = 'viewAny';
         $this->view = 'view';
+        $this->delete = 'delete';
+        $this->create = 'create';
     }
 
     /**
@@ -75,7 +81,7 @@ class RoleService extends CoreService implements RoleServiceInterface
         }
 
 
-        Gate::authorize('delete', $role);
+        Gate::authorize($this->delete, $role);
 
         return $role->users_count > 0 ?  $this->throwForbiddenException("This role cannot be deleted") : $role->delete();
     }
@@ -87,7 +93,7 @@ class RoleService extends CoreService implements RoleServiceInterface
      */
     public function createRole(array $data, string $facilityBranchId): ?Model
     {
-        Gate::authorize('create', Role::class);
+        Gate::authorize($this->create, Role::class);
 
         $data['facility_branch_id'] = $facilityBranchId;
 
@@ -95,6 +101,25 @@ class RoleService extends CoreService implements RoleServiceInterface
 
         return app(Pipeline::class)->send($data)->through($pipes)->then(function ($content) {
 
+            return $content;
+        });
+    }
+
+
+    /**
+     * @throws \App\Exceptions\ValidationException
+     * @throws \App\Exceptions\NotFoundException
+     * @throws AuthorizationException
+     */
+    public function updateRole($data, string $id, string $facilityBranchId): ?Model
+    {
+        $data['facility_branch_id'] = $facilityBranchId;
+
+        $data['id'] = $id;
+
+        $pipes = [FindRole::class, VerifyRoleNameForUpdate::class, FetchPermissions::class, UpdateRole::class];
+
+        return app(Pipeline::class)->send($data)->through($pipes)->then(function ($content) {
             return $content;
         });
     }
