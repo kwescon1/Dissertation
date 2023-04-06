@@ -5,27 +5,27 @@
   "number_of_users": 11
 }, {
   "id": 2,
-  "name": "",
+  "name": "Admin",
   "description": "Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
   "number_of_users": 18
 }, {
   "id": 3,
-  "name": "Nurse",
+  "name": "Doctor",
   "description": "Mauris sit amet eros.",
   "number_of_users": 2
 }, {
   "id": 4,
-  "name": "Nurse",
+  "name": "Receptionist",
   "description": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio.",
   "number_of_users": 12
 }, {
   "id": 5,
-  "name": "",
+  "name": "Lab Technician",
   "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
   "number_of_users": 10
 }, {
   "id": 6,
-  "name": "",
+  "name": "Nurse",
   "description": "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.",
   "number_of_users": 2
 }]
