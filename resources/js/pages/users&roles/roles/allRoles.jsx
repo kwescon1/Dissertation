@@ -14,6 +14,8 @@ const AllRoles = () => {
     {
       name: 'Description',
       selector: row => row.description,
+      maxWidth: '600px',
+      wrap: true,
       
     },
     {
