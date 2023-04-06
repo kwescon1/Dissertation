@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role as SpatieRole;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends SpatieRole
 {
@@ -20,7 +21,7 @@ class Role extends SpatieRole
         parent::__construct($attributes);
     }
 
-    use HasFactory, GeneratesUiud;
+    use HasFactory, GeneratesUiud, SoftDeletes;
 
     protected $tableName = 'roles';
     protected $keyType = "string";
