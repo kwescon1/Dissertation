@@ -31,7 +31,7 @@ class CreateClientsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['facility_id', 'facility_branch_id', 'phone']);
+            $table->unique(['facility_id', 'phone']);
         });
     }
 
