@@ -5,7 +5,8 @@ setup:
 	cp .env.example .env
 	docker compose build
 	docker compose up -d
-	docker compose exec -u ubuntu app /bin/bash -c "composer install && php artisan key:generate && php artisan db:seed && npm install && npm run watch"
+	docker compose exec -u ubuntu app /bin/bash -c "composer install && php artisan key:generate && php artisan db:seed"
+	docker compose exec -u ubuntu app /bin/bash -c "npm install && npm run dev || (rm -rf node_modules && npm install && npm run dev) || exit 1"
 
 teardown:
 	docker compose down
