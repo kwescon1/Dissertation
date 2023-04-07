@@ -1,11 +1,11 @@
 import PageTitle from "../../../components/typography/pagetitle";
 import ViewText, {ViewMutiText} from "../../../components/typography/viewtext";
 import PageContainer from "../../../layouts/pagecontaner";
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { useEffect,useState } from "react";
 
 const ViewRole = () => {
-
+  const navigate = useNavigate();
   const {id} = useParams();
   const [role,setRole] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -36,11 +36,14 @@ const ViewRole = () => {
         setIsLoading(false);
        
       } catch (error) {
-        console.log(error.response.data.error);
+        console.log(error.response.status);
+        if(error.response.status == 500){
+          navigate("/roles", { replace: true });
+        }
       }
     };
     fetchRole();
-  },[id]);
+  },[id,navigate]);
  
 
   if (isLoading) {
