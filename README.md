@@ -18,7 +18,7 @@ This project work is a comprehensive solution for managing an eye clinic with th
 
 To install the OPTIX, follow these steps:
 
-1. Clone the repository to your local machine.
+1. Clone the repository(develop branch) to your local machine.
 
 2. Navigate to the project directory
 
