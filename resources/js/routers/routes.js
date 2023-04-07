@@ -24,13 +24,11 @@ import ViewRole from "../pages/users&roles/roles/viewRole";
 
 const routes = createBrowserRouter([
     {
-        
         element: <Index />,
         children: [
             {
                 path: "/",
                 children: [
-
                     {
                         index: true,
                         element: <Dashboard />,
@@ -41,7 +39,7 @@ const routes = createBrowserRouter([
                     },
                     {
                         path: "appointments",
-        
+
                         children: [
                             {
                                 index: true,
@@ -58,7 +56,7 @@ const routes = createBrowserRouter([
                             },
                         ],
                     },
-        
+
                     {
                         path: "inventories",
                         children: [
@@ -152,14 +150,14 @@ const routes = createBrowserRouter([
                     },
                     {
                         path: "roles",
-        
+
                         children: [
                             {
                                 index: true,
                                 element: <AllRoles />,
                             },
                             {
-                                path: "view",
+                                path: ":id/view",
                                 element: <ViewRole />,
                             },
                         ],
@@ -183,13 +181,8 @@ const routes = createBrowserRouter([
                         ],
                     },
                 ],
-    
-            }
-           
-            
+            },
         ],
-        
-        
     },
     {
         path: "/client-registration-link/:facilityId/:branchId/:client/:hash",

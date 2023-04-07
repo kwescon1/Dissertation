@@ -35,6 +35,7 @@
         "react-data-table-component-extensions": "^1.6.0",
         "react-icons": "^4.8.0",
         "react-router-dom": "^6.8.1",
+        "react-toastify": "^9.1.2",
         "styled-components": "^5.3.9",
         "tw-elements": "^1.0.0-alpha13"
     }

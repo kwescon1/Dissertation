@@ -23,7 +23,9 @@ class RoleResource extends JsonResource
             }),
             'users' => $this->users->map(function ($user) {
                 return collect(['id' => $user->user->id, 'firstname' => $user->user->firstname, 'lastname' => $user->user->lastname, 'status' => $user->user->status, 'email' => $user->user->email, 'position' => $user->user->position]);
-            })
+            }),
+            'created_at' => $this->created_at->format('jS F Y'),
+            'updated_at' => $this->updated_at->format('jS F Y')
         ];
     }
 }

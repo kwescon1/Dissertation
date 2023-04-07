@@ -20,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
+    // Auth
+    Route::get('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
+
     Route::middleware('role')->apiResource('roles', App\Http\Controllers\Api\RoleController::class);
 });
 

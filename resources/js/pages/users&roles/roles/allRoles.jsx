@@ -5,6 +5,9 @@ import PageContainer from "../../../layouts/pagecontaner";
 import { getAuthUser } from "../../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import DeleteModal from "../../../components/modals/delete";
+import { Link } from 'react-router-dom';
+
+// import { ToastContainer, toast } from 'react-toastify';
 
 const getRoles = async () => {
     try {
@@ -17,6 +20,7 @@ const getRoles = async () => {
 };
 
 const AllRoles = () => {
+  // const [errors,setError] = useState(null);
     const [roles, setRoles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
@@ -53,9 +57,19 @@ const AllRoles = () => {
             setShowDeleteModal(false);
             getRoles(); // reload the roles after delete
         } catch (error) {
-            console.log(error);
+          
             setShowDeleteModal(false);
+            // setError(error);
+            
+// toast.error(error.response.data.error)
+            console.log(error.response.data);
         }
+
+
+
+        // let response = await axios.delete(`roles/${selectedRole.id}`);
+
+        // console.log(response);
     };
 
     // const handleDeleteCancel = () => {
@@ -104,7 +118,13 @@ const AllRoles = () => {
             cell: (row) => (
                 <div className="flex flex-wrap space-x-4">
                     {(canViewRole() || canEditRole()) && (
-                        <FaEye className="text-primary cursor-pointer hover:text-primary-100" />
+                      <Link
+                      to={`/roles/${row.id}/view`}
+                      className="text-primary cursor-pointer hover:text-primary-100"
+                    >
+
+<FaEye />
+</Link>
                     )}
 
                     {canEditRole() && (
