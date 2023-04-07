@@ -1,0 +1,91 @@
+version: '3.9'
+
+networks:
+  optix:
+    driver: "bridge"
+    
+
+# volumes:
+  #  db-data:
+
+services:
+
+#PHP-FPM service
+  app:
+    build: .
+    container_name: optix
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www/optix
+    depends_on:
+      - db
+      - redis
+
+    volumes:
+      - ./:/var/www/optix
+      - ./docker-files/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+
+    networks:
+      - optix
+
+#   #NGINX service
+  optix_webserver: 
+    image: nginx
+    container_name: optix_webserver
+    restart: unless-stopped
+    # tty: true
+    
+    ports:
+      - '9007:80'
+      - '9008:443'
+    
+    volumes:
+      - ./:/var/www/optix
+      - ./docker-files/nginx/conf.d/app.conf:/etc/nginx/conf.d/app.conf
+    
+    networks:
+      - optix
+  db:
+    platform: linux/x86_64 #comment this line out if using windows
+    container_name: optix_db
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_ROOT_PASSWORD: ${DB_PASSWORD}
+    restart: always
+    # tty: true
+    ports:
+      -  "3307:5432"
+
+    volumes:
+      -  ./storage/dbdata:/var/lib/pgsql
+      -  ./docker-files/pgsql/pgsql.cnf:/etc/pgsql/pgsql.cnf
+    networks:
+      - optix
+
+#setup db management interface
+  adminer:
+    container_name: optix_adminer
+    image: adminer:latest
+    restart: always
+    ports:
+      - "8095:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    networks:
+      - optix
+
+
+  redis:
+    container_name: optix_redis
+    image: redis:alpine
+    env_file:
+      - .env
+    ports:
+      - "6383:6379"
+    volumes:
+      - ./storage/redis/data:/data
+    networks:
+      - optix
