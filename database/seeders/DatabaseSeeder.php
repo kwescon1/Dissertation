@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Facility;
 use App\Models\FacilityBranch;
@@ -18,6 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // reset cached roles and permissions
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create facility
         echo "Creating facility \n";
@@ -55,6 +58,13 @@ class DatabaseSeeder extends Seeder
                     'facility_id' => $facility->id,
                     'facility_branch_id' => $facilityBranch->id
                 ]);
+
+                // get role created from facility branch observer
+                $role = Role::whereFacilityBranchId($facilityBranch->id)->first();
+
+                //assign role to default user in facility branch
+                echo "assigning role to default user in facility branch \n";
+                $defaultUserFacilityBranch->assignRole($role);
 
 
                 //seed two users

@@ -24,9 +24,9 @@ class RemoveEmergencyContact implements Pipe
         ];
 
         foreach ($data as $d) {
-            if (isset($content[$d])) {
-                unset($content[$d]);
-            }
+            // if (isset($content[$d])) {
+            unset($content[$d]);
+            // }
         }
 
         return $content;

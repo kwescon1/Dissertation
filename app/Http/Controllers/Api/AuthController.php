@@ -46,4 +46,16 @@ class AuthController extends Controller
             return response()->error($e->getMessage());
         }
     }
+
+    public function logout(Request $request)
+    {
+        try {
+            return response()->success($this->authService->logout($request));
+        } catch (NotFoundException $e) {
+            return response()->notfound($e->getMessage());
+        } catch (Exception $e) {
+            Log::error($e->getMessage() . "\n" . $e->getTraceAsString());
+            return response()->error($e->getMessage());
+        }
+    }
 }

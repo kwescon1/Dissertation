@@ -1,4 +1,4 @@
-const PageInput = ({ label, type, placeholder, name, id }) => {
+const PageInput = ({ label, type, placeholder, name, id,value,onchange }) => {
   return ( 
     <div>
       <div className="block space-y-1 ">
@@ -9,17 +9,21 @@ const PageInput = ({ label, type, placeholder, name, id }) => {
                 placeholder={placeholder}
                 name={name}
                 id={id}
+                value={value}
+                onChange={onchange}
             />
         </div>
     </div>
    );
 }
 
-export const PageSelectInput = ({label, name, id, options}) => {
+export const PageSelectInput = ({label, name, id, options, value,onchange}) => {
   return ( 
     <div className="block space-y-1">
       <label htmlFor={name} className="font-semibold ">{label}</label>
-      <select className="form-input rounded border-gray-400 w-full" name={name}  id={id}>
+      <select className="form-input rounded border-gray-400 w-full" name={name}  id={id}  value={value}
+                onChange={onchange}>
+                  <option  className="py-2" >Select an Option</option>
         {options.map((option, index)  => (
           <option key={index} className="py-2" value={option.value}>{option.name}</option>
         ) )
@@ -32,7 +36,7 @@ export const PageSelectInput = ({label, name, id, options}) => {
    );
 }
 
-export const RadioInput = ({name, id, label, value, onChange, checked}) => {
+export const RadioInput = ({name, id, label, value, onchange, checked}) => {
   return (
     <div className="flex items-center space-x-2">
       <input
@@ -41,7 +45,7 @@ export const RadioInput = ({name, id, label, value, onChange, checked}) => {
                 name={name}
                 id={id}
                 value ={value}
-                onChange = {onChange}
+                onChange = {onchange}
                 checked={checked}
             />
       <label htmlFor={id} className="font-medium">{label}</label>

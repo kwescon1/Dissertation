@@ -44,14 +44,12 @@ class ClientService extends CoreService implements ClientServiceInterface
         //check if facility exists
         $facilityExists = $this->facilityService->facilityExists($data['facility_id']);
 
+
         if (!$facilityExists) {
             throw new NotFoundException("Facility not found");
         }
 
-
-
         $pipes = [StoreResidence::class, RemoveResidence::class, StoreEmergencyContact::class, RemoveEmergencyContact::class, GenerateNhsNumber::class];
-
 
         return DB::transaction(function () use ($pipes, $data) {
 
@@ -62,11 +60,10 @@ class ClientService extends CoreService implements ClientServiceInterface
                 unset($content['facility_branch_id']);
                 $client = $this->saveClient($content);
 
-                $this->clientFacilityBranchService->createClientFacilityBranch([
-                    'client_id' => $client->id,
-                    'facility_id' => $client->facility_id,
-                    'facility_branch_id' => $facilityBranchId
-                ]);
+                $this->createClientFacilityBranch($client, $facilityBranchId);
+
+                $this->successMessage($client->nhs_number, $client->phone);
+
                 return $client;
             });
         });
@@ -100,7 +97,7 @@ class ClientService extends CoreService implements ClientServiceInterface
         return [
             "facility_id" => $facility->id,
             "facility_branch_id" => $facilityBranch->id,
-            "client_number" => $clientNumber
+            "phone" => $clientNumber
         ];
     }
 
@@ -108,5 +105,25 @@ class ClientService extends CoreService implements ClientServiceInterface
     {
 
         return Client::create($data);
+    }
+
+    private function createClientFacilityBranch($client, $facilityBranchId)
+    {
+        return $this->clientFacilityBranchService->createClientFacilityBranch([
+            'client_id' => $client->id,
+            'facility_id' => $client->facility_id,
+            'facility_branch_id' => $facilityBranchId
+        ]);
+    }
+
+    private function successMessage($nhsNumber, $clientPhone)
+    {
+        $str = "Thank you for registering for this service😊♥️\n\nPlease take note of the below..\n\nYour *🏥NHS  number is $nhsNumber*";
+        $media = "thank_you.jpeg";
+
+        $number = $this->appService->replaceActualWhatsappNumber($clientPhone);
+        $this->appService->sendReply($number, $str, $media);
+
+        return;
     }
 }

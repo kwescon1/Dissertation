@@ -10,7 +10,9 @@ use App\Http\Controllers\Controller;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
 use App\Exceptions\ValidationException;
+use App\Exceptions\InvalidLinkException;
 use App\Http\Requests\StoreClientRequest;
+use App\Http\Resources\StoreClientResource;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Services\Api\Client\ClientServiceInterface;
 use Illuminate\Routing\Exceptions\InvalidSignatureException;
@@ -32,10 +34,8 @@ class ClientController extends Controller
     {
         try {
             return response()->success($this->clientService->verifyRegistrationLink($request));
-        } catch (InvalidSignatureException $e) {
+        } catch (InvalidLinkException $e) {
             return response()->error($e->getMessage(), \Illuminate\Http\Response::HTTP_FORBIDDEN);
-        } catch (ValidationException $e) {
-            return response()->error($e->getMessage(), \Illuminate\Http\Response::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
             return response()->error($e->getMessage());
         }
@@ -65,7 +65,7 @@ class ClientController extends Controller
 
 
         try {
-            return response()->success($this->clientService->storeClient($data));
+            return response()->success(new StoreClientResource($this->clientService->storeClient($data)));
         } catch (NotFoundException $e) {
             return response()->notfound($e->getMessage());
         } catch (BadRequestException $e) {

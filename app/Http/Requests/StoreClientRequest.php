@@ -32,7 +32,7 @@ class StoreClientRequest extends FormRequest
             'sex' => 'required|string|max:1',
             'phone' => 'required|max:20',
             'facility_id' => 'required',
-            // 'facility_branch_id' => 'required',
+            'facility_branch_id' => 'required',
             'email' => 'nullable|max:255|regex:/^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}/',
 
 

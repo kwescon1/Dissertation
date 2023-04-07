@@ -24,7 +24,7 @@ const NavBar = () => {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 right-0">
+        <nav className="z-50 fixed top-0 left-0 right-0">
             <div className="w-full h-16  bg-primary-5 border-b border-primary-25">
                 <div className="mx-4 h-full flex items-center justify-between ">
                     <div className="w-full flex items-center space-x-10">

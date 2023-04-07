@@ -5,6 +5,7 @@ namespace App\Services\Api\Auth;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Facility;
+use Illuminate\Http\Request;
 use App\Models\FacilityBranch;
 use App\Services\Api\CoreService;
 use Illuminate\Support\Facades\Hash;
@@ -101,10 +102,10 @@ class AuthService extends CoreService implements AuthServiceInterface
             throw new NotFoundException("Facility with id: $user->facility_id not found");
         }
 
-        $loggedInBranchId = $this->logUserLoginTime($user->id, $user->facility_id, $facility_branch_id);
+        $loggedInBranchUser = $this->logUserLoginTime($user->id, $user->facility_id, $facility_branch_id);
 
         // get facility branch
-        $facilityBranch = $this->facilityBranchService->getFacilityBranch($facility->id, $loggedInBranchId);
+        $facilityBranch = $this->facilityBranchService->getFacilityBranch($facility->id, $loggedInBranchUser->facility_branch_id);
 
         if (!$facilityBranch) {
             throw new NotFoundException("Facility Branch with id: $user->facility_branch_id not found");
@@ -117,6 +118,7 @@ class AuthService extends CoreService implements AuthServiceInterface
         $user["facility_branch_id"] = $facilityBranch->id;
         $user["facility_branch_name"] = $facilityBranch->name;
         $user["token"] = $token;
+        $user['role'] = $loggedInBranchUser->roles ? $loggedInBranchUser->roles[0] : Null;
 
         cache()->put(
             $user->id,
@@ -207,10 +209,7 @@ class AuthService extends CoreService implements AuthServiceInterface
      */
     public function logout(Request $request): bool
     {
-        Redis::del(cache()->get(auth()->id())['facility_branch_id']);
-
         cache()->forget(auth()->id());
-
 
         return auth()->user()->tokens()->delete();
     }
@@ -222,9 +221,10 @@ class AuthService extends CoreService implements AuthServiceInterface
      * @param int      $facilityId
      * @param int|null $facility_branch_id
      *
-     * @return int
+     * @return object
+     * returns the role and permissions of user in branch
      */
-    private function logUserLoginTime(string $userId, string $facilityId, string $facilityBranchId = NULL): string
+    private function logUserLoginTime(string $userId, string $facilityId, string $facilityBranchId = NULL): object
     {
 
         $userBranch = $this->userFacilityBranchService->getUserBranch($userId, $facilityId, $facilityBranchId);
@@ -237,7 +237,8 @@ class AuthService extends CoreService implements AuthServiceInterface
         $userBranch->last_login_at = $userBranch->current_login_at;
         $userBranch->save();
 
-        return $userBranch->facility_branch_id;
+
+        return $userBranch;
     }
 
     private function checkPassword($password, $userPassword): bool
