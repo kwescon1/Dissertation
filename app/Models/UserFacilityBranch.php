@@ -17,11 +17,12 @@ class UserFacilityBranch extends Model
     protected $keyType = "string";
     protected $guarded = ['id'];
     protected $guard_name = 'api';
+    protected $dates = ['current_login_at', 'last_login_at'];
 
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     /**

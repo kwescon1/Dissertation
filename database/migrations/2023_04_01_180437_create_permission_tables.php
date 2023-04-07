@@ -38,6 +38,7 @@ class CreatePermissionTables extends Migration
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->foreignUuid('facility_branch_id')->constrained('facility_branches');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->unique(['name', 'guard_name', 'facility_branch_id']);
         });
