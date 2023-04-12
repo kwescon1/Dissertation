@@ -54,11 +54,8 @@ class RoleService extends CoreService implements RoleServiceInterface
     {
         $role = Role::whereId($id)->whereFacilityBranchId($facilityBranchId)->with('permissions', 'users.user')->first();
 
-
         if (!$role) {
-            Log::error("Role with id: $id does not exist in this facility branch");
-
-            throw new NotFoundException("The specified role does not exist");
+            $this->throwNotFoundException("Role", $id);
         }
 
         Gate::authorize($this->view, $role);
