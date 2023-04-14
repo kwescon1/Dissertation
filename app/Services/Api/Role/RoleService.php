@@ -8,11 +8,8 @@ use App\Pipes\Role\UpdateRole;
 use App\Pipes\Role\CreateNewRole;
 use App\Services\Api\CoreService;
 use Illuminate\Pipeline\Pipeline;
-use Illuminate\Support\Facades\Log;
 use App\Pipes\Role\FetchPermissions;
 use Illuminate\Support\Facades\Gate;
-use App\Exceptions\NotFoundException;
-use App\Pipes\Role\VerifyRoleForUpdate;
 use Illuminate\Database\Eloquent\Model;
 use App\Pipes\Role\VerifyRoleDoesNotExist;
 use App\Pipes\Role\VerifyRoleNameForUpdate;
@@ -54,11 +51,8 @@ class RoleService extends CoreService implements RoleServiceInterface
     {
         $role = Role::whereId($id)->whereFacilityBranchId($facilityBranchId)->with('permissions', 'users.user')->first();
 
-
         if (!$role) {
-            Log::error("Role with id: $id does not exist in this facility branch");
-
-            throw new NotFoundException("The specified role does not exist");
+            $this->throwNotFoundException("Role", $id);
         }
 
         Gate::authorize($this->view, $role);
