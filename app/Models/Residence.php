@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Residence extends BaseModel
+class Residence extends Model
 {
     use HasFactory, SoftDeletes, GeneratesUiud;
 
     protected $table = 'residences';
+    protected $keyType = "string";
+    protected $guarded = ['id'];
 
     public function client()
     {

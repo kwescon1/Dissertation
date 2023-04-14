@@ -2,18 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Exceptions\NotFoundException;
-use App\Exceptions\BadRequestException;
-use App\Exceptions\ValidationException;
 use App\Http\Requests\StoreClientRequest;
-use Illuminate\Auth\Access\AuthorizationException;
+use App\Http\Resources\StoreClientResource;
 use App\Services\Api\Client\ClientServiceInterface;
-use Illuminate\Routing\Exceptions\InvalidSignatureException;
 
 class ClientController extends Controller
 {
@@ -30,15 +23,7 @@ class ClientController extends Controller
 
     public function verifyClientRegistrationLink(Request $request)
     {
-        try {
-            return response()->success($this->clientService->verifyRegistrationLink($request));
-        } catch (InvalidSignatureException $e) {
-            return response()->error($e->getMessage(), \Illuminate\Http\Response::HTTP_FORBIDDEN);
-        } catch (ValidationException $e) {
-            return response()->error($e->getMessage(), \Illuminate\Http\Response::HTTP_BAD_REQUEST);
-        } catch (\Exception $e) {
-            return response()->error($e->getMessage());
-        }
+        return response()->success($this->clientService->verifyRegistrationLink($request));
     }
 
     /**
@@ -63,19 +48,7 @@ class ClientController extends Controller
 
         $data = $request->validated();
 
-
-        try {
-            return response()->success($this->clientService->storeClient($data));
-        } catch (NotFoundException $e) {
-            return response()->notfound($e->getMessage());
-        } catch (BadRequestException $e) {
-            return response()->error($e->getMessage(), Response::HTTP_BAD_REQUEST);
-        } catch (AuthorizationException $e) {
-            return response()->error($e->getMessage(), Response::HTTP_UNAUTHORIZED, 102);
-        } catch (Exception $e) {
-            Log::error($e->getMessage() . "\n" . $e->getTraceAsString());
-            return response()->error($e->getMessage());
-        }
+        return response()->success(new StoreClientResource($this->clientService->storeClient($data)));
     }
 
     /**

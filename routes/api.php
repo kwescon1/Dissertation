@@ -20,8 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    // Auth
+    Route::get('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
+
+    //TODO wrap these in a user status middleware later.. users with status active only should be able to access these routes
+    Route::middleware('role')->apiResource('roles', App\Http\Controllers\Api\RoleController::class);
+
+    Route::middleware('user')->apiResource('users', App\Http\Controllers\Api\UserController::class);
 });
 
 

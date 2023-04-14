@@ -22,10 +22,11 @@ class LoginResource extends JsonResource
             'facility_branch_name' => strtoupper($this->facility_branch_name),
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
-            'username' => $this->username,
+            // 'username' => $this->username,
             'status' => $this->status,
             'position' => $this->position,
-            'token' => $this->token
+            'token' => $this->token,
+            'role' => new LoginRoleResource($this->role)
         ];
     }
 }

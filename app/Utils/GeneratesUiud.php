@@ -15,6 +15,7 @@ trait GeneratesUiud
         parent::boot();
 
         static::creating(function (Model $model) {
+            $model->incrementing = false;
             $model->setAttribute($model->getKeyName(), Uuid::uuid6());
         });
     }

@@ -13,8 +13,9 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "orhanerday/open-ai": "^4.7",
+        "twilio/sdk": "^7.0",
         "predis/predis": "^2.1",
-        "twilio/sdk": "^7.0"
+        "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

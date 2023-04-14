@@ -10,6 +10,6 @@ class UserFacilityBranchService extends CoreService implements UserFacilityBranc
 {
     public function getUserBranch(string $userId, string $facilityId, string $facilityBranchId = NULL): ?object
     {
-        return isset($facilityBranchId) ? UserFacilityBranch::whereUserId($userId)->whereFacilityId($facilityId)->whereFacilityBranchId($facilityBranchId)->first() : UserFacilityBranch::whereUserId($userId)->whereFacilityId($facilityId)->latest('last_login_at')->first();
+        return isset($facilityBranchId) ? UserFacilityBranch::whereUserId($userId)->whereFacilityId($facilityId)->whereFacilityBranchId($facilityBranchId)->with('roles:id,name', 'roles.permissions:id,name')->first() : UserFacilityBranch::whereUserId($userId)->whereFacilityId($facilityId)->with('roles:id,name', 'roles.permissions:id,name')->latest('last_login_at')->first();
     }
 }

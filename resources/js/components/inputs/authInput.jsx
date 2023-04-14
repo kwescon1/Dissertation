@@ -1,4 +1,4 @@
-const AuthInput = ({ type, placeholder, name }) => {
+const AuthInput = ({ type, placeholder, name,value,onchange }) => {
     return (
         <div>
             <input
@@ -6,6 +6,8 @@ const AuthInput = ({ type, placeholder, name }) => {
                 type={type}
                 placeholder={placeholder}
                 name={name}
+                value={value}
+                onChange={onchange}
             />
         </div>
     );

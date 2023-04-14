@@ -2,11 +2,27 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\ListUserResource;
+use App\Http\Resources\ShowUserResource;
+use App\Http\Resources\SaveModelResource;
+use App\Services\Api\User\UserServiceInterface;
 
 class UserController extends Controller
 {
+    /**
+     * @var UserServiceInterface
+     */
+    private $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +31,9 @@ class UserController extends Controller
     public function index()
     {
         //
+        $authUser = cache()->get(auth()->id());
+
+        return response()->success(ListUserResource::collection($this->userService->users($authUser['facility_id'], $authUser['facility_branch_id'])));
     }
 
     /**
@@ -23,9 +42,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         //
+        $data = $request->validated();
+
+        return response()->created(new SaveModelResource($this->userService->createUser($data)));
     }
 
     /**
@@ -37,6 +59,9 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $authUser = cache()->get(auth()->id());
+
+        return response()->success(new ShowUserResource($this->userService->user($id, $authUser['facility_id'], $authUser['facility_branch_id'])));
     }
 
     /**
@@ -46,9 +71,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         //
+        $data = $request->validated();
+        $authUser = cache()->get(auth()->id());
+
+        return response()->success(new SaveModelResource($this->userService->updateUser($data, $id, $authUser['facility_id'], $authUser['facility_branch_id'])));
     }
 
     /**
@@ -60,5 +89,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $authUser = cache()->get(auth()->id());
+
+        return response()->success($this->userService->destroyUser($id, $authUser['facility_id']));
     }
 }

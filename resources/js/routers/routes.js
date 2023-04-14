@@ -20,110 +20,190 @@ import TempSettings from "../pages/settings/tempSettings";
 import AllRoles from "../pages/users&roles/roles/allRoles";
 import AllUsers from "../pages/users&roles/users/allUsers";
 import WaitingList from "../pages/waitingLists/waitingList";
+import ViewRole from "../pages/users&roles/roles/viewRole";
 
+const routes = createBrowserRouter([
+    {
+        element: <Index />,
+        children: [
+            {
+                path: "/",
+                children: [
+                    {
+                        index: true,
+                        element: <Dashboard />,
+                    },
+                    {
+                        path: "dashboard",
+                        element: <Dashboard />,
+                    },
+                    {
+                        path: "appointments",
 
-  
-  const routes = createBrowserRouter([
-    {
-      path: "/",
-      element: <Index  />,
-      children: [
-        
-        {
-          path: "appointments",
-          element: <AllAppointments />,
-        },
-        {
-          path: "clients",
-          element: <AllClients />,
-        },
-        
-        {
-          path: "dashboard",
-          element: <Dashboard />,
-        },
-        {
-          path: "inventories",
-          children: [
-            {
-              path: "categories",
-              element: <AllCategories />,
-            },
-            {
-              path: "items",
-              element: <AllItems />,
-            },
-          ]
-        },
-        {
-          path: "sales",
-          children: [
-            {
-              path: "customers",
-              element: <AllCustomers />,
-            },
-            {
-              path: "invoices",
-              element: <AllInvoices />,
-            },
-            {
-              path: "receipt",
-              element: <AllReceipts />,
-            },
-            {
-              path: "transactions",
-              element: <AllTransactions />,
-            }, 
-          ]
-        },
-        {
-          path: "providers",
-          element: <AllProviders />
-        },
-        {
-          path: "services",
-          element: <AllServices />
-        },
-        {
-          path: "settings",
-          element: <TempSettings />
-        },
-        {
-          path: "roles",
-          element: <AllRoles />
-        },
-        {
-          path: "users",
-          element: <AllUsers />,
-        },
-        {
-          path: "waitinglist",
-          element: <WaitingList />,
-        },
+                        children: [
+                            {
+                                index: true,
+                                element: <AllAppointments />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "clients",
+                        children: [
+                            {
+                                index: true,
+                                element: <AllClients />,
+                            },
+                        ],
+                    },
 
+                    {
+                        path: "inventories",
+                        children: [
+                            {
+                                path: "categories",
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <AllCategories />,
+                                    },
+                                ],
+                            },
+                            {
+                                path: "items",
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <AllItems />,
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        path: "sales",
+                        children: [
+                            {
+                                path: "customers",
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <AllCustomers />,
+                                    },
+                                ],
+                            },
+                            {
+                                path: "invoices",
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <AllInvoices />,
+                                    },
+                                ],
+                            },
+                            {
+                                path: "receipt",
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <AllReceipts />,
+                                    },
+                                ],
+                            },
+                            {
+                                path: "transactions",
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <AllTransactions />,
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        path: "providers",
+                        children: [
+                            {
+                                index: true,
+                                element: <AllProviders />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "services",
+                        children: [
+                            {
+                                index: true,
+                                element: <AllServices />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "settings",
+                        children: [
+                            {
+                                index: true,
+                                element: <TempSettings />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "roles",
 
-      ],
+                        children: [
+                            {
+                                index: true,
+                                element: <AllRoles />,
+                            },
+                            {
+                                path: ":id/view",
+                                element: <ViewRole />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "users",
+                        children: [
+                            {
+                                index: true,
+                                element: <AllUsers />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "waitinglist",
+                        children: [
+                            {
+                                index: true,
+                                element: <WaitingList />,
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
     },
     {
-      path: "/client/new",
-      element: <AddClient />,
+        path: "/client-registration-link/:facilityId/:branchId/:client/:hash",
+        element: <AddClient />,
     },
     {
-      path: "/login",
-      element: <Login />,
+        path: "/login",
+        element: <Login />,
     },
     {
-      path: "/password/forgot",
-      element: <ForgotPassword />,
+        path: "/password/forgot",
+        element: <ForgotPassword />,
     },
     {
-      path: "/password/reset",
-      element: <ResetPassword />,
+        path: "/password/reset",
+        element: <ResetPassword />,
     },
     {
-      path: "/password/new",
-      element: <SetNewPassword />,
+        path: "/password/new",
+        element: <SetNewPassword />,
     },
-  ]);
+]);
 
-export default routes
+export default routes;
