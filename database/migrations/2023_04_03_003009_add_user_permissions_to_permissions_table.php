@@ -19,7 +19,7 @@ class AddUserPermissionsToPermissionsTable extends Migration
         $data = [
             [
                 "label" => "Edit Users",
-                "name" => "edit-user",
+                "name" => "edit-users",
                 "description" => "Can add, edit or view users",
                 "guard_name" => "api"
             ],

@@ -22,6 +22,8 @@ class User extends Authenticatable
         'current_login_at', 'last_login_at'
     ];
 
+    protected $hidden = ['password'];
+
     public function facility()
     {
         return $this->belongsTo(Facility::class, 'facility_id');
@@ -44,5 +46,10 @@ class User extends Authenticatable
          * the updated at field is always updated whenever a user logs in. so it is assumed that where the updated at field is current and the current login field is not null is the latest branch the user has logged into
          */
         return $this->hasOne(UserFacilityBranch::class, 'user_id')->latest('updated_at')->where('current_login_at', '!=', Null);
+    }
+
+    public function userAccounts()
+    {
+        return $this->hasMany(UserFacilityBranch::class, 'user_id');
     }
 }

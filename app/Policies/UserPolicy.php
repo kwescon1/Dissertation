@@ -95,7 +95,7 @@ class UserPolicy
 
         $facilityId = $user->loggedInBranch->facility_id;
 
-        return $userRole->hasAnyDirectPermission([$this->editUser, $this->deleteUser]) && $model->facility_id == $facilityId;
+        return $userRole->hasAnyDirectPermission([$this->editUser, $this->deleteUser]) && $model->facility_id == $facilityId && $user->id != $model->id;
     }
 
     /**

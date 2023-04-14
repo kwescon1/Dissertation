@@ -2,10 +2,11 @@
 
 namespace App\Services\Api;
 
-use App\Exceptions\ForbiddenException;
-use App\Exceptions\NotFoundException;
-use App\Exceptions\ValidationException;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
+use App\Exceptions\NotFoundException;
+use App\Exceptions\ForbiddenException;
+use App\Exceptions\ValidationException;
 
 class CoreService implements CoreServiceInterface
 {
@@ -18,7 +19,7 @@ class CoreService implements CoreServiceInterface
     {
         Log::error("$resource with id: $id does not exist in this facility branch");
 
-        throw new NotFoundException("The specified strtolower($resource) does not exist");
+        throw new NotFoundException("The specified " . strtolower($resource) . " does not exist");
     }
 
     /**
@@ -35,5 +36,10 @@ class CoreService implements CoreServiceInterface
     public function throwValidationException($message)
     {
         throw new ValidationException($message);
+    }
+
+    public function hashUserPassword($password): string
+    {
+        return Hash::make($password);
     }
 }
