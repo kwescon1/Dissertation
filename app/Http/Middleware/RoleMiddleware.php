@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Services\Api\Constants\Permissions;
 
 class RoleMiddleware
 {
@@ -17,7 +18,7 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $permissions = ['edit-roles', 'view-roles', 'delete-roles'];
+        $permissions = [Permissions::EDIT_ROLE, Permissions::VIEW_ROLE, Permissions::DELETE_ROLE];
 
         $user = auth()->user()->loggedInBranch;
 

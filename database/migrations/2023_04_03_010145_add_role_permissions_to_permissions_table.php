@@ -1,8 +1,7 @@
 <?php
 
 use App\Models\Permission;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Services\Api\Constants\Permissions;
 use Illuminate\Database\Migrations\Migration;
 
 class AddRolePermissionsToPermissionsTable extends Migration
@@ -17,19 +16,19 @@ class AddRolePermissionsToPermissionsTable extends Migration
         $data = [
             [
                 "label" => "Edit Roles",
-                "name" => "edit-roles",
+                "name" => Permissions::EDIT_ROLE,
                 "description" => "Can add, edit or view roles",
                 "guard_name" => "api"
             ],
             [
                 "label" => "View Roles",
-                "name" => "view-roles",
+                "name" => Permissions::VIEW_ROLE,
                 "description" => "Can only view roles",
                 "guard_name" => "api"
             ],
             [
                 "label" => "Delete Roles",
-                "name" => "delete-roles",
+                "name" => Permissions::DELETE_ROLE,
                 "description" => "Can delete roles",
                 "guard_name" => "api"
             ],
@@ -45,7 +44,7 @@ class AddRolePermissionsToPermissionsTable extends Migration
      */
     public function down()
     {
-        $permissions = ['edit-roles', 'view-roles', 'delete-roles'];
+        $permissions = [Permissions::EDIT_ROLE, Permissions::VIEW_ROLE, Permissions::DELETE_ROLE];
 
         Permission::whereIn('name', $permissions)->delete();
     }
