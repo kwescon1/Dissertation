@@ -38,4 +38,9 @@ class UserFacilityBranch extends Model
             'role_id'
         );
     }
+
+    public function scopeUserAccounts($query, $facilityId, $facilityBranchId)
+    {
+        return $query->whereFacilityId($facilityId)->whereFacilityBranchId($facilityBranchId);
+    }
 }
