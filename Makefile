@@ -17,5 +17,5 @@ down:
 	docker compose down
 
 shell:
-	docker compose exec -u ubuntu optix /bin/bash
+	docker exec -it -u ubuntu optix /bin/bash
 
