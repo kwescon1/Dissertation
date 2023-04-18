@@ -3,21 +3,20 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Models\Client;
 use App\Services\Api\Constants\Permissions;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class ClientPolicy
 {
-
-    private $editUser, $viewUser, $deleteUser;
+    private $editClient, $viewClient, $deleteClient;
 
     public function __construct()
     {
-        $this->editUser = Permissions::EDIT_USER;
-        $this->viewUser = Permissions::VIEW_USER;
-        $this->deleteUser = Permissions::DELETE_USER;
+        $this->editClient = Permissions::EDIT_CLIENT;
+        $this->viewClient = Permissions::VIEW_CLIENT;
+        $this->deleteClient = Permissions::DELETE_CLIENT;
     }
-
 
     use HandlesAuthorization;
 
@@ -32,23 +31,23 @@ class UserPolicy
         //
         $userRole = $user->loggedInBranch->roles[0];
 
-        return $userRole->hasAnyDirectPermission([$this->editUser, $this->viewUser]);
+        return $userRole->hasAnyDirectPermission([$this->editClient, $this->viewClient]);
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Client  $client
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, User $model)
+    public function view(User $user, Client $client)
     {
         //
         $userRole = $user->loggedInBranch->roles[0];
         $facilityId = $user->loggedInBranch->facility_id;
 
-        return $userRole->hasAnyDirectPermission([$this->editUser, $this->viewUser]) && $user->facility_id == $facilityId;
+        return $userRole->hasAnyDirectPermission([$this->editClient, $this->viewClient]) && $client->facility_id == $facilityId;
     }
 
     /**
@@ -62,51 +61,50 @@ class UserPolicy
         //
         $userRole = $user->loggedInBranch->roles[0];
 
-        return $userRole->hasDirectPermission($this->editUser);
+        return $userRole->hasDirectPermission($this->editClient);
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Client  $client
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, User $model)
+    public function update(User $user, Client $client)
     {
         //
         $userRole = $user->loggedInBranch->roles[0];
         $facilityId = $user->loggedInBranch->facility_id;
 
-        return $userRole->hasDirectPermission($this->editUser) && $model->facility_id == $facilityId;
+        return $userRole->hasDirectPermission($this->editClient) && $client->facility_id == $facilityId;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Client  $client
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user, Client $client)
     {
         //
-
         $userRole = $user->loggedInBranch->roles[0];
 
         $facilityId = $user->loggedInBranch->facility_id;
 
-        return $userRole->hasAnyDirectPermission([$this->editUser, $this->deleteUser]) && $model->facility_id == $facilityId && $user->id != $model->id;
+        return $userRole->hasAnyDirectPermission([$this->editClient, $this->deleteClient]) && $client->facility_id == $facilityId;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Client  $client
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, User $model)
+    public function restore(User $user, Client $client)
     {
         //
     }
@@ -115,10 +113,10 @@ class UserPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Client  $client
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(User $user, Client $client)
     {
         //
     }

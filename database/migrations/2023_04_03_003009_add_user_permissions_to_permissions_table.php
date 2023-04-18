@@ -1,9 +1,7 @@
 <?php
 
 use App\Models\Permission;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Services\Api\Constants\Permissions;
 use Illuminate\Database\Migrations\Migration;
 
 class AddUserPermissionsToPermissionsTable extends Migration
@@ -19,19 +17,19 @@ class AddUserPermissionsToPermissionsTable extends Migration
         $data = [
             [
                 "label" => "Edit Users",
-                "name" => "edit-users",
+                "name" => Permissions::EDIT_USER,
                 "description" => "Can add, edit or view users",
                 "guard_name" => "api"
             ],
             [
                 "label" => "View Users",
-                "name" => "view-users",
+                "name" => Permissions::VIEW_USER,
                 "description" => "Can only view users",
                 "guard_name" => "api"
             ],
             [
                 "label" => "Delete Users",
-                "name" => "delete-users",
+                "name" => Permissions::DELETE_USER,
                 "description" => "Can delete users",
                 "guard_name" => "api"
             ],
@@ -47,7 +45,7 @@ class AddUserPermissionsToPermissionsTable extends Migration
      */
     public function down()
     {
-        $permissions = ['edit-users', 'view-users', 'delete-users'];
+        $permissions = [Permissions::EDIT_USER, Permissions::VIEW_USER, Permissions::DELETE_USER];
 
         Permission::whereIn('name', $permissions)->delete();
     }

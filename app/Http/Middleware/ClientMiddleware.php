@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Services\Api\Constants\Permissions;
 
-class RoleMiddleware
+class ClientMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,8 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $permissions = [Permissions::EDIT_ROLE, Permissions::VIEW_ROLE, Permissions::DELETE_ROLE];
+
+        $permissions = [Permissions::EDIT_CLIENT, Permissions::VIEW_CLIENT, Permissions::DELETE_CLIENT];
 
         $user = auth()->user()->loggedInBranch;
 

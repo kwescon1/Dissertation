@@ -21,4 +21,6 @@ interface UserServiceInterface
     public function destroyUser(string $id, string $facilityId): bool;
 
     public function createUser(array $data): ?Model;
+
+    public function updateUser(array $data, string $id, string $facilityId, string $facilityBranchId): ?Model;
 }
