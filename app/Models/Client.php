@@ -26,4 +26,9 @@ class Client extends Model
     {
         return $this->hasOne(EmergencyContact::class, 'emergency_contact_id');
     }
+
+    public function facilityId()
+    {
+        return $this->belongsTo(Facility::class, 'facility_id');
+    }
 }
