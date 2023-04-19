@@ -21,7 +21,7 @@ class ShowUserResource extends JsonResource
         $last_login_at = $this->userAccounts ? $this->userAccounts[0]->last_login_at : NULL;
 
         return [
-            'id' => (string)$this->id,
+            'id' => $this->id,
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'username' => $this->username,

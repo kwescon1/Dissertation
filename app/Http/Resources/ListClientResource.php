@@ -15,6 +15,7 @@ class ListClientResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'nhs_number' => $this->nhs_number,
             'lastname' => $this->lastname,
             'firstname' => $this->firstname,
