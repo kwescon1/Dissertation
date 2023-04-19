@@ -5,7 +5,6 @@ namespace App\Services\Api\Auth;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Facility;
-use Illuminate\Http\Request;
 use App\Models\FacilityBranch;
 use App\Services\Api\CoreService;
 use Illuminate\Support\Facades\Hash;
@@ -209,7 +208,10 @@ class AuthService extends CoreService implements AuthServiceInterface
      */
     public function logout(Request $request): bool
     {
+        Redis::del(cache()->get(auth()->id())['facility_branch_id']);
+
         cache()->forget(auth()->id());
+
 
         return auth()->user()->tokens()->delete();
     }
