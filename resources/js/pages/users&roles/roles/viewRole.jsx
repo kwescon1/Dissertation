@@ -3,6 +3,7 @@ import ViewText, {ViewMutiText} from "../../../components/typography/viewtext";
 import PageContainer from "../../../layouts/pagecontaner";
 import { useParams,useNavigate } from 'react-router-dom';
 import { useEffect,useState } from "react";
+import moment from "moment";
 
 const ViewRole = () => {
   const navigate = useNavigate();
@@ -58,8 +59,8 @@ const ViewRole = () => {
       <div className="space-y-4">
         <ViewText label="Role Name" name="rolename" data={`${role? role.name:''}`} />
         <ViewText label="Description" name="description" data={`${role? role.description:'' }`} />
-        <ViewText label="Created" name="created" data={`${role? role.created_at:''}`} />
-        <ViewText label="Last Updated" name="lastupdated" data={`${role? role.updated_at:''}`} />
+        <ViewText label="Created" name="created" data={`${role? moment(role.created_at).format('DD MMM YYYY'):''}`} />
+        <ViewText label="Last Updated" name="lastupdated" data={`${role? moment(role.updated_at).format('DD MMM YYYY'):''}`} />
       </div>
       <div className="space-y-2">
       <ViewMutiText label={`Permissions (${permissions.length})`} dataInfo={permissions}/>
