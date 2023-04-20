@@ -21,14 +21,27 @@ const NavBar = () => {
 
     const newBtnDropdownContents = [
         {
-            path: "client/new",
-            name: "Client",
+            path: "users/new",
+            name: "User",
+            onclick:() => {
+                setToggleNewBtn(false)
+            } ,
+        },
+        {
+            path: "roles/new",
+            name: "Role",
+            onclick:() => {
+                setToggleNewBtn(false)
+            } ,
         },
     ];
     const ProfileBtnDropdownContents = [
         {
             path: "/",
             name: "Profile",
+            onclick:() => {
+                setToggleProfileBtn(false)
+            } ,
         },
         {
             

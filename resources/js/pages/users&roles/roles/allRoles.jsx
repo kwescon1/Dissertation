@@ -128,7 +128,9 @@ const AllRoles = () => {
                     )}
 
                     {canEditRole() && (
+                         <Link to={`/roles/edit`}>
                         <FaEdit className="text-primary cursor-pointer hover:text-primary-100" />
+                         </Link>
                     )}
 
                     {canDeleteRole(row) && (

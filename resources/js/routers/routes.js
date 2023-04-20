@@ -21,6 +21,11 @@ import AllRoles from "../pages/users&roles/roles/allRoles";
 import AllUsers from "../pages/users&roles/users/allUsers";
 import WaitingList from "../pages/waitingLists/waitingList";
 import ViewRole from "../pages/users&roles/roles/viewRole";
+import AddUser from "../pages/users&roles/users/addUser";
+import EditUser from "../pages/users&roles/users/editUser";
+import ViewUser from "../pages/users&roles/users/viewUser";
+import AddRole from "../pages/users&roles/roles/addRole";
+import EditRole from "../pages/users&roles/roles/editRole";
 
 const routes = createBrowserRouter([
     {
@@ -160,6 +165,14 @@ const routes = createBrowserRouter([
                                 path: ":id/view",
                                 element: <ViewRole />,
                             },
+                            {
+                                path: "edit",
+                                element: <EditRole />,
+                            },
+                            {
+                                path: "new",
+                                element: <AddRole />,
+                            },
                         ],
                     },
                     {
@@ -168,6 +181,18 @@ const routes = createBrowserRouter([
                             {
                                 index: true,
                                 element: <AllUsers />,
+                            },
+                            {
+                                path: "new",
+                                element: <AddUser />,
+                            },
+                            {
+                                path: "edit",
+                                element: <EditUser />,
+                            },
+                            {
+                                path: "view",
+                                element: <ViewUser />,
                             },
                         ],
                     },

@@ -1,162 +1,158 @@
-
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "../../../components/tables/table";
 import PageTitle from "../../../components/typography/pagetitle";
 import PageContainer from "../../../layouts/pagecontaner";
 import { getAuthUser } from "../../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import DeleteModal from "../../../components/modals/delete";
+import { Link } from "react-router-dom";
 
 const getUsers = async () => {
-  try {
-    const response = await axios.get("users");
+    try {
+        const response = await axios.get("users");
 
-    return response?.data?.data;
-  } catch (error) {
-      console.log(error);
-  }
-}
+        return response?.data?.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 const AllUsers = () => {
-
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
-  const viewUser = "view-users";
-  const editUser = "edit-users";
-  const deleteUser = "delete-users";
-  const [selectedUser,setSelectedUser] = useState(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const STATUS_PENDING = 0; // default on add new user
+    const [users, setUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [user, setUser] = useState(null);
+    const viewUser = "view-users";
+    const editUser = "edit-users";
+    const deleteUser = "delete-users";
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const STATUS_PENDING = 0; // default on add new user
     const STATUS_ACTIVE = 1;
     const STATUS_SUSPENDED = 2;
 
-  useEffect(() => {
-    const authUser = getAuthUser();
-    // This function should return the authenticated user if it exists
+    useEffect(() => {
+        const authUser = getAuthUser();
+        // This function should return the authenticated user if it exists
 
-    setUser(authUser);
+        setUser(authUser);
 
         getUsers().then((data) => {
-          console.log(data);
+            console.log(data);
             setUsers(data);
             setIsLoading(false);
         });
-  },[]);
+    }, []);
 
-  const handleDeleteClick = (user) => {
-    setSelectedUser(user);
-    setShowDeleteModal(true);
-};
+    const handleDeleteClick = (user) => {
+        setSelectedUser(user);
+        setShowDeleteModal(true);
+    };
 
-const confirmDelete = async () => {
-  try {
-      const response = await axios.delete(`users/${selectedUser.id}`);
-      console.log("success"); //TODO show a success toast
+    const confirmDelete = async () => {
+        try {
+            const response = await axios.delete(`users/${selectedUser.id}`);
+            console.log("success"); //TODO show a success toast
 
-      //reload users
-      setUsers(users.filter((user) => user.id !== selectedUser.id));
-      setSelectedUser(null);
-      setShowDeleteModal(false);
-      getUsers(); // reload the roles after delete
-  } catch (error) {
-    
-      setShowDeleteModal(false);
-      // setError(error);
-      console.log(error.response.data);
-  }
-};
-  const canViewUser = () => {
-    return user?.role?.permissions.some(
-        (permission) =>
-            permission.name === viewUser || permission.name === editUser
-    );
-};
+            //reload users
+            setUsers(users.filter((user) => user.id !== selectedUser.id));
+            setSelectedUser(null);
+            setShowDeleteModal(false);
+            getUsers(); // reload the roles after delete
+        } catch (error) {
+            setShowDeleteModal(false);
+            // setError(error);
+            console.log(error.response.data);
+        }
+    };
+    const canViewUser = () => {
+        return user?.role?.permissions.some(
+            (permission) =>
+                permission.name === viewUser || permission.name === editUser
+        );
+    };
 
-const canEditUser = (row) => {
-    return user?.role?.permissions.some(
-        (permission) => permission.name === editUser
-    );
-};
+    const canEditUser = (row) => {
+        return user?.role?.permissions.some(
+            (permission) => permission.name === editUser
+        );
+    };
 
-const canDeleteUser = (row) => {
-    return user?.role?.permissions.some(
-        (permission) => permission.name === deleteUser
-    ) && row.id !== user?.id;
-};
+    const canDeleteUser = (row) => {
+        return (
+            user?.role?.permissions.some(
+                (permission) => permission.name === deleteUser
+            ) && row.id !== user?.id
+        );
+    };
 
-  const columns = [
-    {
-      name: 'Name',
-      selector: row => `${row.firstname} ${row.lastname}`,
-      sortable: true,
-    },
-    {
-      name: 'Username',
-      selector: row => row.username,
-      
-    },
-    {
-      name: 'Role',
-      selector: row => Array.isArray(row.role) ? 'NA' : row.role.name
-  
-    },
-    {
-      name: 'Status',
-      cell: (row) => 
-      { switch (row.status) {
-        case STATUS_ACTIVE:
-          return "Active"
-          break;
+    const columns = [
+        {
+            name: "Name",
+            selector: (row) => `${row.firstname} ${row.lastname}`,
+            sortable: true,
+        },
+        {
+            name: "Username",
+            selector: (row) => row.username,
+        },
+        {
+            name: "Role",
+            selector: (row) => (Array.isArray(row.role) ? "NA" : row.role.name),
+        },
+        {
+            name: "Status",
+            cell: (row) => {
+                switch (row.status) {
+                    case STATUS_ACTIVE:
+                        return "Active";
+                        break;
 
-        case STATUS_SUSPENDED:
-          return "Suspended";
-          break;
-      
-        default:
-          return "Pending";
-          break;
-      }
-      
-    }},
-    
-    {
-      name: "Actions",
-      cell: (row) => (
-          <div className="flex flex-wrap space-x-4">
-              {(canViewUser() || canEditUser()) && (
-              //   <Link
-              //   to={`/users/${row.id}/view`}
-              //   className="text-primary cursor-pointer hover:text-primary-100"
-              // >
+                    case STATUS_SUSPENDED:
+                        return "Suspended";
+                        break;
 
-<FaEye />
-// </Link>
-              )}
+                    default:
+                        return "Pending";
+                        break;
+                }
+            },
+        },
 
-              {canEditUser() && (
-                  <FaEdit className="text-primary cursor-pointer hover:text-primary-100" />
-              )}
+        {
+            name: "Actions",
+            cell: (row) => (
+                <div className="flex flex-wrap space-x-4">
+                    {(canViewUser() || canEditUser()) && (
+                        <Link to={`/users/view`}>
+                            <FaEye className="text-primary cursor-pointer hover:text-primary-100" />
+                        </Link>
+                    )}
 
-              {canDeleteUser(row) && (
-                  <FaTrash
-                      className="text-primary cursor-pointer hover:text-primary-100"
-                      onClick={() => handleDeleteClick(row)}
-                  />
-              )}
-          </div>
-      ),
-  },
-  ];
-  if (isLoading) {
-    return <div>Loading...</div>;
-}
-  return (  
-    <div>
-      <PageContainer>
-        <PageTitle title="Users"/>
-        <Table columns={columns} data={users} />
-        <DeleteModal
+                    {canEditUser() && (
+                        <Link to={`/users/edit`}>
+                            <FaEdit className="text-primary cursor-pointer hover:text-primary-100" />
+                        </Link>
+                    )}
+
+                    {canDeleteUser(row) && (
+                        <FaTrash
+                            className="text-primary cursor-pointer hover:text-primary-100"
+                            onClick={() => handleDeleteClick(row)}
+                        />
+                    )}
+                </div>
+            ),
+        },
+    ];
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+    return (
+        <div>
+            <PageContainer>
+                <PageTitle title="Users" />
+                <Table columns={columns} data={users} />
+                <DeleteModal
                     show={showDeleteModal}
                     title="Delete User"
                     onClose={(event) => setShowDeleteModal(false)}
@@ -164,11 +160,9 @@ const canDeleteUser = (row) => {
                     message="Are you sure you want to delete user"
                     name={`${selectedUser?.firstname} ${selectedUser?.lastname}`}
                 />
-      </PageContainer>
-    </div>
-    
-    
-  );
-}
- 
+            </PageContainer>
+        </div>
+    );
+};
+
 export default AllUsers;

@@ -17,6 +17,26 @@ const PageInput = ({ label, type, placeholder, name, id,value,onchange }) => {
    );
 }
 
+export const TextAreaInput = ({ label, placeholder, name, id,value,onchange }) => {
+  return ( 
+    <div>
+      <div className="block space-y-1 ">
+            <label htmlFor={name} className="font-semibold ">{label}</label>
+            <textarea
+                className="form-input rounded border-gray-400 w-full resize-none"
+                rows="5"
+                placeholder={placeholder}
+                name={name}
+                id={id}
+                value={value}
+                onChange={onchange}
+            />
+        </div>
+    </div>
+   );
+}
+
+
 export const PageSelectInput = ({label, name, id, options, value,onchange}) => {
   return ( 
     <div className="block space-y-1">
@@ -53,5 +73,24 @@ export const RadioInput = ({name, id, label, value, onchange, checked}) => {
     </div>
   )
 }
+
+export const CheckboxInput = ({name, id, label, value, onchange, checked}) => {
+  return (
+    <div className="flex items-center space-x-2">
+      <input
+                className=" border-gray-400  "
+                type="checkbox"
+                name={name}
+                id={id}
+                value ={value}
+                onChange = {onchange}
+                checked={checked}
+            />
+      <label htmlFor={id} className="font-medium">{label}</label>
+
+    </div>
+  )
+}
+
  
 export default PageInput;
