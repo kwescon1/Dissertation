@@ -1,9 +1,9 @@
-import FormButton from "../../../components/buttons/formbutton";
-import PageTitle from "../../../components/typography/pagetitle";
-import PageContainer from "../../../layouts/pagecontaner";
+import FormButton from "../../../components/buttons/formButton";
+import PageTitle from "../../../components/typography/pageTitle";
+import PageContainer from "../../../layouts/pageContainer";
 import PageInput, {
     PageSelectInput,
-} from "../../../components/inputs/pageinput";
+} from "../../../components/inputs/pageInput";
 
 const AddUser = () => {
     const rolesOptions = [

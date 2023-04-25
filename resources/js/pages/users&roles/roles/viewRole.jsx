@@ -1,6 +1,6 @@
-import PageTitle from "../../../components/typography/pagetitle";
-import ViewText, {ViewMutiText} from "../../../components/typography/viewtext";
-import PageContainer from "../../../layouts/pagecontaner";
+import PageTitle from "../../../components/typography/pageTitle";
+import ViewText, {ViewMutiText} from "../../../components/typography/viewText";
+import PageContainer from "../../../layouts/pageContainer";
 import { useParams,useNavigate } from 'react-router-dom';
 import { useEffect,useState } from "react";
 import moment from "moment";

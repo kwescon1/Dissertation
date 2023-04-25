@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
-import NavBar from "../components/navbar";
-import Sidebar from "../components/sidebar";
+import NavBar from "../components/navBar";
+import Sidebar from "../components/sideBar";
 import { setHeader } from "../services/token";
 import { getAuthUser } from "../services/storage";
 import { useNavigate ,Outlet} from "react-router-dom";

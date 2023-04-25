@@ -1,4 +1,3 @@
-import { Form } from "react-router-dom";
 import AuthBackground from "../../components/authCard";
 import AuthButton from "../../components/buttons/authButton";
 import AuthInput from "../../components/inputs/authInput";
@@ -24,8 +23,6 @@ try{
 const response = await axios.post('login',data);
 
 let user = response?.data?.data;
-
-console.log(response?.data?.data);
 
 // Encrypt the token
 const encryptedToken = encryptToken(user.token);

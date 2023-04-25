@@ -1,6 +1,6 @@
 import Table from "../../components/tables/table";
-import PageTitle from "../../components/typography/pagetitle";
-import PageContainer from "../../layouts/pagecontaner";
+import PageTitle from "../../components/typography/pageTitle";
+import PageContainer from "../../layouts/pageContainer";
 import moment from 'moment';
 import { getAuthUser } from "../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";

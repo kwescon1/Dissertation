@@ -1,6 +1,6 @@
-import PageTitle from "../../../components/typography/pagetitle";
-import ViewText from "../../../components/typography/viewtext";
-import PageContainer from "../../../layouts/pagecontaner";
+import PageTitle from "../../../components/typography/pageTitle";
+import ViewText from "../../../components/typography/viewText";
+import PageContainer from "../../../layouts/pageContainer";
 
 const ViewUser = () => {
   return ( 

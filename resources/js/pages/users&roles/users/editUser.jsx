@@ -1,11 +1,11 @@
-import FormButton from "../../../components/buttons/formbutton";
-import PageTitle from "../../../components/typography/pagetitle";
-import ViewText, {ViewMutiText} from "../../../components/typography/viewtext";
-import PageContainer from "../../../layouts/pagecontaner";
+import FormButton from "../../../components/buttons/formButton";
+import PageTitle from "../../../components/typography/pageTitle";
+import ViewText, {ViewMutiText} from "../../../components/typography/viewText";
+import PageContainer from "../../../layouts/pageContainer";
 import PageInput, {
     PageSelectInput,
     RadioInput
-} from "../../../components/inputs/pageinput";
+} from "../../../components/inputs/pageInput";
 
 const EditUser = () => {
   const rolesOptions = [

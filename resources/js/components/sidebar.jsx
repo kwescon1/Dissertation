@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {navLinksSet1, navLinksSet2, navLinksSet3, } from '../static/sidebarLinks.js'
-import SidebarNavLink from "./links/sidebarNavLink";
+import SidebarNavLink from "./links/sidebarNavLink.jsx";
 import { getAuthUser } from '../services/storage.jsx';
 
 const Sidebar = () => {

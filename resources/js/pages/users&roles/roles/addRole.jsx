@@ -1,10 +1,10 @@
-import FormButton from "../../../components/buttons/formbutton";
+import FormButton from "../../../components/buttons/formButton";
 import PageInput, {
     TextAreaInput,
     CheckboxInput,
-} from "../../../components/inputs/pageinput";
-import PageTitle from "../../../components/typography/pagetitle";
-import PageContainer from "../../../layouts/pagecontaner";
+} from "../../../components/inputs/pageInput";
+import PageTitle from "../../../components/typography/pageTitle";
+import PageContainer from "../../../layouts/pageContainer";
 
 const AddRole = () => {
     return (

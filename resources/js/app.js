@@ -4,7 +4,7 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require("./layouts/root");
+require("./layouts/Root");
 
 window.axios = require("axios");
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
