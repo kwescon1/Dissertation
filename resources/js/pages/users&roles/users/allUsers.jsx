@@ -37,7 +37,7 @@ const AllUsers = () => {
         setUser(authUser);
 
         getUsers().then((data) => {
-            console.log(data);
+            // console.log(data);
             setUsers(data);
             setIsLoading(false);
         });
@@ -123,7 +123,7 @@ const AllUsers = () => {
             cell: (row) => (
                 <div className="flex flex-wrap space-x-4">
                     {(canViewUser() || canEditUser()) && (
-                        <Link to={`/users/view`}>
+                        <Link to={`/users/${row.id}/view`}>
                             <FaEye className="text-primary cursor-pointer hover:text-primary-100" />
                         </Link>
                     )}

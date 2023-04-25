@@ -187,11 +187,11 @@ const routes = createBrowserRouter([
                                 element: <AddUser />,
                             },
                             {
-                                path: "edit",
+                                path: ":id/edit",
                                 element: <EditUser />,
                             },
                             {
-                                path: "view",
+                                path: ":id/view",
                                 element: <ViewUser />,
                             },
                         ],

@@ -1,4 +1,4 @@
-const PageInput = ({ label, type, placeholder, name, id,value,onchange }) => {
+const PageInput = ({ label, type, placeholder, name, id,value,onchange,onclick }) => {
   return ( 
     <div>
       <div className="block space-y-1 ">
@@ -11,6 +11,7 @@ const PageInput = ({ label, type, placeholder, name, id,value,onchange }) => {
                 id={id}
                 value={value}
                 onChange={onchange}
+                onClick={onclick}
             />
         </div>
     </div>
