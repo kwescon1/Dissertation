@@ -6,6 +6,8 @@ import { getAuthUser } from "../../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import DeleteModal from "../../../components/modals/delete";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const getUsers = async () => {
     try {
@@ -52,6 +54,16 @@ const AllUsers = () => {
         try {
             const response = await axios.delete(`users/${selectedUser.id}`);
             console.log("success"); //TODO show a success toast
+            toast('success', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
 
             //reload users
             setUsers(users.filter((user) => user.id !== selectedUser.id));
@@ -161,6 +173,7 @@ const AllUsers = () => {
                     name={`${selectedUser?.firstname} ${selectedUser?.lastname}`}
                 />
             </PageContainer>
+            <ToastContainer />
         </div>
     );
 };

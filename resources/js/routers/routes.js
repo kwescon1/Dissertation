@@ -26,6 +26,7 @@ import EditUser from "../pages/users&roles/users/editUser";
 import ViewUser from "../pages/users&roles/users/viewUser";
 import AddRole from "../pages/users&roles/roles/addRole";
 import EditRole from "../pages/users&roles/roles/editRole";
+import ViewClient from "../pages/clients/viewClient";
 
 const routes = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const routes = createBrowserRouter([
                             {
                                 index: true,
                                 element: <AllClients />,
+                            },
+                            {
+                                path: "view",
+                                element: <ViewClient />,
                             },
                         ],
                     },
