@@ -19,3 +19,11 @@ down:
 shell:
 	docker exec -it -u ubuntu optix /bin/bash
 
+update:
+	docker-compose up -d --force-recreate --build
+
+migrate:
+	php artisan migrate
+
+seed:
+	php artisan db:seed
