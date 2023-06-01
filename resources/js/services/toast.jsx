@@ -1,36 +1,31 @@
-// import CryptoJS from 'crypto-js';
-// import {getAuthUser} from './storage'
-
-// const TOKEN_KEY = "TOKEN_KEY";
-
-// export function encryptToken(token) {
-//   const encrypted = CryptoJS.AES.encrypt(token, TOKEN_KEY);
-//   return encrypted.toString();
-// }
-
-// function decryptToken(encryptedToken) {
-//   const decrypted = CryptoJS.AES.decrypt(encryptedToken, TOKEN_KEY);
-//   return decrypted.toString(CryptoJS.enc.Utf8);
-// }
-
-// export  function setHeader(isAuthenticated) {
-//     if (isAuthenticated) {
-//         const user = getAuthUser();
-
-//         const token = decryptToken(user?.token);
-
-//         return {
-//             Accept: "application/json",
-//             "Content-Type": "application/json",
-//             Authorization: "Bearer " + token,
-//         };
-//     } else {
-//         return {
-//             Accept: "application/json",
-//             "Content-Type": "application/json",
-//         };
-//     }
-// }
+import { toast} from 'react-toastify';
 
 
-// TODO work on toasts.. push the success toast functionality and error toast functionality here and call them on pages
+export function successNotif(message){
+    toast.success(message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+}
+
+export function errorNotif(message){
+    toast.error(message, {
+        position: "top-right",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+}
+
+
+
