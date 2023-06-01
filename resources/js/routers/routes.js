@@ -61,7 +61,7 @@ const routes = createBrowserRouter([
                                 element: <AllClients />,
                             },
                             {
-                                path: "view",
+                                path: ":id/view",
                                 element: <ViewClient />,
                             },
                         ],

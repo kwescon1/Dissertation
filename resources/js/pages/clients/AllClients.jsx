@@ -6,10 +6,12 @@ import { getAuthUser } from "../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import { useEffect,useState } from "react";
 import DeleteModal from "../../components/modals/delete";
+import { Link } from "react-router-dom";
 
 const getClients = async () => {
   try {
     const response = await axios.get("clients");
+
 
     return response?.data?.data;
   } catch (error) {
@@ -47,7 +49,7 @@ const AllClients = () => {
 
 const confirmDelete = async () => {
   try {
-      const response = await axios.delete(`clients/${selectedUser.id}`);
+      const response = await axios.delete(`clients/${selectedClient.id}`);
       console.log("success"); //TODO show a success toast
 
       //reload users
@@ -110,13 +112,13 @@ const canDeleteClient = (row) => {
       cell: (row) => (
           <div className="flex flex-wrap space-x-4">
               {(canViewClient() || canEditClient()) && (
-              //   <Link
-              //   to={`/users/${row.id}/view`}
-              //   className="text-primary cursor-pointer hover:text-primary-100"
-              // >
+                <Link
+                to={`/clients/${row.id}/view`}
+                className="text-primary cursor-pointer hover:text-primary-100"
+              >
 
 <FaEye />
-// </Link>
+</Link>
               )}
 
               {canEditClient() && (

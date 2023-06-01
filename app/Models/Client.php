@@ -19,12 +19,12 @@ class Client extends Model
 
     public function residence()
     {
-        return $this->hasOne(Residence::class, 'residential_address_id');
+        return $this->belongsTo(Residence::class, 'residential_address_id');
     }
 
     public function emergencyContact()
     {
-        return $this->hasOne(EmergencyContact::class, 'emergency_contact_id');
+        return $this->belongsTo(EmergencyContact::class, 'emergency_contact_id');
     }
 
     public function facilityId()

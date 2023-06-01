@@ -53,7 +53,7 @@ const AllUsers = () => {
     const confirmDelete = async () => {
         try {
             const response = await axios.delete(`users/${selectedUser.id}`);
-            console.log("success"); //TODO show a success toast
+        
             toast('success', {
                 position: "top-right",
                 autoClose: 5000,

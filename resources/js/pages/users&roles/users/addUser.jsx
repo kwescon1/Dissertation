@@ -7,6 +7,7 @@ import PageInput, {
 import { getAuthUser } from "../../../services/storage";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const getRoles = async () => {
     try {
@@ -66,6 +67,17 @@ const AddUser = () => {
                 console.log(response?.data?.data);
 
                 navigate("/users",{replace:true});
+
+                toast('success', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
             })
             .catch((error) => {
                 console.log(error.response.data.error);

@@ -25,8 +25,6 @@ const ViewUser = () => {
 
         let data = response?.data?.data;
 
-        console.log(data);
-
         setUser(data);
 
         setIsLoading(false);

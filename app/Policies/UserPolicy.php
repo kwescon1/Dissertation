@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class UserPolicy
 {
 
-    private $editUser, $viewUser, $deleteUser;
+    private readonly string $editUser, $viewUser, $deleteUser;
 
     public function __construct()
     {

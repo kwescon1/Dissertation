@@ -25,13 +25,8 @@ class ShowClientResource extends JsonResource
             'sex' => $this->sex,
             'phone' => $this->phone,
             'email' => $this->email,
-            'emergency_contact' => $this->emergencyContact ? $this->emergencyContact->map(function ($contact) {
-                return collect(['name' => $contact->emergency_contact_name, 'phone' => $contact->emergency_contact_phone]);
-            }) : null,
-            'residence' => $this->residence ? $this->residence->map(function ($residence) {
-                return collect(['address' => $residence->first_address_line . "\n" . $residence->second_address_line . "\n" . $residence->thrid_address_line . "\n" . $residence->town . "\n" . $residence->county . "\n" . $residence->postcode]);
-            }) : null,
-
+            'emergency_contact' => $this->emergencyContact,
+            'residence' => $this->residence,
             'date_registered' => $this->created_at,
         ];
     }

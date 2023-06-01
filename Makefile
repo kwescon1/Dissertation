@@ -19,11 +19,12 @@ down:
 shell:
 	docker exec -it -u ubuntu optix /bin/bash
 
-update:
-	docker-compose up -d --force-recreate --build
+build:
+	docker-compose up -d --force-recreate --no-cash --build
 
 migrate:
-	php artisan migrate
+	docker-compose exec app php /var/www/optix/artisan migrate
 
 seed:
 	php artisan db:seed
+	docker-compose exec app php /var/www/optix/artisan migrate

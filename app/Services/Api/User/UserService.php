@@ -106,7 +106,7 @@ class UserService extends CoreService implements UserServiceInterface
      */
     public function createUser(array $data): ?Model
     {
-        Gate::authorize('create', User::class);
+        // Gate::authorize('create', User::class);
 
         $pipes = [VerifyFacilityExists::class, VerifyUsernameExistsForFacility::class, VerifyRoleExistsInFacilityBranch::class, CreateUser::class];
 

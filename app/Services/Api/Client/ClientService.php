@@ -138,7 +138,7 @@ class ClientService extends CoreService implements ClientServiceInterface
     {
         Gate::authorize('viewAny', Client::class);
 
-        return Client::join('client_facility_branches', 'clients.id', '=', 'client_facility_branches.client_id')->where('clients.facility_id', $facilityId)->where('client_facility_branches.facility_branch_id', $facilityBranchId)->get();
+        return Client::leftJoin('client_facility_branches', 'clients.id', '=', 'client_facility_branches.client_id')->where('clients.facility_id', $facilityId)->where('client_facility_branches.facility_branch_id', $facilityBranchId)->select('clients.*')->get();
     }
 
     /**
@@ -196,6 +196,6 @@ class ClientService extends CoreService implements ClientServiceInterface
 
     private function findClient(string $id, $facilityId, $facilityBranchId)
     {
-        return Client::join('client_facility_branches', 'clients.id', '=', 'client_facility_branches.client_id')->where('clients.facility_id', $facilityId)->where('client_facility_branches.facility_branch_id', $facilityBranchId)->where('clients.id', $id)->with('emergencyContact', 'residence')->first();
+        return Client::leftJoin('client_facility_branches', 'clients.id', '=', 'client_facility_branches.client_id')->where('clients.facility_id', $facilityId)->where('client_facility_branches.facility_branch_id', $facilityBranchId)->where('clients.id', $id)->with('emergencyContact:id,emergency_contact_name,emergency_contact_phone', 'residence:id,first_address_line,second_address_line,third_address_line,town,county,postcode')->select('clients.*')->first();
     }
 }
