@@ -7,6 +7,8 @@ import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import { useEffect,useState } from "react";
 import DeleteModal from "../../components/modals/delete";
 import { Link } from "react-router-dom";
+import {ToastContainer } from 'react-toastify';
+import { successNotif,errorNotif } from "../../services/toast";
 
 const getClients = async () => {
   try {
@@ -50,7 +52,7 @@ const AllClients = () => {
 const confirmDelete = async () => {
   try {
       const response = await axios.delete(`clients/${selectedClient.id}`);
-      console.log("success"); //TODO show a success toast
+      successNotif("Client successfully deleted");
 
       //reload users
       setClients(clients.filter((client) => client.id !== selectedClient.id));
@@ -61,7 +63,8 @@ const confirmDelete = async () => {
     
       setShowDeleteModal(false);
       // setError(error);
-      console.log(error.response.data);
+      errorNotif(error.response.data.error);
+    
   }
 };
   const canViewClient = () => {
@@ -153,6 +156,7 @@ const canDeleteClient = (row) => {
                     name={`${selectedClient?.firstname} ${selectedClient?.lastname} ${selectedClient?.lastname}`}
                 />
       </PageContainer>
+      <ToastContainer />
     </div>
    );
 }

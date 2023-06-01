@@ -7,7 +7,8 @@ import PageInput, {
 import { getAuthUser } from "../../../services/storage";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import { successNotif,errorNotif } from "../../../services/toast";
 
 const getRoles = async () => {
     try {
@@ -64,24 +65,14 @@ const AddUser = () => {
         axios
             .post("users", formData)
             .then((response) => {
-                console.log(response?.data?.data);
+                successNotif("User created successfully");
 
                 navigate("/users",{replace:true});
 
-                toast('success', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    });
             })
             .catch((error) => {
-                console.log(error.response.data.error);
-                // setErrorMessage("Oops. something went wrong");
+                errorNotif(error.response.data.error)
+                // console.log(error.response.data.error);
             });
     };
 
@@ -258,6 +249,7 @@ const AddUser = () => {
                     </div>
                 </form>
             </PageContainer>
+            <ToastContainer/>
         </div>
     );
 };

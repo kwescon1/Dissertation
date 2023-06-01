@@ -20,8 +20,6 @@ const ViewClient = () => {
 
         let data = response?.data?.data;
 
-        console.log(data);
-
         setClient(data);
 
         setIsLoading(false);

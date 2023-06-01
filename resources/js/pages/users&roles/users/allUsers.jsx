@@ -6,7 +6,8 @@ import { getAuthUser } from "../../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import DeleteModal from "../../../components/modals/delete";
 import { Link } from "react-router-dom";
-import { toast, ToastContainer } from 'react-toastify';
+import {ToastContainer } from 'react-toastify';
+import { successNotif,errorNotif }  from "../../../services/toast";
 
 
 const getUsers = async () => {
@@ -54,16 +55,8 @@ const AllUsers = () => {
         try {
             const response = await axios.delete(`users/${selectedUser.id}`);
         
-            toast('success', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                });
+            successNotif("User successfully deleted");
+
 
             //reload users
             setUsers(users.filter((user) => user.id !== selectedUser.id));
@@ -73,7 +66,8 @@ const AllUsers = () => {
         } catch (error) {
             setShowDeleteModal(false);
             // setError(error);
-            console.log(error.response.data);
+
+            errorNotif(error.response.data.error);
         }
     };
     const canViewUser = () => {
