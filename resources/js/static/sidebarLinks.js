@@ -72,7 +72,6 @@ export const navLinksSet1 = [
 
 export const navLinksSet2 = [
     {
-        
         name: "Inventory",
         icon: (
             <svg
@@ -95,74 +94,6 @@ export const navLinksSet2 = [
             {
                 path: "/inventories/categories",
                 name: "Categories",
-            },
-        ],
-    },
-    {
-        
-        name: "Sales",
-        icon: (
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-            >
-                <path
-                    fillRule="evenodd"
-                    d="M1 4a1 1 0 011-1h16a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4zm12 4a3 3 0 11-6 0 3 3 0 016 0zM4 9a1 1 0 100-2 1 1 0 000 2zm13-1a1 1 0 11-2 0 1 1 0 012 0zM1.75 14.5a.75.75 0 000 1.5c4.417 0 8.693.603 12.749 1.73 1.111.309 2.251-.512 2.251-1.696v-.784a.75.75 0 00-1.5 0v.784a.272.272 0 01-.35.25A49.043 49.043 0 001.75 14.5z"
-                    clipRule="evenodd"
-                />
-            </svg>
-        ),
-        toggle: false,
-        subLinks: [
-            {
-                path: "/sales/receipt",
-                name: "Reciepts",
-            },
-            {
-                path: "/sales/invoices",
-                name: "Invoices",
-            },
-
-            {
-                path: "/sales/transactions",
-                name: "Transactions",
-            },
-            {
-                path: "/sales/customers",
-                name: "Customers",
-            },
-        ],
-    },
-    {
-        
-        name: "Services & Providers",
-        icon: (
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-            >
-                <path
-                    fillRule="evenodd"
-                    d="M6 3.75A2.75 2.75 0 018.75 1h2.5A2.75 2.75 0 0114 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 016 4.193V3.75zm6.5 0v.325a41.622 41.622 0 00-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25zM10 10a1 1 0 00-1 1v.01a1 1 0 001 1h.01a1 1 0 001-1V11a1 1 0 00-1-1H10z"
-                    clipRule="evenodd"
-                />
-                <path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 01-9.274 0C3.985 17.585 3 16.402 3 15.055z" />
-            </svg>
-        ),
-        toggle: false,
-        subLinks: [
-            {
-                path: "/providers",
-                name: "Providers",
-            },
-            {
-                path: "/services",
-                name: "Services",
             },
         ],
     },
@@ -191,24 +122,6 @@ export const navLinksSet3 = [
                 name: "Roles",
             },
         ],
-    },
-    {
-        path: "/settings",
-        name: "Settings",
-        icon: (
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-            >
-                <path
-                    fillRule="evenodd"
-                    d="M7.84 1.804A1 1 0 018.82 1h2.36a1 1 0 01.98.804l.331 1.652a6.993 6.993 0 011.929 1.115l1.598-.54a1 1 0 011.186.447l1.18 2.044a1 1 0 01-.205 1.251l-1.267 1.113a7.047 7.047 0 010 2.228l1.267 1.113a1 1 0 01.206 1.25l-1.18 2.045a1 1 0 01-1.187.447l-1.598-.54a6.993 6.993 0 01-1.929 1.115l-.33 1.652a1 1 0 01-.98.804H8.82a1 1 0 01-.98-.804l-.331-1.652a6.993 6.993 0 01-1.929-1.115l-1.598.54a1 1 0 01-1.186-.447l-1.18-2.044a1 1 0 01.205-1.251l1.267-1.114a7.05 7.05 0 010-2.227L1.821 7.773a1 1 0 01-.206-1.25l1.18-2.045a1 1 0 011.187-.447l1.598.54A6.993 6.993 0 017.51 3.456l.33-1.652zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                    clipRule="evenodd"
-                />
-            </svg>
-        ),
     },
     {
         path: "",
