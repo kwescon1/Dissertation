@@ -29,8 +29,10 @@
         "tailwindcss-pseudo-elements": "^2.0.0"
     },
     "dependencies": {
+        "chart.js": "^4.3.0",
         "crypto-js": "^4.1.1",
         "moment": "^2.29.4",
+        "react-chartjs-2": "^5.2.0",
         "react-data-table-component": "^7.5.3",
         "react-data-table-component-extensions": "^1.6.0",
         "react-icons": "^4.8.0",

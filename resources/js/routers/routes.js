@@ -39,10 +39,7 @@ const routes = createBrowserRouter([
                         index: true,
                         element: <Dashboard />,
                     },
-                    {
-                        path: "dashboard",
-                        element: <Dashboard />,
-                    },
+                    
                     {
                         path: "appointments",
 
@@ -90,74 +87,7 @@ const routes = createBrowserRouter([
                             },
                         ],
                     },
-                    {
-                        path: "sales",
-                        children: [
-                            {
-                                path: "customers",
-                                children: [
-                                    {
-                                        index: true,
-                                        element: <AllCustomers />,
-                                    },
-                                ],
-                            },
-                            {
-                                path: "invoices",
-                                children: [
-                                    {
-                                        index: true,
-                                        element: <AllInvoices />,
-                                    },
-                                ],
-                            },
-                            {
-                                path: "receipt",
-                                children: [
-                                    {
-                                        index: true,
-                                        element: <AllReceipts />,
-                                    },
-                                ],
-                            },
-                            {
-                                path: "transactions",
-                                children: [
-                                    {
-                                        index: true,
-                                        element: <AllTransactions />,
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                    {
-                        path: "providers",
-                        children: [
-                            {
-                                index: true,
-                                element: <AllProviders />,
-                            },
-                        ],
-                    },
-                    {
-                        path: "services",
-                        children: [
-                            {
-                                index: true,
-                                element: <AllServices />,
-                            },
-                        ],
-                    },
-                    {
-                        path: "settings",
-                        children: [
-                            {
-                                index: true,
-                                element: <TempSettings />,
-                            },
-                        ],
-                    },
+                    
                     {
                         path: "roles",
 
