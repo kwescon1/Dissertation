@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import BarChart from "../../components/chart/barchart";
 import { useState } from "react";
 
+
 Chart.register(CategoryScale);
 
 const Dashboard = () => {
@@ -58,11 +59,11 @@ const Dashboard = () => {
           </div>
           <div className="w-full p-8 flex justify-between items-center bg-blue-50 text-primary"> 
             <span className="font-semibold text-xl">visits</span>
-            <div>
+            <div className="flex flex-col items-center">
              <div className="text-4xl font-bold">25</div>
              <div className=" font-semibold text-xl">Today</div>
             </div>
-            <div>
+            <div className="flex flex-col items-center">
              <div className="text-4xl font-bold">54</div>
              <div className=" font-semibold text-xl">This Week</div>
             </div>
@@ -70,11 +71,11 @@ const Dashboard = () => {
           </div>
           <div className="w-full p-8 flex justify-between items-center bg-blue-50 text-primary"> 
             <span className="font-semibold text-xl">New Clients</span>
-            <div>
+            <div className="flex flex-col items-center">
              <div className="text-4xl font-bold">11</div>
              <div className=" font-semibold text-xl">Today</div>
             </div>
-            <div>
+            <div className="flex flex-col items-center">
              <div className="text-4xl font-bold">21</div>
              <div className=" font-semibold text-xl">This Week</div>
             </div>
@@ -82,7 +83,7 @@ const Dashboard = () => {
           </div>
           <div className="w-full p-8 flex justify-between items-center bg-blue-50 text-primary"> 
             <span className="font-semibold text-xl">Appointments</span>
-            <div>
+            <div className="flex flex-col items-center">
              <div className="text-4xl font-bold">7</div>
              <div className=" font-semibold text-xl">Today</div>
             </div>
