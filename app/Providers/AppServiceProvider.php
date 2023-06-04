@@ -88,5 +88,12 @@ class AppServiceProvider extends ServiceProvider
 
             ], $statusCode);
         });
+
+        Response::macro('deleted', function ($data) {
+            return response()->json([
+                'data' => $data ?: null,
+
+            ], \Illuminate\Http\Response::HTTP_NO_CONTENT);
+        });
     }
 }

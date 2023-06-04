@@ -91,6 +91,6 @@ class ClientController extends Controller
         //
         $authUser = cache()->get(auth()->id());
 
-        return response()->success($this->clientService->destroyClient($id, $authUser['facility_id'], $authUser['facility_branch_id']));
+        return response()->deleted($this->clientService->destroyClient($id, $authUser['facility_id'], $authUser['facility_branch_id']));
     }
 }

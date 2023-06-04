@@ -90,6 +90,6 @@ class UserController extends Controller
         //
         $authUser = cache()->get(auth()->id());
 
-        return response()->success($this->userService->destroyUser($id, $authUser['facility_id']));
+        return response()->deleted($this->userService->destroyUser($id, $authUser['facility_id']));
     }
 }
