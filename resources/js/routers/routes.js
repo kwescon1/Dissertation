@@ -27,6 +27,7 @@ import ViewUser from "../pages/users&roles/users/viewUser";
 import AddRole from "../pages/users&roles/roles/addRole";
 import EditRole from "../pages/users&roles/roles/editRole";
 import ViewClient from "../pages/clients/viewClient";
+import AddRecord from "../pages/records/addRecord";
 
 const routes = createBrowserRouter([
     {
@@ -137,6 +138,28 @@ const routes = createBrowserRouter([
                             {
                                 index: true,
                                 element: <WaitingList />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "records",
+
+                        children: [
+                            // {
+                            //     index: true,
+                            //     element: <AllRoles />,
+                            // },
+                            // {
+                            //     path: ":id/view",
+                            //     element: <ViewRole />,
+                            // },
+                            // {
+                            //     path: "edit",
+                            //     element: <EditRole />,
+                            // },
+                            {
+                                path: "new",
+                                element: <AddRecord />,
                             },
                         ],
                     },

@@ -5,6 +5,7 @@ import moment from "moment";
 import { Tab, Tabs } from "../../components/tabs/tab";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaRegTrashAlt, FaRegFolderOpen } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 
@@ -52,7 +53,8 @@ const WaitingList = () => {
                  
                 </div>
                 <div className="flex space-x-4 items-center">
-                  <FaRegFolderOpen  />
+                <Link to="../records/new"  ><FaRegFolderOpen  /></Link>
+                  
                 <FaRegTrashAlt  />
                  
                 </div>
