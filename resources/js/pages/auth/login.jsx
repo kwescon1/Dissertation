@@ -34,7 +34,7 @@ user.token = encryptedToken;
 store(user);
 
 // Redirect to the dashboard
-window.location.href = '/dashboard';
+window.location.href = '/';
 
 }catch(error){
 console.log(error);

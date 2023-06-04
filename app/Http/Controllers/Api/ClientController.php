@@ -51,7 +51,7 @@ class ClientController extends Controller
         //
         $data = $request->validated();
 
-        return response()->success(new StoreClientResource($this->clientService->storeClient($data)));
+        return response()->success(new ShowClientResource($this->clientService->storeClient($data)));
     }
 
     /**

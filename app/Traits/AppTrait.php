@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Chatbot;
+namespace App\Traits;
 
 use Carbon\Carbon;
 use App\Models\Reply;
@@ -10,7 +10,7 @@ use App\Models\Conversation;
 use App\Services\Chatbot\Constants;
 use Illuminate\Support\Facades\Log;
 
-class BotService extends InitService
+trait AppTrait
 {
     //
     public function getOrcreateSession($request)

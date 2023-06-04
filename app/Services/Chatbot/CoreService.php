@@ -5,8 +5,6 @@ namespace App\Services\Chatbot;
 use App\Traits\ChatBotTrait;
 use App\Services\OpenAI\OpenAI;
 use App\Services\Whatsapp\Whatsapp;
-// use Twilio\Rest\Client as CLi;
-// use Illuminate\Support\Facades\Log;
 
 
 class CoreService
