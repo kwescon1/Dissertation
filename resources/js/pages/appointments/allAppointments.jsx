@@ -1,9 +1,9 @@
 const AllAppointments = () => {
-  return ( 
+  return (
     <>
-    Appointment
+      Appointment
     </>
-   );
+  );
 }
- 
+
 export default AllAppointments;
