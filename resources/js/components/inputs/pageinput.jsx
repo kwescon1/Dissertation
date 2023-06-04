@@ -41,7 +41,7 @@ export const TextAreaInput = ({ label, placeholder, name, id,value,onchange }) =
 export const PageSelectInput = ({label, name, id, options, value,onchange}) => {
   return ( 
     <div className="block space-y-1">
-      <label htmlFor={name} className="font-semibold ">{label}</label>
+     {label && <label htmlFor={name} className="font-semibold ">{label}</label>}
       <select className="form-input rounded border-gray-400 w-full" name={name}  id={id}  value={value}
                 onChange={onchange}>
                   <option  className="py-2" >Select an Option</option>
