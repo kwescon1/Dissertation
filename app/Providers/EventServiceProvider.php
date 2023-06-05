@@ -29,7 +29,5 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        FacilityBranch::observe(FacilityBranchObserver::class);
     }
 }

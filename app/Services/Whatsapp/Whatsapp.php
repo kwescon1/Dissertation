@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Log;
 class Whatsapp
 {
 
-    public function __construct(protected string $accountSID, protected string $authToken, protected string $twilioNumber, protected $twilio)
+    protected $twilio;
+
+    public function __construct(protected string $accountSID, protected string $authToken, protected string $twilioNumber)
     {
         $this->twilio = $this->configureTwilio();
     }
