@@ -4,11 +4,13 @@ namespace App\Services\Chatbot;
 
 use App\Models\Question;
 use App\Services\Chatbot\Constants;
+use App\Traits\AppTrait;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
-class AppService extends BotService
+class AppService extends InitService
 {
+    use AppTrait;
+
     /**
      * @param $data
      * 
@@ -16,7 +18,6 @@ class AppService extends BotService
      */
     public function messageReceived($data)
     {
-
         // get last message sent to bot by client
         $lastMessage = $this->lastSentMessage($data->From);
 

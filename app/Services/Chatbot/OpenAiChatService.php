@@ -3,7 +3,6 @@
 namespace App\Services\Chatbot;
 
 use App\Services\Chatbot\Constants;
-use Exception;
 
 class OpenAiChatService extends CoreService
 {
@@ -29,6 +28,7 @@ class OpenAiChatService extends CoreService
             die;
         }, function ($exception) use ($data) {
 
+            //trigger event to send email TODO
             logger($exception->getMessage());
 
             $this->sendReply($data['from'], "Oops I'm having some connection issues, please try again.");
