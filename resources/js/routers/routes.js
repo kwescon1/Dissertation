@@ -28,6 +28,9 @@ import AddRole from "../pages/users&roles/roles/addRole";
 import EditRole from "../pages/users&roles/roles/editRole";
 import ViewClient from "../pages/clients/viewClient";
 import AddRecord from "../pages/records/addRecord";
+import AddAppointment from "../pages/appointments/addAppointment";
+import EditAppointment from "../pages/appointments/editAppointment";
+import ViewAppointment from "../pages/appointments/viewAppointment";
 
 const routes = createBrowserRouter([
     {
@@ -48,6 +51,18 @@ const routes = createBrowserRouter([
                             {
                                 index: true,
                                 element: <AllAppointments />,
+                            },
+                            {
+                                path: "new",
+                                element: <AddAppointment />,
+                            },
+                            {
+                                path: "edit",
+                                element: <EditAppointment />,
+                            },
+                            {
+                                path: "view",
+                                element: <ViewAppointment />,
                             },
                         ],
                     },
