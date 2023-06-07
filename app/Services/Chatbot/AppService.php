@@ -55,6 +55,16 @@ class AppService extends InitService
             return $this->setToDone($data->From);
         }
 
+        if ($nextQuestionId == Constants::APPOINTMENT_BOOKING_DONE) {
+
+            $string = "Appointment 🩺 has been booked successfully✅";
+            $media = "eyeHealthMain.jpg";
+
+            $this->sendReply($data->From, $string, $media);
+
+            return $this->setToDone($data->From);
+        }
+
         Log::info("chatbot nextQuestionId is $nextQuestionId");
 
         $nextQuestion = $this->generateNextQuestion($nextQuestionId, $this->getActualWhatsappNumber($data->From), $this->getActualWhatsappNumber($data->To));
