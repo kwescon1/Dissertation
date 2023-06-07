@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Permission;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Services\Api\Constants\Permissions;
 
 class UserMiddleware
 {
@@ -17,7 +19,7 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $permissions = ['edit-users', 'view-users', 'delete-users'];
+        $permissions = [Permissions::EDIT_USER, Permissions::VIEW_USER, Permissions::DELETE_USER];
 
         $user = auth()->user()->loggedInBranch;
 

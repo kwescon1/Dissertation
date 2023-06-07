@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Table from "../../../components/tables/table";
-import PageTitle from "../../../components/typography/pagetitle";
-import PageContainer from "../../../layouts/pagecontaner";
+import PageTitle from "../../../components/typography/pageTitle";
+import PageContainer from "../../../layouts/pageContainer";
 import { getAuthUser } from "../../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import DeleteModal from "../../../components/modals/delete";
 import { Link } from 'react-router-dom';
-
-// import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
+import { successNotif,errorNotif } from "../../../services/toast";
 
 const getRoles = async () => {
     try {
@@ -49,7 +49,7 @@ const AllRoles = () => {
     const confirmDelete = async () => {
         try {
             const response = await axios.delete(`roles/${selectedRole.id}`);
-            console.log("success"); //TODO show a success toast
+            successNotif("Role successfully deleted");
 
             //reload roles
             setRoles(roles.filter((role) => role.id !== selectedRole.id));
@@ -57,12 +57,8 @@ const AllRoles = () => {
             setShowDeleteModal(false);
             getRoles(); // reload the roles after delete
         } catch (error) {
-          
+            errorNotif(error.response.data.error);
             setShowDeleteModal(false);
-            // setError(error);
-            
-// toast.error(error.response.data.error)
-            console.log(error.response.data);
         }
 
 
@@ -128,7 +124,9 @@ const AllRoles = () => {
                     )}
 
                     {canEditRole() && (
+                         <Link to={`/roles/edit`}>
                         <FaEdit className="text-primary cursor-pointer hover:text-primary-100" />
+                         </Link>
                     )}
 
                     {canDeleteRole(row) && (
@@ -159,6 +157,7 @@ const AllRoles = () => {
                     name={selectedRole?.name}
                 />
             </PageContainer>
+            <ToastContainer/>
         </div>
     );
 };

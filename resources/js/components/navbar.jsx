@@ -2,24 +2,52 @@ import { useState } from "react";
 import DropdownButton from "./buttons/dropdownButton";
 import SearchInput from "./inputs/searchInput";
 import Logo from "./logo/NavBarLogo";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+    const navigate = useNavigate();
     const [toggleNewBtn, setToggleNewBtn] = useState(false);
     const [toggleProfileBtn, setToggleProfileBtn] = useState(false);
+
+    const handleLogout = async () => {
+        // Perform the logout action here
+        const response = await axios.get('logout');
+        console.log("Logged out");
+    
+        localStorage.clear();
+        // Redirect to the login page
+        navigate("/login", { replace: true });
+      };
+
     const newBtnDropdownContents = [
         {
-            path: "client/new",
-            name: "Client",
+            path: "users/new",
+            name: "User",
+            onclick:() => {
+                setToggleNewBtn(false)
+            } ,
+        },
+        {
+            path: "roles/new",
+            name: "Role",
+            onclick:() => {
+                setToggleNewBtn(false)
+            } ,
         },
     ];
     const ProfileBtnDropdownContents = [
         {
             path: "/",
             name: "Profile",
+            onclick:() => {
+                setToggleProfileBtn(false)
+            } ,
         },
         {
-            path: "/login",
+            
             name: "Logout",
+            onclick: handleLogout,
+            
         },
     ];
 

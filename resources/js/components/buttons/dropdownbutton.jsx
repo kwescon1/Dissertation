@@ -35,8 +35,9 @@ const DropdownButton = ({
                         {dropdownContents.map((linkInfo, index) => (
                             <li key={index}>
                                 <Link
-                                    to={linkInfo.path}
+                                    to={linkInfo?.path}
                                     className="block px-4 py-2 font-semibold text-gray-500 rounded-lg hover:bg-primary-5 hover:text-gray-700"
+                                    onClick={linkInfo?.onclick}
                                 >
                                     {linkInfo.name}{" "}
                                 </Link>

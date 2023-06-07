@@ -17,6 +17,6 @@ class EmergencyContact extends Model
 
     public function client()
     {
-        return $this->belongsTo(Client::class, 'emergency_contact_id');
+        return $this->hasOne(Client::class, 'emergency_contact_id');
     }
 }

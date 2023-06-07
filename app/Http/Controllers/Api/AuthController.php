@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LoginResource;
@@ -31,13 +32,6 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        try {
-            return response()->success($this->authService->logout($request));
-        } catch (NotFoundException $e) {
-            return response()->notfound($e->getMessage());
-        } catch (Exception $e) {
-            Log::error($e->getMessage() . "\n" . $e->getTraceAsString());
-            return response()->error($e->getMessage());
-        }
+        return response()->success($this->authService->logout($request));
     }
 }

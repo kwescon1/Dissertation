@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 use App\Services\Api\Auth\AuthService;
+use App\Services\Api\Role\RoleService;
 use App\Services\Api\User\UserService;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\Response;
 use App\Services\Api\Client\ClientService;
 use App\Services\Api\Facility\FacilityService;
 use App\Services\Api\Auth\AuthServiceInterface;
+use App\Services\Api\Role\RoleServiceInterface;
 use App\Services\Api\User\UserServiceInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Services\Api\Client\ClientServiceInterface;
@@ -19,8 +22,6 @@ use App\Services\Api\FacilityBranch\FacilityBranchService;
 use App\Services\Api\UserFacilityBranch\UserFacilityBranchService;
 use App\Services\Api\FacilityBranch\FacilityBranchServiceInterface;
 use App\Services\Api\ClientFacilityBranch\ClientFacilityBranchService;
-use App\Services\Api\Role\RoleService;
-use App\Services\Api\Role\RoleServiceInterface;
 use App\Services\Api\UserFacilityBranch\UserFacilityBranchServiceInterface;
 use App\Services\Api\ClientFacilityBranch\ClientFacilityBranchServiceInterface;
 
@@ -87,6 +88,13 @@ class AppServiceProvider extends ServiceProvider
                 'status' => $statusCode,
 
             ], $statusCode);
+        });
+
+        Response::macro('deleted', function ($data) {
+            return response()->json([
+                'data' => $data ?: null,
+
+            ], \Illuminate\Http\Response::HTTP_NO_CONTENT);
         });
     }
 }

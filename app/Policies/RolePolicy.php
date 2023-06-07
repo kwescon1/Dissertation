@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Api\Constants\Permissions;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RolePolicy
@@ -14,12 +15,10 @@ class RolePolicy
 
     public function __construct()
     {
-        $this->editRole = 'edit-roles';
-        $this->viewRole = 'view-roles';
-        $this->deleteRole = 'delete-roles';
+        $this->editRole = Permissions::EDIT_ROLE;
+        $this->viewRole = Permissions::VIEW_ROLE;
+        $this->deleteRole = Permissions::DELETE_ROLE;
     }
-
-
 
     use HandlesAuthorization;
 

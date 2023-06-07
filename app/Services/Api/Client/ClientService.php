@@ -8,12 +8,15 @@ use App\Models\Facility;
 use App\Models\FacilityBranch;
 use App\Services\Api\CoreService;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\Pipes\Client\StoreResidence;
 use App\Services\Chatbot\AppService;
+use Illuminate\Support\Facades\Gate;
 use App\Exceptions\NotFoundException;
 use App\Pipes\Client\RemoveResidence;
 use App\Pipes\Client\GenerateNhsNumber;
+use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\InvalidLinkException;
 use App\Pipes\Client\StoreEmergencyContact;
 use App\Pipes\Client\RemoveEmergencyContact;
@@ -43,7 +46,6 @@ class ClientService extends CoreService implements ClientServiceInterface
 
         //check if facility exists
         $facilityExists = $this->facilityService->facilityExists($data['facility_id']);
-
 
         if (!$facilityExists) {
             throw new NotFoundException("Facility not found");
@@ -125,5 +127,75 @@ class ClientService extends CoreService implements ClientServiceInterface
         $this->appService->sendReply($number, $str, $media);
 
         return;
+    }
+
+    /**
+     * @param string $facilityId
+     * @param string $facilityBranchId
+     * @return Collection|NULL
+     */
+    public function clients(string $facilityId, string $facilityBranchId): ?Collection
+    {
+        Gate::authorize('viewAny', Client::class);
+
+        return Client::leftJoin('client_facility_branches', 'clients.id', '=', 'client_facility_branches.client_id')->where('clients.facility_id', $facilityId)->where('client_facility_branches.facility_branch_id', $facilityBranchId)->select('clients.*')->get();
+    }
+
+    /**
+     * 
+     * @param string $id
+     * @param string $facilityId
+     * @param string $facilityBranchId
+     * @throws NotFoundException
+     * 
+     * Returns a specified resource
+     */
+    public function client(string $id, string $facilityId, string $facilityBranchId): ?Model
+    {
+
+        $client = $this->findClient($id, $facilityId, $facilityBranchId);
+
+        if (!$client) {
+            $this->throwNotFoundException('Client', $id);
+        }
+
+        Gate::authorize('view', $client);
+
+        return $client;
+    }
+
+    /**
+     * TODO update client
+     */
+    public function updateClient()
+    {
+    }
+
+    /**
+     * Deletes a specified client
+     *
+     * @param string $id
+     * @param string $facilityId
+     * @param string $facilityBranchId
+     * 
+     * @throws NotFoundException
+     * @return bool
+     */
+    public function destroyClient($id, $facilityId, $facilityBranchId): ?bool
+    {
+        $client = $this->findClient($id, $facilityId, $facilityBranchId);
+
+        if (!$client) {
+            $this->throwNotFoundException('Client', $id);
+        }
+
+        Gate::authorize('delete', $client);
+
+        return $client->delete();
+    }
+
+    private function findClient(string $id, $facilityId, $facilityBranchId)
+    {
+        return Client::leftJoin('client_facility_branches', 'clients.id', '=', 'client_facility_branches.client_id')->where('clients.facility_id', $facilityId)->where('client_facility_branches.facility_branch_id', $facilityBranchId)->where('clients.id', $id)->with('emergencyContact:id,emergency_contact_name,emergency_contact_phone', 'residence:id,first_address_line,second_address_line,third_address_line,town,county,postcode')->select('clients.*')->first();
     }
 }

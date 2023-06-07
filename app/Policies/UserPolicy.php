@@ -3,18 +3,19 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Services\Api\Constants\Permissions;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
 
-    private $editUser, $viewUser, $deleteUser;
+    private readonly string $editUser, $viewUser, $deleteUser;
 
     public function __construct()
     {
-        $this->editUser = 'edit-users';
-        $this->viewUser = 'view-users';
-        $this->deleteUser = 'delete-users';
+        $this->editUser = Permissions::EDIT_USER;
+        $this->viewUser = Permissions::VIEW_USER;
+        $this->deleteUser = Permissions::DELETE_USER;
     }
 
 

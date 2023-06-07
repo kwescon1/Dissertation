@@ -4,8 +4,11 @@ namespace App\Models;
 
 use App\Utils\GeneratesUiud;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Client extends Model
 {
@@ -17,13 +20,29 @@ class Client extends Model
 
     protected $dates = ['date_of_birth'];
 
-    public function residence()
+    public function residence(): BelongsTo
     {
-        return $this->hasOne(Residence::class, 'residential_address_id');
+        return $this->belongsTo(Residence::class, 'residential_address_id');
     }
 
-    public function emergencyContact()
+    public function emergencyContact(): BelongsTo
     {
-        return $this->hasOne(EmergencyContact::class, 'emergency_contact_id');
+        return $this->belongsTo(EmergencyContact::class, 'emergency_contact_id');
+    }
+
+    public function facilityId(): BelongsTo
+    {
+        return $this->belongsTo(Facility::class, 'facility_id');
+    }
+
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class, 'client_id')->orderBy('scheduled_at', 'DESC');
+    }
+
+    public function clientAccount(): HasOne
+    {
+        return $this->hasOne(ClientFacilityBranch::class, 'client_id');
     }
 }

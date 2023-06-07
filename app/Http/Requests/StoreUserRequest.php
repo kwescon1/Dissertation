@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserRequest extends FormRequest
@@ -13,7 +15,8 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        // return true;
+        return Gate::authorize('create', User::class);
     }
 
     /**

@@ -4,11 +4,13 @@ namespace App\Services\Chatbot;
 
 use App\Models\Question;
 use App\Services\Chatbot\Constants;
+use App\Traits\AppTrait;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
-class AppService extends BotService
+class AppService extends InitService
 {
+    use AppTrait;
+
     /**
      * @param $data
      * 
@@ -16,7 +18,6 @@ class AppService extends BotService
      */
     public function messageReceived($data)
     {
-
         // get last message sent to bot by client
         $lastMessage = $this->lastSentMessage($data->From);
 
@@ -50,6 +51,16 @@ class AppService extends BotService
             $string = "Thank you for using our services❤️";
 
             $this->sendReply($data->From, $string);
+
+            return $this->setToDone($data->From);
+        }
+
+        if ($nextQuestionId == Constants::APPOINTMENT_BOOKING_DONE) {
+
+            $string = "Appointment 🩺 has been booked successfully✅";
+            $media = "eyeHealthMain.jpg";
+
+            $this->sendReply($data->From, $string, $media);
 
             return $this->setToDone($data->From);
         }

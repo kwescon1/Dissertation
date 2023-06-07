@@ -1,4 +1,3 @@
-import { Form } from "react-router-dom";
 import AuthBackground from "../../components/authCard";
 import AuthButton from "../../components/buttons/authButton";
 import AuthInput from "../../components/inputs/authInput";
@@ -25,8 +24,6 @@ const response = await axios.post('login',data);
 
 let user = response?.data?.data;
 
-console.log(response?.data?.data);
-
 // Encrypt the token
 const encryptedToken = encryptToken(user.token);
 
@@ -37,7 +34,7 @@ user.token = encryptedToken;
 store(user);
 
 // Redirect to the dashboard
-window.location.href = '/dashboard';
+window.location.href = '/';
 
 }catch(error){
 console.log(error);

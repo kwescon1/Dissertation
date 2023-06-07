@@ -1,5 +1,5 @@
 # FROM nginx
-FROM php:7.4-fpm
+FROM php:8.2-fpm
 
 # Set working directory
 WORKDIR /var/www/optix

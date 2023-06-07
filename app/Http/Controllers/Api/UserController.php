@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -91,6 +90,6 @@ class UserController extends Controller
         //
         $authUser = cache()->get(auth()->id());
 
-        return response()->success($this->userService->destroyUser($id, $authUser['facility_id']));
+        return response()->deleted($this->userService->destroyUser($id, $authUser['facility_id']));
     }
 }

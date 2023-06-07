@@ -18,6 +18,6 @@ class Residence extends Model
 
     public function client()
     {
-        return $this->belongsTo(Client::class, 'residential_address_id');
+        return $this->hasOne(Client::class, 'residential_address_id');
     }
 }

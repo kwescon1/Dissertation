@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -52,6 +53,11 @@ class Handler extends ExceptionHandler
         $this->renderable(function (AccessDeniedHttpException $e) {
             //
             return response()->error($e->getMessage(), Response::HTTP_FORBIDDEN);
+        });
+
+        $this->renderable(function (ValidationException $e) {
+            //
+            return response()->error($e->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
         });
 
         $this->renderable(function (Exception $e) {
