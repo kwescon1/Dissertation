@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Utils\GeneratesUiud;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,5 +39,10 @@ class Client extends Model
     public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class, 'client_id')->orderBy('scheduled_at', 'DESC');
+    }
+
+    public function clientAccount(): HasOne
+    {
+        return $this->hasOne(ClientFacilityBranch::class, 'client_id');
     }
 }
