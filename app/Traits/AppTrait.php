@@ -109,17 +109,4 @@ trait AppTrait
 
         return call_user_func([$this, $data['question']->method], $data);
     }
-
-
-    /**
-     * @param $branchPhoneNumber
-     * $clientPhoneNumber
-     * @return object|NULL
-     * 
-     * get client belonging to a facility branch
-     */
-    protected function getClient(string $branchPhoneNumber, string $clientPhoneNumber): ?object
-    {
-        return Client::join('facility_branches', 'clients.facility_id', '=', 'facility_branches.facility_id')->where("facility_branches.phone", $branchPhoneNumber)->where('clients.phone', $clientPhoneNumber)->first();
-    }
 }

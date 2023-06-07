@@ -2,9 +2,10 @@
 
 namespace App\Services\Chatbot;
 
+use App\Services\Chatbot\Appointment\InitAppointmentService;
 use App\Services\Chatbot\Constants;
 
-class OpenAiChatService extends CoreService
+class OpenAiChatService extends InitAppointmentService
 {
     public function onAskQuestionProvided($data)
     {
