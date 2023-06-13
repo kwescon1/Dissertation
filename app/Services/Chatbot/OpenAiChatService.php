@@ -18,15 +18,18 @@ class OpenAiChatService extends InitAppointmentService
         rescue(function () use ($str, $data) {
             $output = $this->chat($str);
 
-            $paragraphs = explode("\n\n", $output);
-
-            foreach ($paragraphs as $p) {
-                $this->sendReply($data['from'], $p);
-
+            collect(explode("\n\n", $output))->each(function ($msg) use ($data) {
+                $this->sendReply($data['from'], $msg);
                 sleep(2);
-            }
+            });
 
-            die;
+            // foreach ($paragraphs as $p) {
+            //     $this->sendReply($data['from'], $p);
+
+            //     sleep(2);
+            // }
+
+            // die;
         }, function ($exception) use ($data) {
 
             //trigger event to send email TODO
