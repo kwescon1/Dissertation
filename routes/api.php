@@ -28,6 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('role')->apiResource('roles', App\Http\Controllers\Api\RoleController::class);
 
     Route::middleware('user')->apiResource('users', App\Http\Controllers\Api\UserController::class);
+
+    Route::middleware('appointment')->apiResource('appointments', App\Http\Controllers\Api\AppointmentController::class)->only(['index', 'destroy']);
 });
 
 
