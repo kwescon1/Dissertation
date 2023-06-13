@@ -6,8 +6,6 @@ use App\Models\Appointment;
 use Carbon\Carbon;
 use App\Models\DTOs\AppointmentDTO;
 use App\Services\Chatbot\Constants;
-use Illuminate\Support\Facades\Log;
-use App\Models\Enums\AppointmentType;
 use App\Services\Chatbot\CoreService;
 use App\Models\Enums\AppointmentStatus;
 use Illuminate\Support\Facades\Validator;

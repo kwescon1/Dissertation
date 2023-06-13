@@ -44,8 +44,18 @@ class Appointment extends Model
         return $this->belongsTo(Client::class, 'client_id');
     }
 
-    public function scopeScheduledDate($query, $date, $status)
+    public function scopeScheduledDate($query, $date)
     {
-        return $query->whereScheduledAt($date)->where('status', $status);
+        return $query->whereDate('scheduled_at', $date);
+    }
+
+    public function scopeStatus($query, $status)
+    {
+        return $query->whereStatus($status);
+    }
+
+    public function scopeBranch($query, $branch)
+    {
+        return $query->whereFacilityBranchId($branch);
     }
 }
