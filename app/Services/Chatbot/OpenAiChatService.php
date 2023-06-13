@@ -22,14 +22,6 @@ class OpenAiChatService extends InitAppointmentService
                 $this->sendReply($data['from'], $msg);
                 sleep(2);
             });
-
-            // foreach ($paragraphs as $p) {
-            //     $this->sendReply($data['from'], $p);
-
-            //     sleep(2);
-            // }
-
-            // die;
         }, function ($exception) use ($data) {
 
             //trigger event to send email TODO
