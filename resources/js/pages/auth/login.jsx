@@ -4,7 +4,7 @@ import AuthInput from "../../components/inputs/authInput";
 import { useState } from "react";
 import { encryptToken } from "../../services/token";
 import {store} from "../../services/storage";
-import loginImage from '../../../images/loginimg.png'
+import loginImage from '../../../images/login.png'
 
 function Login(){
 
