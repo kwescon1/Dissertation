@@ -17,7 +17,7 @@ class OpenAIServiceProvider extends ServiceProvider
     {
         //
         $this->app->singleton(Chat::class, function ($app) {
-            return new Chat(config('openai.open_ai_key'), $completion = null);
+            return new Chat(config('openai.open_ai_key'));
         });
     }
 

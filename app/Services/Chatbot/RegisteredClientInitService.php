@@ -14,18 +14,26 @@ class RegisteredClientInitService extends OpenAiChatService
         switch ($data['body']) {
             case '1':
 
-                return Constants::DONE;
-
+                return $this->saveAnswer($data, Constants::APPOINTMENTS); //appointments
                 break;
 
             case '2':
 
-                return $this->saveAnswer($data, Constants::OPEN_AI_CHAT);
-
+                return $this->saveAnswer($data, Constants::MEDICAL_RECORDS); //medical records
                 break;
 
             case '3':
-                return Constants::DONE;
+
+                return $this->saveAnswer($data, Constants::OPEN_AI_CHAT); //Ask a question
+
+                break;
+
+            case '4':
+                return $this->saveAnswer($data, Constants::HELP); //make enquiries
+                break;
+
+            case '5':
+                return $this->saveAnswer($data, Constants::DONE); // Quit
                 break;
 
             default:
@@ -33,14 +41,5 @@ class RegisteredClientInitService extends OpenAiChatService
                 return Constants::CHOOSE_FROM_AVAILABLE_OPTIONS;
                 break;
         }
-    }
-
-
-
-
-
-    private function initialPrompt()
-    {
-        return "";
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use InvalidArgumentException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
@@ -65,6 +66,11 @@ class Handler extends ExceptionHandler
 
             Log::error($e->getMessage() . "\n" . $e->getTraceAsString());
             return response()->error($e->getMessage());
+        });
+
+        $this->renderable(function (InvalidArgumentException $e) {
+            //
+            return response()->error($e->getMessage(), Response::HTTP_BAD_REQUEST);
         });
     }
 }

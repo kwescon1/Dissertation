@@ -2,9 +2,10 @@
 
 namespace App\Services\Chatbot;
 
+use App\Services\Chatbot\Appointment\InitAppointmentService;
 use App\Services\Chatbot\Constants;
 
-class OpenAiChatService extends CoreService
+class OpenAiChatService extends InitAppointmentService
 {
     public function onAskQuestionProvided($data)
     {
@@ -17,15 +18,10 @@ class OpenAiChatService extends CoreService
         rescue(function () use ($str, $data) {
             $output = $this->chat($str);
 
-            $paragraphs = explode("\n\n", $output);
-
-            foreach ($paragraphs as $p) {
-                $this->sendReply($data['from'], $p);
-
+            collect(explode("\n\n", $output))->each(function ($msg) use ($data) {
+                $this->sendReply($data['from'], $msg);
                 sleep(2);
-            }
-
-            die;
+            });
         }, function ($exception) use ($data) {
 
             //trigger event to send email TODO

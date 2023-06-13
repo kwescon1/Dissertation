@@ -32,6 +32,7 @@ class CreateClientsTable extends Migration
             $table->softDeletes();
 
             $table->unique(['facility_id', 'phone']);
+            $table->fullText(['firstname', 'lastname', 'othernames', 'phone', 'email']);
         });
     }
 

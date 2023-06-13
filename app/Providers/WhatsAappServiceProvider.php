@@ -16,7 +16,7 @@ class WhatsAappServiceProvider extends ServiceProvider
     {
         //
         $this->app->singleton(Whatsapp::class, function ($app) {
-            return new Whatsapp(config('twilio.twilio_sid'), config('twilio.twilio_auth_token'), config('twilio.twilio_number'), $twilio = null);
+            return new Whatsapp(config('twilio.twilio_sid'), config('twilio.twilio_auth_token'), config('twilio.twilio_number'));
         });
     }
 

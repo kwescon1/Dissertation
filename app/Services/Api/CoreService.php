@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\ForbiddenException;
 use App\Exceptions\ValidationException;
+use App\Exceptions\InvalidArgumentException;
 
 class CoreService implements CoreServiceInterface
 {
@@ -36,6 +37,14 @@ class CoreService implements CoreServiceInterface
     public function throwValidationException($message)
     {
         throw new ValidationException($message);
+    }
+
+    /**
+     * @param string $message
+     */
+    public function throwInvalidException($message)
+    {
+        throw new InvalidArgumentException($message);
     }
 
     public function hashUserPassword($password): string

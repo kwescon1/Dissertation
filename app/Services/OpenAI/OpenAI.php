@@ -10,7 +10,9 @@ use Orhanerday\OpenAi\OpenAi as Chat;
 class OpenAI extends Chat
 {
 
-    public function __construct(protected string $openAIKey, protected $completion)
+    protected $completion;
+
+    public function __construct(protected string $openAIKey)
     {
         $this->completion = $this->configureOpenAI();
     }
@@ -54,11 +56,9 @@ class OpenAI extends Chat
                 Log::info($output['error']['message']);
 
                 throw new OpenAiException("Open AI threw an error response");
-            } else {
-                $msg =  $output['choices'][0]['message']['content'];
-
-                return $msg;
             }
+
+            return $output['choices'][0]['message']['content'];
         }, 2000);
     }
 

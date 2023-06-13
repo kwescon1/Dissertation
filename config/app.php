@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\OpenAIServiceProvider::class,
         App\Providers\WhatsAappServiceProvider::class,
+        App\Providers\CustomTimeValidationProvider::class,
 
     ],
 
