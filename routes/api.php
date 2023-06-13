@@ -30,6 +30,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('user')->apiResource('users', App\Http\Controllers\Api\UserController::class);
 
     Route::middleware('appointment')->apiResource('appointments', App\Http\Controllers\Api\AppointmentController::class)->only(['index', 'destroy']);
+
+    Route::apiResource('categories', App\Http\Controllers\Api\CategoryController::class)->only('index');
+
+    Route::apiResource('items', App\Http\Controllers\Api\ItemController::class)->only('index');
 });
 
 
@@ -49,3 +53,7 @@ Route::get('client-registration-link/{facilityId}/{branchId}/{client}/{hash}', [
 
 
 Route::apiResource('clients', App\Http\Controllers\Api\ClientController::class);
+
+Route::get('test', function () {
+    return json_decode(file_get_contents(storage_path() . "/categories.json"), true);
+});
