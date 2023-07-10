@@ -11,35 +11,13 @@ class RegisteredClientInitService extends OpenAiChatService
     public function registeredClientStartQuestion($data)
     {
 
-        switch ($data['body']) {
-            case '1':
-
-                return $this->saveAnswer($data, Constants::APPOINTMENTS); //appointments
-                break;
-
-            case '2':
-
-                return $this->saveAnswer($data, Constants::MEDICAL_RECORDS); //medical records
-                break;
-
-            case '3':
-
-                return $this->saveAnswer($data, Constants::OPEN_AI_CHAT); //Ask a question
-
-                break;
-
-            case '4':
-                return $this->saveAnswer($data, Constants::HELP); //make enquiries
-                break;
-
-            case '5':
-                return $this->saveAnswer($data, Constants::DONE); // Quit
-                break;
-
-            default:
-                //choose from options
-                return Constants::CHOOSE_FROM_AVAILABLE_OPTIONS;
-                break;
-        }
+        return match ($data['body']) {
+            '1' => $this->saveAnswer($data, Constants::APPOINTMENTS), //appointments
+            '2' => $this->saveAnswer($data, Constants::MEDICAL_RECORDS), //medical records
+            '3' => $this->saveAnswer($data, Constants::HELP), //make enquiries
+            '4' => $this->saveAnswer($data, Constants::DONE), // Quit
+            
+            default => Constants::CHOOSE_FROM_AVAILABLE_OPTIONS,
+        };
     }
 }
