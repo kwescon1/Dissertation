@@ -8,42 +8,22 @@ use App\Models\DTOs\AppointmentDTO;
 use App\Services\Chatbot\Constants;
 use App\Services\Chatbot\CoreService;
 use App\Models\Enums\AppointmentStatus;
+use App\Services\Chatbot\Help\InitHelpService;
 use Illuminate\Support\Facades\Validator;
 
 
-class BookAppointmentService extends CoreService
+class BookAppointmentService extends InitHelpService
 {
-    private $clientNumber;
-    private $branchNumber;
 
     public function selectAppointmentType(array $data)
     {
-        switch ($data['body']) {
-            case '1':
 
-                return $this->saveAnswer($data, Constants::APPOINTMENT_DATE); //
-                break;
-
-            case '2':
-
-                return $this->saveAnswer($data, Constants::APPOINTMENT_DATE); //
-                break;
-
-            case '3':
-
-                return $this->saveAnswer($data, Constants::APPOINTMENTS);
-
-                break;
-
-            case '4':
-                return $this->saveAnswer($data, Constants::DONE);
-                break;
-
-            default:
-                //choose from options
-                return Constants::CHOOSE_FROM_AVAILABLE_OPTIONS;
-                break;
-        }
+        return match($data['body']){
+            '1', '2' => $this->saveAnswer($data, Constants::APPOINTMENT_DATE),
+            '3' => $this->saveAnswer($data, Constants::APPOINTMENTS),
+            '4' => $this->saveAnswer($data, Constants::DONE),
+            default => Constants::CHOOSE_FROM_AVAILABLE_OPTIONS,
+        };
     }
 
     public function selectAppointmentDate($data)
@@ -57,7 +37,6 @@ class BookAppointmentService extends CoreService
         $validator = Validator::make($data, [
             'body' => 'date_format:Y-m-d|after:today|before_or_equal:' . $endDate
         ], [], $attributes);
-
 
         if (!$validator->fails()) {
             return $this->saveAnswer($data, Constants::APPOINTMENT_TIME);
@@ -87,40 +66,28 @@ class BookAppointmentService extends CoreService
         });
     }
 
-    public function appoitnmentDetailAsk($data)
-    {
-
-        switch ($data['body']) {
-            case '1':
-                // yes
-                return $this->saveAnswer($data, Constants::APPOINTMENT_NOTE);
-                break;
-
-            case '2':
-                //grab user appointment data and save
-                $client = $this->clientDetails($this->getActualWhatsappNumber($data['to']), $this->getActualWhatsappNumber($data['from']));
-
-                $appointmentDTO = $this->prepData(Null, $data['mediaUrl'], $data['from'], $client);
-
-                $appointment = Appointment::create($appointmentDTO->toArray());
-
-                $this->successfulBookingDetails($appointment, $data['from']);
-
-                return $this->saveAnswer($data, Constants::APPOINTMENT_BOOKING_DONE);
-                break;
-
-            case '3':
-                // back
-                return $this->saveAnswer($data, Constants::APPOINTMENT_TIME);
-
-                break;
-
-            default:
-                // default option
-                return Constants::CHOOSE_FROM_AVAILABLE_OPTIONS;
-                break;
-        }
-    }
+    public function appoitnmentDetailAsk($data){
+    return match ($data['body']) {
+        //yes
+        '1' => $this->saveAnswer($data, Constants::APPOINTMENT_NOTE),
+        
+        '2' => function () use ($data) { // grab user data and save
+            $client = $this->clientDetails($this->getActualWhatsappNumber($data['to']), $this->getActualWhatsappNumber($data['from']));
+            
+            $appointmentDTO = $this->prepData(null, $data['mediaUrl'], $data['from'], $client);
+            
+            $appointment = Appointment::create($appointmentDTO->toArray());
+            
+            $this->successfulBookingDetails($appointment, $data['from']);
+            
+            return $this->saveAnswer($data, Constants::APPOINTMENT_BOOKING_DONE);
+        },
+        
+        '3' => $this->saveAnswer($data, Constants::APPOINTMENT_TIME),//back
+        
+        default => Constants::CHOOSE_FROM_AVAILABLE_OPTIONS,
+    };
+}
 
     public function additionalAppointmentNote($data)
     {
