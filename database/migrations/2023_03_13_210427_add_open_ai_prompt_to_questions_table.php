@@ -20,7 +20,7 @@ class AddOpenAiPromptToQuestionsTable extends Migration
         });
 
         DB::table('questions')->insert([
-            "question" => "Hi there, I am Clinton, your personal AI assistant. I answer any question asked relating to health issues.\n\nYour session with me would be terminated after 3️⃣0️⃣ minutes of inactivity⏳.\n\nShould you want to end this chat session, type *end*. How may I help you❓",
+            "question" => "Hi there, I am Clinton, your personal AI assistant. I answer any question asked relating to health issues.\n\nYour session with me would be terminated after 5️⃣ minutes of inactivity⏳.\n\nShould you want to end this chat session, type *end*. How may I help you❓",
             "options" => " ",
             "method" => "onAskQuestionProvided"
         ]);
