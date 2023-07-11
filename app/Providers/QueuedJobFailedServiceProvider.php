@@ -31,8 +31,8 @@ class QueuedJobFailedServiceProvider extends ServiceProvider
         //
         Queue::failing(function (JobFailed $event) {
             logger("sending email for failed job");
-            
-            Mail::to('kwescon1@gmail.com')->send(new JobFailedMailable($event));
+
+            Mail::to(config('mail.notif_email'))->send(new JobFailedMailable($event));
         });
     }
 }
