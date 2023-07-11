@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignUuid('facility_branch_id')->unsigned()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignUuid('client_id')->unsigned()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('scheduled_at');
-            $table->text('image')->nullable();
+            $table->text('media')->nullable();
             $table->text('notes')->nullable();
             $table->enum('type', [1, 2])->index();
             $table->enum('status', [1, 2, 3, 4, 5])->index();
