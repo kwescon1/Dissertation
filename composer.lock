@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cc178665030a19a2601b55017ed074b",
+    "content-hash": "f914a84eb9520be9e8f51824d52c35be",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1310,6 +1310,84 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2023-04-25T13:44:05+00:00"
+        },
+        {
+            "name": "laravel/horizon",
+            "version": "v5.16.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/horizon.git",
+                "reference": "ddd6a49063ba3bdfdf5f8ce885d27a8368ad03c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/ddd6a49063ba3bdfdf5f8ce885d27a8368ad03c4",
+                "reference": "ddd6a49063ba3bdfdf5f8ce885d27a8368ad03c4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "illuminate/contracts": "^8.17|^9.0|^10.0",
+                "illuminate/queue": "^8.17|^9.0|^10.0",
+                "illuminate/support": "^8.17|^9.0|^10.0",
+                "nesbot/carbon": "^2.17",
+                "php": "^7.3|^8.0",
+                "ramsey/uuid": "^4.0",
+                "symfony/error-handler": "^5.0|^6.0",
+                "symfony/process": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.0",
+                "predis/predis": "^1.1|^2.0"
+            },
+            "suggest": {
+                "ext-redis": "Required to use the Redis PHP driver.",
+                "predis/predis": "Required when not using the Redis PHP driver (^1.1|^2.0)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Horizon\\HorizonServiceProvider"
+                    ],
+                    "aliases": {
+                        "Horizon": "Laravel\\Horizon\\Horizon"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Horizon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Dashboard and code-driven configuration for Laravel queues.",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/horizon/issues",
+                "source": "https://github.com/laravel/horizon/tree/v5.16.1"
+            },
+            "time": "2023-05-29T15:03:42+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -3308,6 +3386,131 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "resend/resend-laravel",
+            "version": "v0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/resendlabs/resend-laravel.git",
+                "reference": "2d6245419837798e8826649db181f6bf56118571"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/resendlabs/resend-laravel/zipball/2d6245419837798e8826649db181f6bf56118571",
+                "reference": "2d6245419837798e8826649db181f6bf56118571",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.21|^10.0",
+                "php": "^8.1",
+                "resend/resend-php": "^0.7.0",
+                "symfony/mailer": "^6.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.14",
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.22|^8.0",
+                "pestphp/pest": "^1.22"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Resend\\Laravel\\ResendServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Resend\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Resend and contributors",
+                    "homepage": "https://github.com/resendlabs/resend-laravel/contributors"
+                }
+            ],
+            "description": "Resend for Laravel",
+            "homepage": "https://resend.com/",
+            "keywords": [
+                "api",
+                "client",
+                "laravel",
+                "php",
+                "resend",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/resendlabs/resend-laravel/issues",
+                "source": "https://github.com/resendlabs/resend-laravel/tree/v0.3.2"
+            },
+            "time": "2023-06-04T23:29:19+00:00"
+        },
+        {
+            "name": "resend/resend-php",
+            "version": "v0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/resendlabs/resend-php.git",
+                "reference": "9c65084b3fd970faaab779daa79946ae2b074076"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/resendlabs/resend-php/zipball/9c65084b3fd970faaab779daa79946ae2b074076",
+                "reference": "9c65084b3fd970faaab779daa79946ae2b074076",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.5",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.13",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-mock": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Resend.php"
+                ],
+                "psr-4": {
+                    "Resend\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Resend and contributors",
+                    "homepage": "https://github.com/resendlabs/resend-php/contributors"
+                }
+            ],
+            "description": "Resend PHP library.",
+            "homepage": "https://resend.com/",
+            "keywords": [
+                "api",
+                "client",
+                "php",
+                "resend",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/resendlabs/resend-php/issues",
+                "source": "https://github.com/resendlabs/resend-php/tree/v0.7.0"
+            },
+            "time": "2023-06-03T13:47:38+00:00"
         },
         {
             "name": "spatie/laravel-permission",
