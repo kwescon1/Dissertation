@@ -8,4 +8,6 @@ interface AppointmentServiceInterface
 {
 
     public function appointments(string $facilityBranchId, ?string $date): ?Collection;
+
+    public function changeAppointmentStatusToNoShow(): void;
 }
