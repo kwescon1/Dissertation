@@ -14,12 +14,13 @@ class OpenAIConnectionFailed extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    public $message,$errorTime;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(private string $message, private $errorTime)
+    public function __construct(string $message,string $errorTime)
     {
         $this->message = $message;
         $this->errorTime = $errorTime;
