@@ -120,4 +120,5 @@ return [
         ],
     ],
 
+    'notif_email' => env('NOTIF_EMAIL', ''),
 ];
