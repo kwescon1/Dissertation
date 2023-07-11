@@ -53,9 +53,7 @@ class OpenAI extends Chat
             $output = json_decode($result, true);
 
             if (Arr::get($output, 'error')) {
-                Log::info($output['error']['message']);
-
-                throw new OpenAiException("Open AI threw an error response");
+                throw new OpenAiException($output['error']['message']);
             }
 
             return $output['choices'][0]['message']['content'];
