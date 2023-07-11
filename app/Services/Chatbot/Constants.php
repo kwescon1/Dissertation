@@ -22,9 +22,13 @@ class Constants
     const APPOINTMENT_BOOKING_DONE = 200; // completed booking of appointment
 
 
-    const PREVIOUS_APPOINTMENT = 11; // level three menu - this is for any other thing client wants to show.. images can be included
+    const PREVIOUS_APPOINTMENT = 2001; // level three menu - this is for any other thing client wants to show.. images can be included
 
-    const FUTURE_APPOINTMENT = 12; //level two menu
+    const FUTURE_APPOINTMENT = 2002; //level two menu
+
+    //Help Desk
+    const HELP = 11; //level one menu
+    const FAQ = 2000; //level two menu
 
 
     // const FUTURE_APPOINTMENT = 12; //level two menu
@@ -33,17 +37,6 @@ class Constants
     //Medical Records
 
     const MEDICAL_RECORDS = 1000; //level one menu
-
-    const HELP = 2000; //level one menu
-
-    //Help
-
-
-
-
-
-    // const INIT = 1;
-
 
     const CHOOSE_FROM_AVAILABLE_OPTIONS = 800;
     const DONE = 900;
