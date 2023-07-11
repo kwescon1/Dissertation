@@ -178,6 +178,7 @@ return [
         App\Providers\OpenAIServiceProvider::class,
         App\Providers\WhatsAappServiceProvider::class,
         App\Providers\CustomTimeValidationProvider::class,
+        App\Providers\QueuedJobFailedServiceProvider::class,
 
     ],
 
