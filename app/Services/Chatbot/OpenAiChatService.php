@@ -2,13 +2,20 @@
 
 namespace App\Services\Chatbot;
 
-use App\Services\Chatbot\Appointment\InitAppointmentService;
+use Illuminate\Support\Carbon;
+use App\Mail\OpenAIConnecionFailed;
 use App\Services\Chatbot\Constants;
+use App\Mail\OpenAIConnectionFailed;
+use App\Models\OpenAiMessageTracker;
+use Illuminate\Support\Facades\Mail;
+use App\Services\Chatbot\Appointment\InitAppointmentService;
 
 class OpenAiChatService extends InitAppointmentService
 {
+
     public function onAskQuestionProvided($data)
     {
+
         $str = trim(strtolower($data['body']));
 
         if ($str == "end") {
@@ -16,7 +23,11 @@ class OpenAiChatService extends InitAppointmentService
         }
 
         rescue(function () use ($str, $data) {
+
             $output = $this->chat($str);
+
+            //track message
+            $this->trackMessage($data['from']);
 
             collect(explode("\n\n", $output))->each(function ($msg) use ($data) {
                 $this->sendReply($data['from'], $msg);
@@ -24,12 +35,30 @@ class OpenAiChatService extends InitAppointmentService
             });
         }, function ($exception) use ($data) {
 
-            //trigger event to send email TODO
             logger($exception->getMessage());
 
-            $this->sendReply($data['from'], "Oops I'm having some connection issues, please try again.");
+            Mail::to(config('mail.notif_email'))->send(new OpenAIConnectionFailed($exception->getMessage(),Carbon::now()));
 
-            die;
+            return $this->sendReply($data['from'], "Oops I'm having some connection issues, please try again.");
+
         }, false);
+    }
+
+
+    private function trackMessage(string $from){
+
+        return OpenAiMessageTracker::updateOrCreate(
+            ['from' => $from,],
+            ['message_time' => Carbon::now()]
+        );
+    }
+
+
+    /**
+     * automatically end inactive session after 5 mins
+     */
+    public function endOpenAiInactiveSession(string $from){
+
+        return $this->sendReply($from, "Session has been ended due to inactivity‼️");
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\EndChatSession;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Services\Api\Appointment\AppointmentServiceInterface;
@@ -18,10 +19,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->call(function () {
-            $appointmentService = app(AppointmentServiceInterface::class);
-            $appointmentService->changeAppointmentStatusToNoShow();
-        });
+        // $schedule->call(function () {
+        //     $appointmentService = app(AppointmentServiceInterface::class);
+        //     $appointmentService->changeAppointmentStatusToNoShow();
+        // });
+
+        $schedule->job(new EndChatSession)->everyMinute();
     }
 
     /**
