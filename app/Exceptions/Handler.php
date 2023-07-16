@@ -2,15 +2,22 @@
 
 namespace App\Exceptions;
 
+use Exception;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
+use InvalidArgumentException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
 {
     /**
      * A list of the exception types that are not reported.
      *
-     * @var array<int, class-string<Throwable>>
+     * @var array
      */
     protected $dontReport = [
         //
@@ -19,7 +26,7 @@ class Handler extends ExceptionHandler
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $dontFlash = [
         'current_password',
@@ -34,8 +41,36 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
+        $this->renderable(function (AuthorizationException $e) {
             //
+            return response()->error($e->getMessage(), Response::HTTP_FORBIDDEN);
+        });
+
+        $this->renderable(function (AuthenticationException $e) {
+            //
+            return response()->error($e->getMessage(), Response::HTTP_UNAUTHORIZED);
+        });
+
+        $this->renderable(function (AccessDeniedHttpException $e) {
+            //
+            return response()->error($e->getMessage(), Response::HTTP_FORBIDDEN);
+        });
+
+        $this->renderable(function (ValidationException $e) {
+            //
+            return response()->error($e->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        });
+
+        $this->renderable(function (Exception $e) {
+            //
+
+            Log::error($e->getMessage() . "\n" . $e->getTraceAsString());
+            return response()->error($e->getMessage());
+        });
+
+        $this->renderable(function (InvalidArgumentException $e) {
+            //
+            return response()->error($e->getMessage(), Response::HTTP_BAD_REQUEST);
         });
     }
 }

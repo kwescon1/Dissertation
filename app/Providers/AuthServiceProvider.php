@@ -2,8 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Client;
+use App\Models\Appointment;
+use App\Policies\RolePolicy;
+use App\Policies\UserPolicy;
+use App\Policies\ClientPolicy;
+use App\Policies\AppointmentPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +20,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Role::class => RolePolicy::class,
+        User::class => UserPolicy::class,
+        Client::class => ClientPolicy::class,
+        Appointment::class => AppointmentPolicy::class,
     ];
 
     /**

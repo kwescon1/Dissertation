@@ -12,15 +12,26 @@ services:
 
 #PHP-FPM service
   app:
+<<<<<<< HEAD
     build: .
+=======
+    build:
+      context: .
+      dockerfile: ./docker-files/php/Dockerfile
+>>>>>>> 05e946c52c4ee6ebcd760c857353efc4aeee379a
     container_name: optix
     restart: unless-stopped
     tty: true
     working_dir: /var/www/optix
     depends_on:
+<<<<<<< HEAD
       - db
       - redis
 
+=======
+      # - redis
+      - composer
+>>>>>>> 05e946c52c4ee6ebcd760c857353efc4aeee379a
     volumes:
       - ./:/var/www/optix
       - ./docker-files/php/local.ini:/usr/local/etc/php/conf.d/local.ini
@@ -30,6 +41,7 @@ services:
 
 #   #NGINX service
   optix_webserver: 
+<<<<<<< HEAD
     image: nginx
     container_name: optix_webserver
     restart: unless-stopped
@@ -38,6 +50,21 @@ services:
     ports:
       - '9007:80'
       - '9008:443'
+=======
+    build:
+      context: .
+      dockerfile: ./docker-files/nginx/Dockerfile
+    container_name: optix_webserver
+    restart: unless-stopped
+    depends_on:
+      - db
+      - app
+      - redis
+    
+    ports:
+      - '80:80'
+      - '443:443'
+>>>>>>> 05e946c52c4ee6ebcd760c857353efc4aeee379a
     
     volumes:
       - ./:/var/www/optix
@@ -45,8 +72,14 @@ services:
     
     networks:
       - optix
+<<<<<<< HEAD
   db:
     platform: linux/x86_64 #comment this line out if using windows
+=======
+
+  db:
+    platform: linux/x86_64 
+>>>>>>> 05e946c52c4ee6ebcd760c857353efc4aeee379a
     container_name: optix_db
     image: postgres:latest
     environment:
@@ -54,10 +87,17 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_ROOT_PASSWORD: ${DB_PASSWORD}
+<<<<<<< HEAD
     restart: always
     # tty: true
     ports:
       -  "3307:5432"
+=======
+    restart: unless-stopped
+    # tty: true
+    ports:
+      -  "5432:5432"
+>>>>>>> 05e946c52c4ee6ebcd760c857353efc4aeee379a
 
     volumes:
       -  ./storage/dbdata:/var/lib/pgsql
@@ -77,6 +117,44 @@ services:
     networks:
       - optix
 
+<<<<<<< HEAD
+=======
+#setup composer
+  composer:
+    build:
+      context: .
+      dockerfile: ./docker-files/composer/Dockerfile
+    container_name: composer
+    working_dir: /var/www/optix
+    environment:
+      - CONTAINER_ROLE=composer
+  
+    volumes:
+      - ./:/var/www/optix
+    depends_on:
+      - db
+      - redis
+    
+    networks:
+      - optix
+
+#setup node
+  node:
+    build:
+      context: .
+      dockerfile: ./docker-files/node/Dockerfile
+    container_name: node
+    working_dir: /var/www/optix
+    environment:
+      - APP_ENV=${APP_ENV}
+    depends_on:
+      - composer
+    volumes:
+      - ./:/var/www/optix
+    networks:
+      - optix
+
+>>>>>>> 05e946c52c4ee6ebcd760c857353efc4aeee379a
 
   redis:
     container_name: optix_redis
@@ -84,8 +162,48 @@ services:
     env_file:
       - .env
     ports:
+<<<<<<< HEAD
       - "6383:6379"
     volumes:
       - ./storage/redis/data:/data
     networks:
+=======
+      - "6379:6379"
+    volumes:
+      - ./storage/redis/data:/data
+    networks:
+      - optix
+
+
+  cron:
+    build:
+      context: .
+      dockerfile: ./docker-files/cron/Dockerfile
+    container_name: cron
+    restart: always
+    tty: true
+    depends_on:
+      - app
+      - horizon
+      - redis
+    volumes:
+      - ./:/var/www/optix
+    networks:
+      - optix
+
+
+  horizon:
+    build:
+      context: .
+      dockerfile: ./docker-files/horizon/Dockerfile
+    container_name: horizon
+    restart: always
+    tty: true
+    depends_on:
+      - app
+      - redis
+    volumes:
+      - ./:/var/www/optix
+    networks:
+>>>>>>> 05e946c52c4ee6ebcd760c857353efc4aeee379a
       - optix

@@ -173,7 +173,12 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\HorizonServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\OpenAIServiceProvider::class,
+        App\Providers\WhatsAappServiceProvider::class,
+        App\Providers\CustomTimeValidationProvider::class,
+        App\Providers\QueuedJobFailedServiceProvider::class,
 
     ],
 
