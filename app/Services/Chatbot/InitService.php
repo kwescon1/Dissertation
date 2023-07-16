@@ -18,7 +18,7 @@ class InitService extends RegisteredClientInitService
                 /**
                  * we assume the current whatsapp number in use belongs to one facility branch. Get that facility branch's id to generate an expiry URL
                  */
-                $branch = FacilityBranch::wherePhone($this->getActualWhatsappNumber($data['to']))->first();
+                $branch = FacilityBranch::wherePhone(($data['to']))->first();
 
                 if (!$branch) {
                     $str = "Oops😬! I'm sorry, I am unable to help at this time due to issues beyond my control. Please try again next time😊";

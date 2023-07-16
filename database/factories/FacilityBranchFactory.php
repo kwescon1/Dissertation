@@ -33,7 +33,7 @@ class FacilityBranchFactory extends Factory
             'code' => strtoupper(Str::random(2)),
             'is_head_branch' => false,
             'email' => $this->makeBranchEmail($branchName),
-            'phone' => $this->faker->e164PhoneNumber(),
+            'phone' => config('twilio.twilio_number'),
             'status' => 1,
             'address' => $this->faker->address(),
             'country' => "GH",

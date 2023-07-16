@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
 
         echo "Creating facility branches\n";
-        FacilityBranch::factory()->count(3)
+        FacilityBranch::factory()
             ->state([
                 'facility_id' => $facility->id
             ])
