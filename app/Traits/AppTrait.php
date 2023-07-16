@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Log;
 trait AppTrait
 {
     //
+    const HELLO = "Hello";
+    const HI = "Hi";
+    const RESTART = "Restart";
+
     public function getOrcreateSession($request)
     {
 
@@ -26,6 +30,10 @@ trait AppTrait
             $branchNumber = $this->getActualWhatsappNumber($request->To);
 
             $client = $this->getClient($branchNumber, $clientNumber);
+
+            if(trim(strtolower($request->Body)) != strtolower(self::HELLO) && $request->Body != strtolower(self::HI) && $request->Body != strtolower(self::RESTART)){
+                return;
+            }
 
             if (!$client) {
                 //user hasn't registered

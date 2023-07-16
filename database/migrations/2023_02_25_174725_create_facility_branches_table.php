@@ -21,7 +21,7 @@ class CreateFacilityBranchesTable extends Migration
             $table->string('code', 2);
             $table->tinyInteger('is_head_branch')->default(0);
             $table->string('email')->nullable();
-            $table->string('phone', 15)->unique()->nullable();
+            $table->string('phone')->unique()->nullable();
             $table->tinyInteger('status');
             $table->string('address');
             $table->string('country');
