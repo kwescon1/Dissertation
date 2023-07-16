@@ -19,12 +19,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        // $schedule->call(function () {
-        //     $appointmentService = app(AppointmentServiceInterface::class);
-        //     $appointmentService->changeAppointmentStatusToNoShow();
-        // });
+        $schedule->call(function () {
+            $appointmentService = app(AppointmentServiceInterface::class);
+            $appointmentService->changeAppointmentStatusToNoShow();
+        })->daily();
 
-        $schedule->job(new EndChatSession)->everyMinute();
+        $schedule->job(new EndChatSession)->everyFiveMinutes();
     }
 
     /**
