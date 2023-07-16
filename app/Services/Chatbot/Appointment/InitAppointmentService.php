@@ -8,35 +8,13 @@ class InitAppointmentService extends BookAppointmentService
 {
     public function initAppointmentQuestion(array $data)
     {
-        switch ($data['body']) {
-            case '1':
+        return match ($data['body']) {
+            '1' => $response = $this->saveAnswer($data, Constants::APPOINTMENT_TYPE),
+            '2' => $response = $this->saveAnswer($data, Constants::PREVIOUS_APPOINTMENT), //previous appointment,
+            '3' => $response = $this->saveAnswer($data, Constants::FUTURE_APPOINTMENT), //future appointments,
+            '4' => $this->saveAnswer($data, Constants::REGISTERED_USER_START_QUESTION_ID), //back to main menu
 
-                return $this->saveAnswer($data, Constants::APPOINTMENT_TYPE); // booking appointment
-                break;
-
-            case '2':
-
-                return $this->saveAnswer($data, Constants::PREVIOUS_APPOINTMENT); //previous appointment
-                break;
-
-            case '3':
-
-                return $this->saveAnswer($data, Constants::FUTURE_APPOINTMENT); //future appointments
-
-                break;
-
-            case '4':
-                return $this->saveAnswer($data, Constants::REGISTERED_USER_START_QUESTION_ID); //back to main menu
-                break;
-
-            case '5':
-                return $this->saveAnswer($data, Constants::DONE); // Quit
-                break;
-
-            default:
-                //choose from options
-                return Constants::CHOOSE_FROM_AVAILABLE_OPTIONS;
-                break;
-        }
+            default => Constants::CHOOSE_FROM_AVAILABLE_OPTIONS,
+        };
     }
 }

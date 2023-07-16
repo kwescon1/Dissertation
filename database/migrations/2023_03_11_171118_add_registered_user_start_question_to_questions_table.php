@@ -22,7 +22,7 @@ class AddRegisteredUserStartQuestionToQuestionsTable extends Migration
         DB::table('questions')->insert([
             "question" => "Welcome \$name 😊,\n\nHow may we be of assitance to you today❓\n\nType *restart* to begin a new session by cancelling current session",
             "media" => "welcome.jpg",
-            "options" => "*1.Appointments📕🕰️* \n*2.Medical Records🏥📕* \n*3.Ask a question🙋🏻‍♂️* \n*4.❓Help* \n*5.Quit❌*",
+            "options" => "*1.Appointments📕🕰️* \n*2.Medical Records🏥📕* \n*3.❓Help* \n*4.Quit❌*",
             "method" => "registeredClientStartQuestion"
         ]);
     }

@@ -78,6 +78,11 @@ return [
                 'log',
             ],
         ],
+
+        'resend' => [
+            'transport' => 'resend',
+        ],
+
     ],
 
     /*
@@ -115,4 +120,5 @@ return [
         ],
     ],
 
+    'notif_email' => env('NOTIF_EMAIL', ''),
 ];

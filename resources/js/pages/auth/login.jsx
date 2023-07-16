@@ -4,6 +4,7 @@ import AuthInput from "../../components/inputs/authInput";
 import { useState } from "react";
 import { encryptToken } from "../../services/token";
 import {store} from "../../services/storage";
+import loginImage from '../../../images/login.png'
 
 function Login(){
 
@@ -44,9 +45,12 @@ console.log(error);
 
     return ( 
         <div className=" ">
-            <AuthBackground>
-                <div className="space-y-6">
-                    <span className="font-medium ">Welcome, <br /> please log into your account</span>
+            <AuthBackground imagesource={loginImage}>
+                <div className=" space-y-6">
+                    <div className="text-center">
+                    <span className="font-medium py-8">Welcome, <br /> please log into your account</span>
+                    </div>
+                   
                     <form onSubmit={loginUser}className="space-y-4">
                         <AuthInput type="text" placeholder="Username"  name="username" value={username}
                         onchange={(event) => {

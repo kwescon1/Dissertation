@@ -1,4 +1,3 @@
-# FROM nginx
 FROM php:8.2-fpm
 
 # Set working directory
@@ -23,20 +22,17 @@ RUN apt-get update && apt-get install -y \
     zip \
     nano
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
 # Install PHP extensions
-RUN docker-php-ext-install pdo_pgsql exif pcntl bcmath gd pdo pdo_pgsql sockets
+RUN docker-php-ext-install pcntl pdo pdo_pgsql
+
+# Install redis extensions
+RUN pecl install redis \
+    && docker-php-ext-enable redis
 
 
 # add user ubuntu, add group ubuntu
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo,www-data -u 1000 ubuntu
 RUN groupadd ubuntu
-# RUN usermod -a -G ubuntu
-
-# RUN chmod -R 775 /var/www/optix
-# RUN chown -R ubuntu:www-data /var/www/optix
 
 
 # Get latest Composer
@@ -44,15 +40,4 @@ RUN groupadd ubuntu
 RUN curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/local/bin --filename=composer
 
-
-
-# install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt-get update && apt-get install -y \
-    nodejs \
-    yarn \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN rm nodesource_setup.sh
-
+ENTRYPOINT ["docker-files/composer/entrypoint.sh"]

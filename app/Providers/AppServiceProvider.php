@@ -17,6 +17,8 @@ use App\Services\Api\Role\RoleServiceInterface;
 use App\Services\Api\User\UserServiceInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Services\Api\Client\ClientServiceInterface;
+use App\Services\Api\Appointment\AppointmentService;
+use App\Services\Api\Appointment\AppointmentServiceInterface;
 use App\Services\Api\Facility\FacilityServiceInterface;
 use App\Services\Api\FacilityBranch\FacilityBranchService;
 use App\Services\Api\UserFacilityBranch\UserFacilityBranchService;
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ClientServiceInterface::class, ClientService::class);
         $this->app->bind(ClientFacilityBranchServiceInterface::class, ClientFacilityBranchService::class);
         $this->app->bind(RoleServiceInterface::class, RoleService::class);
+        $this->app->singleton(AppointmentServiceInterface::class, AppointmentService::class);
 
 
         $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);

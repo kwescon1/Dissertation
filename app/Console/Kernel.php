@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Jobs\EndChatSession;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Services\Api\Appointment\AppointmentServiceInterface;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,6 +18,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        $schedule->call(function () {
+            $appointmentService = app(AppointmentServiceInterface::class);
+            $appointmentService->changeAppointmentStatusToNoShow();
+        })->daily();
+
+        $schedule->job(new EndChatSession)->everyFiveMinutes();
     }
 
     /**
@@ -25,7 +34,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

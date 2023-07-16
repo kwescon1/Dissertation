@@ -2,11 +2,13 @@ import { Form } from "react-router-dom";
 import AuthBackground from "../../components/authCard";
 import AuthButton from "../../components/buttons/authButton";
 import AuthInput from "../../components/inputs/authInput";
+import setNewPasswordImage from '../../../images/setnewpasswordimg.png'
+
 
 const SetNewPassword = () => {
     return ( 
         <div className=" ">
-            <AuthBackground>
+            <AuthBackground imagesource={setNewPasswordImage}>
                 <div className="space-y-6">
                     <span className="font-medium ">Set your new password</span>
                     <Form className="space-y-4">

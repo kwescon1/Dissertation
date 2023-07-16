@@ -2,11 +2,12 @@ import { Form } from "react-router-dom";
 import AuthBackground from "../../components/authCard";
 import AuthButton from "../../components/buttons/authButton";
 import AuthInput from "../../components/inputs/authInput";
+import forgetPasswordImage from '../../../images/forgotpasswordimg.png'
 
 const ForgotPassword = () => {
     return ( 
         <div className=" ">
-            <AuthBackground>
+            <AuthBackground imagesource={forgetPasswordImage}>
                 <div className="space-y-6">
                     <span className="font-medium ">Provide your username</span>
                     <Form className="space-y-4">

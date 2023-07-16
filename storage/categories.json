@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Antibiotics",
+        "status": "Active"
+    },
+    {
+        "name": "Antihistamines",
+        "status": "Active"
+    },
+    {
+        "name": "Antiglaucoma",
+        "status": "Active"
+    },
+    {
+        "name": "Corticosteroids",
+        "status": "Active"
+    },
+    {
+        "name": "Nonsteroidal Anti-Inflammatory Drugs",
+        "status": "Active"
+    },
+    {
+        "name": "Lubricants",
+        "status": "Active"
+    },
+    {
+        "name": "Miotics",
+        "status": "Active"
+    },
+    {
+        "name": "Mydriatics",
+        "status": "Active"
+    },
+    {
+        "name": "Ocular Hypertension",
+        "status": "Active"
+    },
+    {
+        "name": "Dry Eye",
+        "status": "Active"
+    },
+    {
+        "name": "Retinal Disorders",
+        "status": "Active"
+    },
+    {
+        "name": "Conjunctivitis",
+        "status": "Active"
+    },
+    {
+        "name": "Blepharitis",
+        "status": "Active"
+    },
+    {
+        "name": "Allergic Eye Conditions",
+        "status": "Active"
+    },
+    {
+        "name": "Glaucoma",
+        "status": "Active"
+    },
+    {
+        "name": "Macular Degeneration",
+        "status": "Active"
+    },
+    {
+        "name": "Cataracts",
+        "status": "Active"
+    },
+    {
+        "name": "Eye Infections",
+        "status": "Active"
+    },
+    {
+        "name": "Contact Lens Care",
+        "status": "Active"
+    },
+    {
+        "name": "Vitamin Supplements",
+        "status": "Active"
+    }
+]

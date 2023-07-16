@@ -31,7 +31,7 @@ readonly class AppointmentDTO
             'facility_branch_id' => $this->facilityBranchId,
             'client_id' => $this->clientId,
             'scheduled_at' => $this->scheduledAt,
-            'image' => $this->media,
+            'media' => $this->media ? $this->media : NULL,
             'notes' => $this->notes,
             'type' => $this->type,
             'status' => $this->status

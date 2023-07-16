@@ -11,8 +11,8 @@ const AuthButton = ({ btnText, linkText, linkTo }) => {
                     {btnText}
                 </button>
             </div>
-            <div>
-                <Link className="text-secondary hover:underline " to={linkTo}>
+            <div className="text-center">
+                <Link className=" text-secondary hover:underline " to={linkTo}>
                     {linkText}
                 </Link>
             </div>

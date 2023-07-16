@@ -1,0 +1,2 @@
+# add to crontab -e
+* * * * * cd /var/www/optix && php artisan schedule:run >> /dev/null 2>&1

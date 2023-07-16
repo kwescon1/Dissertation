@@ -1,0 +1,242 @@
+[
+    {
+        "item_name": "Amoxicillin",
+        "category": "Antibiotics",
+        "retail_price": 10.99,
+        "stock_level": 50
+    },
+    {
+        "item_name": "Loratadine",
+        "category": "Antihistamines",
+        "retail_price": 7.99,
+        "stock_level": 30
+    },
+    {
+        "item_name": "Timolol",
+        "category": "Antiglaucoma",
+        "retail_price": 19.99,
+        "stock_level": 20
+    },
+    {
+        "item_name": "Prednisolone",
+        "category": "Corticosteroids",
+        "retail_price": 15.99,
+        "stock_level": 40
+    },
+    {
+        "item_name": "Ketorolac",
+        "category": "Nonsteroidal Anti-Inflammatory Drugs",
+        "retail_price": 12.99,
+        "stock_level": 25
+    },
+    {
+        "item_name": "Artificial Tears",
+        "category": "Lubricants",
+        "retail_price": 6.99,
+        "stock_level": 60
+    },
+    {
+        "item_name": "Pilocarpine",
+        "category": "Miotics",
+        "retail_price": 9.99,
+        "stock_level": 35
+    },
+    {
+        "item_name": "Tropicamide",
+        "category": "Mydriatics",
+        "retail_price": 8.99,
+        "stock_level": 15
+    },
+    {
+        "item_name": "Latanoprost",
+        "category": "Ocular Hypertension",
+        "retail_price": 17.99,
+        "stock_level": 30
+    },
+    {
+        "item_name": "Hydroxypropyl Methylcellulose",
+        "category": "Dry Eye",
+        "retail_price": 11.99,
+        "stock_level": 55
+    },
+    {
+        "item_name": "Ranibizumab",
+        "category": "Retinal Disorders",
+        "retail_price": 49.99,
+        "stock_level": 10
+    },
+    {
+        "item_name": "Erythromycin",
+        "category": "Conjunctivitis",
+        "retail_price": 8.99,
+        "stock_level": 30
+    },
+    {
+        "item_name": "Tobramycin",
+        "category": "Blepharitis",
+        "retail_price": 14.99,
+        "stock_level": 25
+    },
+    {
+        "item_name": "Ketotifen",
+        "category": "Allergic Eye Conditions",
+        "retail_price": 9.99,
+        "stock_level": 35
+    },
+    {
+        "item_name": "Travoprost",
+        "category": "Glaucoma",
+        "retail_price": 19.99,
+        "stock_level": 20
+    },
+    {
+        "item_name": "Bevacizumab",
+        "category": "Macular Degeneration",
+        "retail_price": 54.99,
+        "stock_level": 5
+    },
+    {
+        "item_name": "Acetazolamide",
+        "category": "Cataracts",
+        "retail_price": 13.99,
+        "stock_level": 15
+    },
+    {
+        "item_name": "Gatifloxacin",
+        "category": "Eye Infections",
+        "retail_price": 11.99,
+        "stock_level": 30
+    },
+    {
+        "item_name": "Multipurpose Solution",
+        "category": "Contact Lens Care",
+        "retail_price": 8.99,
+        "stock_level": 40
+    },
+    {
+        "item_name": "Omega-3 Fatty Acids",
+        "category": "Vitamin Supplements",
+        "retail_price": 9.99,
+        "stock_level": 50
+    },
+    {
+        "item_name": "Amoxicillin",
+        "category": "Antibiotics",
+        "retail_price": 10.99,
+        "stock_level": 50
+    },
+    {
+        "item_name": "Loratadine",
+        "category": "Antihistamines",
+        "retail_price": 7.99,
+        "stock_level": 30
+    },
+    {
+        "item_name": "Timolol",
+        "category": "Antiglaucoma",
+        "retail_price": 19.99,
+        "stock_level": 20
+    },
+    {
+        "item_name": "Prednisolone",
+        "category": "Corticosteroids",
+        "retail_price": 15.99,
+        "stock_level": 40
+    },
+    {
+        "item_name": "Ketorolac",
+        "category": "Nonsteroidal Anti-Inflammatory Drugs",
+        "retail_price": 12.99,
+        "stock_level": 25
+    },
+    {
+        "item_name": "Artificial Tears",
+        "category": "Lubricants",
+        "retail_price": 6.99,
+        "stock_level": 60
+    },
+    {
+        "item_name": "Pilocarpine",
+        "category": "Miotics",
+        "retail_price": 9.99,
+        "stock_level": 35
+    },
+    {
+        "item_name": "Tropicamide",
+        "category": "Mydriatics",
+        "retail_price": 8.99,
+        "stock_level": 15
+    },
+    {
+        "item_name": "Latanoprost",
+        "category": "Ocular Hypertension",
+        "retail_price": 17.99,
+        "stock_level": 30
+    },
+    {
+        "item_name": "Hydroxypropyl Methylcellulose",
+        "category": "Dry Eye",
+        "retail_price": 11.99,
+        "stock_level": 55
+    },
+    {
+        "item_name": "Ranibizumab",
+        "category": "Retinal Disorders",
+        "retail_price": 49.99,
+        "stock_level": 10
+    },
+    {
+        "item_name": "Erythromycin",
+        "category": "Conjunctivitis",
+        "retail_price": 8.99,
+        "stock_level": 30
+    },
+    {
+        "item_name": "Tobramycin",
+        "category": "Blepharitis",
+        "retail_price": 14.99,
+        "stock_level": 25
+    },
+    {
+        "item_name": "Ketotifen",
+        "category": "Allergic Eye Conditions",
+        "retail_price": 9.99,
+        "stock_level": 35
+    },
+    {
+        "item_name": "Travoprost",
+        "category": "Glaucoma",
+        "retail_price": 19.99,
+        "stock_level": 20
+    },
+    {
+        "item_name": "Bevacizumab",
+        "category": "Macular Degeneration",
+        "retail_price": 54.99,
+        "stock_level": 5
+    },
+    {
+        "item_name": "Acetazolamide",
+        "category": "Cataracts",
+        "retail_price": 13.99,
+        "stock_level": 15
+    },
+    {
+        "item_name": "Gatifloxacin",
+        "category": "Eye Infections",
+        "retail_price": 11.99,
+        "stock_level": 30
+    },
+    {
+        "item_name": "Multipurpose Solution",
+        "category": "Contact Lens Care",
+        "retail_price": 8.99,
+        "stock_level": 40
+    },
+    {
+        "item_name": "Omega-3 Fatty Acids",
+        "category": "Vitamin Supplements",
+        "retail_price": 9.99,
+        "stock_level": 50
+    }
+]
