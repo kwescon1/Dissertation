@@ -31,7 +31,7 @@ trait AppTrait
 
             $client = $this->getClient($branchNumber, $clientNumber);
 
-            if(trim(strtolower($request->Body)) != strtolower(self::HELLO) && $request->Body != strtolower(self::HI) && $request->Body != strtolower(self::RESTART)){
+            if(trim(strtolower($request->Body)) != strtolower(self::HELLO) && strtolower($request->Body) != strtolower(self::HI) && strtolower($request->Body) != strtolower(self::RESTART)){
                 return;
             }
 
