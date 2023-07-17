@@ -1,4 +1,4 @@
-import FormButton from "../../../components/buttons/formButton";
+import FormButton from "../../../components/buttons/formbutton";
 import PageTitle from "../../../components/typography/pagetitle";
 import ViewText, {ViewMutiText} from "../../../components/typography/viewtext";
 import PageContainer from "../../../layouts/pageContainer";
