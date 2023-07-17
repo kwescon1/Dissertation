@@ -7,6 +7,9 @@ WORKDIR /var/www/optix
 
 ADD docker-files/nginx/conf.d/app.conf /etc/nginx/conf.d/default.conf
 
+ADD docker-files/nginx/certs/optix.pem /etc/nginx/certs/optix.pem
+ADD docker-files/nginx/certs/optix-key.pem /etc/nginx/certs/optix-key.pem
+
 ENV NGINXUSER=optix
 ENV NGINXGROUP=optix
 
