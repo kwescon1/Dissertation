@@ -3,7 +3,7 @@
 # install composer dependencies
 if [ ! -f "vendor/autoload.php" ]; then
     #if depencies has already been installed don't rerun
-    composer install
+    composer install --no-progress --no-interaction
 fi #end if
 
 # copy .env.example file if .env file does not exist

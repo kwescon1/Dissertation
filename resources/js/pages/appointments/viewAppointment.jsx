@@ -1,5 +1,5 @@
-import PageTitle from "../../components/typography/pageTitle";
-import ViewText from "../../components/typography/viewText";
+import PageTitle from "../../components/typography/pagetitle.jsx";
+import ViewText from "../../components/typography/viewtext.jsx";
 import PageContainer from "../../layouts/pageContainer";
 
 const ViewAppointment = () => {

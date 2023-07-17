@@ -1,10 +1,10 @@
-import FormButton from "../../components/buttons/formButton";
+import FormButton from "../../components/buttons/formbutton";
 import {
   PageSelectInput,
   TextAreaInput,
-} from "../../components/inputs/pageInput";
-import PageTitle from "../../components/typography/pageTitle";
-import ViewText from "../../components/typography/viewText";
+} from "../../components/inputs/pageinput";
+import PageTitle from "../../components/typography/pagetitle";
+import ViewText from "../../components/typography/viewtext";
 import PageContainer from "../../layouts/pageContainer";
 
 const AddRecord = () => {

@@ -1,6 +1,6 @@
 import { Form } from "react-router-dom";
 import AuthBackground from "../../components/authCard";
-import AuthButton from "../../components/buttons/authButton";
+import AuthButton from "../../components/buttons/authbutton";
 import AuthInput from "../../components/inputs/authInput";
 import forgetPasswordImage from '../../../images/forgotpasswordimg.png'
 

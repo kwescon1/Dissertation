@@ -20,7 +20,6 @@ services:
     tty: true
     working_dir: /var/www/optix
     depends_on:
-      # - redis
       - composer
     volumes:
       - ./:/var/www/optix
@@ -42,8 +41,8 @@ services:
       - redis
     
     ports:
-      - '80:80'
-      - '443:443'
+      - '9007:80'
+      - '9008:443'
     
     volumes:
       - ./:/var/www/optix
@@ -64,7 +63,7 @@ services:
     restart: unless-stopped
     # tty: true
     ports:
-      -  "5432:5432"
+      -  "3307:5432"
 
     volumes:
       -  ./storage/dbdata:/var/lib/pgsql
@@ -126,7 +125,7 @@ services:
     env_file:
       - .env
     ports:
-      - "6379:6379"
+      - "6383:6379"
     volumes:
       - ./storage/redis/data:/data
     networks:
