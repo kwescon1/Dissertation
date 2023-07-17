@@ -1,10 +1,10 @@
 import { useState } from "react";
-import PageTitle from "../../components/typography/pageTitle";
-import ViewText from "../../components/typography/viewText";
-import PageContainer from "../../layouts/pageContainer";
+import PageTitle from "../../components/typography/pagetitle.jsx";
+import ViewText from "../../components/typography/viewtext.jsx";
+import PageContainer from "../../layouts/pageContainer.jsx";
 import moment from "moment";
-import PageInput, { PageSelectInput, TextAreaInput } from "../../components/inputs/pageInput";
-import FormButton from "../../components/buttons/formButton";
+import PageInput, { PageSelectInput, TextAreaInput } from "../../components/inputs/pageinput.jsx";
+import FormButton from "../../components/buttons/formbutton";
 
 
 const EditAppointment = () => {

@@ -37,7 +37,6 @@ ps: ## show containers
 teardown:
 	docker compose down
 	docker compose rm -f
-	rm -f .env
 
 down:
 	docker compose down

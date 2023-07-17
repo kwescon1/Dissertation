@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Table from "../../../components/tables/table";
-import PageTitle from "../../../components/typography/pageTitle";
+import PageTitle from "../../../components/typography/pagetitle.jsx";
 import PageContainer from "../../../layouts/pageContainer";
 import { getAuthUser } from "../../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import DeleteModal from "../../../components/modals/delete";
 import { Link } from 'react-router-dom';
-import { ToastContainer} from 'react-toastify';
-import { successNotif,errorNotif } from "../../../services/toast";
+import { ToastContainer } from 'react-toastify';
+import { successNotif, errorNotif } from "../../../services/toast";
 
 const getRoles = async () => {
     try {
@@ -20,7 +20,7 @@ const getRoles = async () => {
 };
 
 const AllRoles = () => {
-  // const [errors,setError] = useState(null);
+    // const [errors,setError] = useState(null);
     const [roles, setRoles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
@@ -114,19 +114,19 @@ const AllRoles = () => {
             cell: (row) => (
                 <div className="flex flex-wrap space-x-4">
                     {(canViewRole() || canEditRole()) && (
-                      <Link
-                      to={`/roles/${row.id}/view`}
-                      className="text-primary cursor-pointer hover:text-primary-100"
-                    >
+                        <Link
+                            to={`/roles/${row.id}/view`}
+                            className="text-primary cursor-pointer hover:text-primary-100"
+                        >
 
-<FaEye />
-</Link>
+                            <FaEye />
+                        </Link>
                     )}
 
                     {canEditRole() && (
-                         <Link to={`/roles/edit`}>
-                        <FaEdit className="text-primary cursor-pointer hover:text-primary-100" />
-                         </Link>
+                        <Link to={`/roles/edit`}>
+                            <FaEdit className="text-primary cursor-pointer hover:text-primary-100" />
+                        </Link>
                     )}
 
                     {canDeleteRole(row) && (
@@ -157,7 +157,7 @@ const AllRoles = () => {
                     name={selectedRole?.name}
                 />
             </PageContainer>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };
