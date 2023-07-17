@@ -21,6 +21,7 @@ services:
     working_dir: /var/www/optix
     depends_on:
       - composer
+
     volumes:
       - ./:/var/www/optix
       - ./docker-files/php/local.ini:/usr/local/etc/php/conf.d/local.ini
@@ -38,7 +39,6 @@ services:
     depends_on:
       - db
       - app
-      - redis
     
     ports:
       - '9007:80'
@@ -111,8 +111,6 @@ services:
     working_dir: /var/www/optix
     environment:
       - APP_ENV=${APP_ENV}
-    depends_on:
-      - composer
     volumes:
       - ./:/var/www/optix
     networks:
@@ -141,8 +139,6 @@ services:
     tty: true
     depends_on:
       - app
-      - horizon
-      - redis
     volumes:
       - ./:/var/www/optix
     networks:
@@ -157,7 +153,7 @@ services:
     restart: always
     tty: true
     depends_on:
-      - app
+      - composer
       - redis
     volumes:
       - ./:/var/www/optix

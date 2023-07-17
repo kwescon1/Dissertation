@@ -33,18 +33,15 @@ class EndChatSession implements ShouldQueue
      */
     public function handle(OpenAiChatService $endSession)
     {
-        if(!Cache::get(OpenAiMessageTracker::CACHE_KEY)){
-            return;
-        }
 
-        $data = Cache::get(OpenAiMessageTracker::CACHE_KEY);
-
-        $data->each(function($timing) use($endSession){
-            if(Carbon::now()->diffInMinutes($timing->message_time) > 5){
-                $endSession->endOpenAiInactiveSession($timing->from);
-
-            $timing->delete();
-            }
+        OpenAiMessageTracker::chunk(1000, function ($timings) use($endSession){
+            $timings->each(function($timing) use($endSession){
+                if(Carbon::now()->diffInMinutes($timing->message_time) > 5){
+                    $endSession->endOpenAiInactiveSession($timing->from);
+    
+                $timing->delete();
+                }
+            });
         });
     }
 }
