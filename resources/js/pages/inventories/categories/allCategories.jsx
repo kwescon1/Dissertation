@@ -1,5 +1,5 @@
 import Table from "../../../components/tables/table";
-import PageTitle from "../../../components/typography/pageTitle";
+import PageTitle from "../../../components/typography/pagetitle";
 import PageContainer from "../../../layouts/pageContainer";
 import { getAuthUser } from "../../../services/storage";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";

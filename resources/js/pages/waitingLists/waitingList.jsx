@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageTitle from "../../components/typography/pageTitle";
+import PageTitle from "../../components/typography/pagetitle";
 import PageContainer from "../../layouts/pageContainer";
 import moment from "moment";
 import { Tab, Tabs } from "../../components/tabs/tab";

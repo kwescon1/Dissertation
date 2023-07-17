@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import FormButton from "../../components/buttons/formButton";
+import FormButton from "../../components/buttons/formbutton";
 import PageInput, {
     PageSelectInput,
     RadioInput,
-} from "../../components/inputs/pageInput";
+} from "../../components/inputs/pageinput";
 import Logo from "../../components/logo/NavBarLogo";
-import PageTitle from "../../components/typography/pageTitle";
+import PageTitle from "../../components/typography/pagetitle";
 import PageContainer from "../../layouts/pageContainer";
 import { Link } from "react-router-dom";
 
