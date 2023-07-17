@@ -7,7 +7,7 @@ RUN apk update && apk add --no-cache \
     nano
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_pgsql
+RUN docker-php-ext-install pdo pdo_pgsql
 
 # Create a cron job file
 RUN touch /var/log/cron.log
