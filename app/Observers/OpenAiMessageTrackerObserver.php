@@ -16,19 +16,19 @@ class OpenAiMessageTrackerObserver
      */
     public function created(OpenAiMessageTracker $openAiMessageTracker)
     {
-        $openAiMessageTracker::CACHE_KEY;
+        // $openAiMessageTracker::CACHE_KEY;
 
-        if (!Cache::has($openAiMessageTracker::CACHE_KEY)) {
+        // if (!Cache::has($openAiMessageTracker::CACHE_KEY)) {
             
-            $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
+        //     $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
 
-        } else {
+        // } else {
 
-            Cache::forget($openAiMessageTracker::CACHE_KEY);
+        //     Cache::forget($openAiMessageTracker::CACHE_KEY);
 
-            $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
+        //     $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
 
-        }
+        // }
     }
 
     /**
@@ -40,13 +40,13 @@ class OpenAiMessageTrackerObserver
     public function updated(OpenAiMessageTracker $openAiMessageTracker)
     {
 
-        if (Cache::has($openAiMessageTracker::CACHE_KEY)) {
-            Cache::forget($openAiMessageTracker::CACHE_KEY);
+        // if (Cache::has($openAiMessageTracker::CACHE_KEY)) {
+        //     Cache::forget($openAiMessageTracker::CACHE_KEY);
 
-            $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
-        } else {
-            $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
-        }
+        //     $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
+        // } else {
+        //     $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
+        // }
     }
 
     /**
@@ -57,13 +57,13 @@ class OpenAiMessageTrackerObserver
      */
     public function deleted(OpenAiMessageTracker $openAiMessageTracker)
     {
-        if (Cache::has($openAiMessageTracker::CACHE_KEY)) {
-            Cache::forget($openAiMessageTracker::CACHE_KEY);
+        // if (Cache::has($openAiMessageTracker::CACHE_KEY)) {
+        //     Cache::forget($openAiMessageTracker::CACHE_KEY);
 
-            $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
-        } else {
-            $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
-        }
+        //     $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
+        // } else {
+        //     $this->cacheData($openAiMessageTracker::CACHE_KEY, $openAiMessageTracker::CACHE_SECONDS);
+        // }
     }
 
     /**
@@ -88,18 +88,19 @@ class OpenAiMessageTrackerObserver
         //
     }
 
-    private function cacheData($cacheKey, $cacheSeconds)
+    private function sessioCheck()
     {
         $data = [];
 
-        return OpenAiMessageTracker::chunk(1000, function ($timings) use ($data, $cacheKey, $cacheSeconds) {
+        return OpenAiMessageTracker::chunk(1000, function ($timings) use ($data) {
             foreach ($timings as $timing) {
                 array_push($data, $timing);
             }
 
-            return Cache::remember($cacheKey, $cacheSeconds, function () use ($data) {
-                return collect($data);
-            });
+            return collect($data);
+            // return Cache::remember($cacheKey, $cacheSeconds, function () use ($data) {
+            //     return collect($data);
+            // });
         });
     }
 }
