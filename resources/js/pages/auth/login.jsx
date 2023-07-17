@@ -1,5 +1,5 @@
 import AuthBackground from "../../components/authCard";
-import AuthButton from "../../components/buttons/authButton";
+import AuthButton from "../../components/buttons/authbutton";
 import AuthInput from "../../components/inputs/authInput";
 import { useState } from "react";
 import { encryptToken } from "../../services/token";

@@ -1,5 +1,5 @@
-import PageTitle from "../../../components/typography/pageTitle";
-import ViewText from "../../../components/typography/viewText";
+import PageTitle from "../../../components/typography/pagetitle";
+import ViewText from "../../../components/typography/viewtext";
 import PageContainer from "../../../layouts/pageContainer";
 import { useParams,useNavigate } from 'react-router-dom';
 import { useEffect,useState } from "react";

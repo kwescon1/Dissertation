@@ -1,9 +1,9 @@
-import FormButton from "../../../components/buttons/formButton";
-import PageTitle from "../../../components/typography/pageTitle";
+import FormButton from "../../../components/buttons/formbutton";
+import PageTitle from "../../../components/typography/pagetitle";
 import PageContainer from "../../../layouts/pageContainer";
 import PageInput, {
     PageSelectInput,
-} from "../../../components/inputs/pageInput";
+} from "../../../components/inputs/pageinput";
 import { getAuthUser } from "../../../services/storage";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

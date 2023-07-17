@@ -10,13 +10,6 @@ import AllClients from "../pages/clients/allClients";
 import Dashboard from "../pages/dashboard/dashboard";
 import AllCategories from "../pages/inventories/categories/allCategories";
 import AllItems from "../pages/inventories/items/allItems";
-import AllCustomers from "../pages/sales/customers/allCustomers";
-import AllInvoices from "../pages/sales/invoices/allInvoices";
-import AllReceipts from "../pages/sales/receipts/allReceipts";
-import AllTransactions from "../pages/sales/transactions/allTransaction";
-import AllProviders from "../pages/services&providers/providers/allProviders";
-import AllServices from "../pages/services&providers/services/allServices";
-import TempSettings from "../pages/settings/tempSettings";
 import AllRoles from "../pages/users&roles/roles/allRoles";
 import AllUsers from "../pages/users&roles/users/allUsers";
 import WaitingList from "../pages/waitingLists/waitingList";
@@ -43,7 +36,7 @@ const routes = createBrowserRouter([
                         index: true,
                         element: <Dashboard />,
                     },
-                    
+
                     {
                         path: "appointments",
 
@@ -103,7 +96,7 @@ const routes = createBrowserRouter([
                             },
                         ],
                     },
-                    
+
                     {
                         path: "roles",
 

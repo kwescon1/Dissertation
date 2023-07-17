@@ -1,7 +1,7 @@
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import PageContainer from "../../layouts/pageContainer";
-import PageTitle from "../../components/typography/pageTitle";
+import PageTitle from "../../components/typography/pagetitle";
 import { Link } from "react-router-dom";
 import BarChart from "../../components/chart/barchart";
 import { useState } from "react";
