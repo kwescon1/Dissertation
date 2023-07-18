@@ -6,7 +6,7 @@ import Login from "../pages/auth/login";
 import ResetPassword from "../pages/auth/resetPassword";
 import SetNewPassword from "../pages/auth/setNewPassword";
 import AddClient from "../pages/clients/addClient";
-import AllClients from "../pages/clients/allClients";
+import AllClients from "../pages/clients/AllClients";
 import Dashboard from "../pages/dashboard/dashboard";
 import AllCategories from "../pages/inventories/categories/allCategories";
 import AllItems from "../pages/inventories/items/allItems";
