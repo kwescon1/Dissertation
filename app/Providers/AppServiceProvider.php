@@ -46,9 +46,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ClientFacilityBranchServiceInterface::class, ClientFacilityBranchService::class);
         $this->app->bind(RoleServiceInterface::class, RoleService::class);
         $this->app->singleton(AppointmentServiceInterface::class, AppointmentService::class);
-
-
-        $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
     }
 
     /**
