@@ -36,7 +36,7 @@ services:
       - app
 
     ports:
-      - "80:80"
+      - "8000:80"
 
     volumes:
       - ./:/var/www/optix
@@ -56,7 +56,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "5432:5432"
+      - "3307:5432"
 
     volumes:
       - ./storage/dbdata:/var/lib/pgsql
@@ -70,7 +70,7 @@ services:
     image: adminer:latest
     restart: always
     ports:
-      - "8080:8080"
+      - "8095:8080"
     environment:
       ADMINER_DEFAULT_SERVER: db
     networks:
@@ -115,7 +115,7 @@ services:
     env_file:
       - .env
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
       - ./storage/redis/data:/data
     networks:

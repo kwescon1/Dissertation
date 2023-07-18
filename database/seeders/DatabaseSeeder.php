@@ -34,9 +34,9 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Ling',
             'email' => 'soonleh.ling@example.org',
             'username' => 'soonleh.ling',
-            'password' => 'soonleh.ling'
+            'position' => 'Administrator',
+            'password' => \Illuminate\Support\Facades\Hash::make('soonleh.ling')
         ]);
-
 
         echo "Creating facility branches\n";
         FacilityBranch::factory()
