@@ -22,6 +22,7 @@ if [ "$role" = "composer" ]; then
     php artisan key:generate
     php artisan optimize:clear
     php artisan db:seed
+    php artisan storage:link
 fi
 
 echo "Done"

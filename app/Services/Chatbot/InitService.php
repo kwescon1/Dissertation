@@ -2,8 +2,8 @@
 
 namespace App\Services\Chatbot;
 
-use Carbon\Carbon;
 use App\Models\FacilityBranch;
+use Illuminate\Support\Carbon;
 use App\Services\Chatbot\Constants;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
