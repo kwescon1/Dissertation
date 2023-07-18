@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('facility_branch_id')->unsigned()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignUuid('client_id')->unsigned()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('facility_branch_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('client_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('scheduled_at');
             $table->text('media')->nullable();
             $table->text('notes')->nullable();
