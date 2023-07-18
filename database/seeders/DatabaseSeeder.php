@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Ling',
             'email' => 'soonleh.ling@example.org',
             'username' => 'soonleh.ling',
-            'password' => \Illuminate\Support\Facades\Hash::make('soonleh.ling')
+            'password' => 'soonleh.ling'
         ]);
 
 
