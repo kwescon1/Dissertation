@@ -1,16 +1,11 @@
-version: '3.9'
+version: "3.9"
 
 networks:
   optix:
     driver: "bridge"
-    
-
-# volumes:
-  #  db-data:
 
 services:
-
-#PHP-FPM service
+  #PHP-FPM service
   app:
     build:
       context: .
@@ -29,8 +24,8 @@ services:
     networks:
       - optix
 
-#   #NGINX service
-  optix_webserver: 
+  #   #NGINX service
+  optix_webserver:
     build:
       context: .
       dockerfile: ./docker-files/nginx/Dockerfile
@@ -39,20 +34,18 @@ services:
     depends_on:
       - db
       - app
-    
+
     ports:
-      - '9007:80'
-      - '9008:443'
-    
+      - "80:80"
+
     volumes:
       - ./:/var/www/optix
       - ./docker-files/nginx/conf.d/app.conf:/etc/nginx/conf.d/app.conf
-    
+
     networks:
       - optix
 
   db:
-    platform: linux/x86_64 
     container_name: optix_db
     image: postgres:latest
     environment:
@@ -61,29 +54,29 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_ROOT_PASSWORD: ${DB_PASSWORD}
     restart: unless-stopped
-    # tty: true
+    tty: true
     ports:
-      -  "3307:5432"
+      - "5432:5432"
 
     volumes:
-      -  ./storage/dbdata:/var/lib/pgsql
-      -  ./docker-files/pgsql/pgsql.cnf:/etc/pgsql/pgsql.cnf
+      - ./storage/dbdata:/var/lib/pgsql
+      - ./docker-files/pgsql/pgsql.cnf:/etc/pgsql/pgsql.cnf
     networks:
       - optix
 
-#setup db management interface
+  #setup db management interface
   adminer:
     container_name: optix_adminer
     image: adminer:latest
     restart: always
     ports:
-      - "8095:8080"
+      - "8080:8080"
     environment:
       ADMINER_DEFAULT_SERVER: db
     networks:
       - optix
 
-#setup composer
+  #setup composer
   composer:
     build:
       context: .
@@ -92,17 +85,17 @@ services:
     working_dir: /var/www/optix
     environment:
       - CONTAINER_ROLE=composer
-  
+
     volumes:
       - ./:/var/www/optix
     depends_on:
       - db
       - redis
-    
+
     networks:
       - optix
 
-#setup node
+  #setup node
   node:
     build:
       context: .
@@ -116,19 +109,17 @@ services:
     networks:
       - optix
 
-
   redis:
     container_name: optix_redis
     image: redis:alpine
     env_file:
       - .env
     ports:
-      - "6383:6379"
+      - "6379:6379"
     volumes:
       - ./storage/redis/data:/data
     networks:
       - optix
-
 
   cron:
     build:
@@ -143,7 +134,6 @@ services:
       - ./:/var/www/optix
     networks:
       - optix
-
 
   horizon:
     build:
