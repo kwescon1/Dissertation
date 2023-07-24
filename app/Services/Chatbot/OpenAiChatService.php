@@ -3,7 +3,6 @@
 namespace App\Services\Chatbot;
 
 use Illuminate\Support\Carbon;
-use App\Mail\OpenAIConnecionFailed;
 use App\Services\Chatbot\Constants;
 use App\Mail\OpenAIConnectionFailed;
 use App\Models\OpenAiMessageTracker;
@@ -18,8 +17,14 @@ class OpenAiChatService extends InitAppointmentService
 
         $str = trim(strtolower($data['body']));
 
-        if ($str == "end") {
+        if (strtolower($str) == "end") {
+            $this->untrackMessage($data['from']);
             return $this->saveAnswer($data, Constants::DONE);
+        }
+
+        if (strtolower($str) == "back"){
+            $this->untrackMessage($data['from']);
+            return $this->saveAnswer($data, Constants::HELP);
         }
 
         rescue(function () use ($str, $data) {
@@ -53,12 +58,18 @@ class OpenAiChatService extends InitAppointmentService
         );
     }
 
+    private function untrackMessage(string $from){
+        OpenAiMessageTracker::whereFrom($from)->delete();
+    }
+
 
     /**
      * automatically end inactive session after 5 mins
      */
     public function endOpenAiInactiveSession(string $from){
 
-        return $this->sendReply($from, "Session has been ended due to inactivity‼️");
+        $this->sendReply($from, "Session has been ended due to inactivity‼️");
+
+        $this->setToDone($from);
     }
 }

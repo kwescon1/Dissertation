@@ -31,6 +31,7 @@ class InitService extends RegisteredClientInitService
                     $this->setToDone($data['from']);
                     die;
                 }
+                
 
                 $url = URL::temporarySignedRoute(
                     'client.registration.verify',
@@ -43,7 +44,7 @@ class InitService extends RegisteredClientInitService
                     ]
                 );
 
-                $url = str_replace(env('APP_URL') . '/api', env('APP_URL'), $url);
+                $url = str_replace('/api','', $url);
 
                 $str = "Please use the below link🔗 to register®. \n\n‼️The link would be available for 2️⃣0️⃣ minutes.\n\n$url";
 

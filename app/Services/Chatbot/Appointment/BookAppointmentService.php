@@ -71,17 +71,7 @@ class BookAppointmentService extends InitHelpService
         //yes
         '1' => $this->saveAnswer($data, Constants::APPOINTMENT_NOTE),
         
-        '2' => function () use ($data) { // grab user data and save
-            $client = $this->clientDetails($this->getActualWhatsappNumber($data['to']), $this->getActualWhatsappNumber($data['from']));
-            
-            $appointmentDTO = $this->prepData(null, $data['mediaUrl'], $data['from'], $client);
-            
-            $appointment = Appointment::create($appointmentDTO->toArray());
-            
-            $this->successfulBookingDetails($appointment, $data['from']);
-            
-            return $this->saveAnswer($data, Constants::APPOINTMENT_BOOKING_DONE);
-        },
+        '2' =>  $this->proceedWithAppointmentBooking($data),
         
         '3' => $this->saveAnswer($data, Constants::APPOINTMENT_TIME),//back
         
@@ -92,7 +82,7 @@ class BookAppointmentService extends InitHelpService
     public function additionalAppointmentNote($data)
     {
 
-        $client = $this->clientDetails($this->getActualWhatsappNumber($data['to']), $this->getActualWhatsappNumber($data['from']));
+        $client = $this->clientDetails($data['to'], $this->getActualWhatsappNumber($data['from']));
 
         $appointmentDTO = $this->prepData($data['body'], $data['mediaUrl'], $data['from'], $client);
 
@@ -123,4 +113,23 @@ class BookAppointmentService extends InitHelpService
 
         return $this->sendReply($from, $appointment->getAppointmentDetails());
     }
+
+    // Helper method for option '2' to proceed with appointment booking
+private function proceedWithAppointmentBooking($data)
+{
+    // Get client details using their phone number
+    $client = $this->clientDetails($data['to'], $this->getActualWhatsappNumber($data['from']));
+
+    // Prepare data for creating a new appointment
+    $appointmentDTO = $this->prepData(null, $data['mediaUrl'], $data['from'], $client);
+
+    // Create a new appointment
+    $appointment = Appointment::create($appointmentDTO->toArray());
+
+    // Provide successful booking details to the user
+    $this->successfulBookingDetails($appointment, $data['from']);
+
+    // Save the user's response and mark appointment booking as done
+    return $this->saveAnswer($data, Constants::APPOINTMENT_BOOKING_DONE);
+}
 }
