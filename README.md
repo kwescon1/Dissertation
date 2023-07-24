@@ -1,6 +1,6 @@
 # OPTIX
 
-This project work is a comprehensive solution for managing an eye clinic with the integration of WhatsApp and OpenAI. The system has been set up using Docker, which allows for easy installation and deployment. The web server is powered by Nginx, and the database uses Postgres. Adminer is used for database management. Redis is also used for caching.
+This project work is a comprehensive solution for managing an eye clinic with the integration of WhatsApp and OpenAI. The system has been set up using Docker, which allows for easy installation and deployment. The web server is powered by Nginx, and the database uses MySQL. Adminer is used for database management. Redis is also used for caching.
 
 ## Features
 
@@ -12,7 +12,8 @@ This project work is a comprehensive solution for managing an eye clinic with th
 -   Secure messaging: Communicate securely with patients via WhatsApp, with end-to-end encryption.
 -   Reporting: Generate reports on patient visits, revenue, and inventory levels.
 
-#### NB: The above features are still in the pipeline
+## Software Requirements
+- Docker
 
 ## Installation
 
