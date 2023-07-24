@@ -27,9 +27,9 @@ trait AppTrait
             //check for user registration
             $clientNumber = $this->getActualWhatsappNumber($request->From);
 
-            $branchNumber = $this->getActualWhatsappNumber($request->To);
+            $branchNumber = $request->To;
 
-            $client = $this->getClient($branchNumber, $clientNumber);
+            $client = $this->getClient($branchNumber, $clientNumber);            
 
             if(trim(strtolower($request->Body)) != strtolower(self::HELLO) && strtolower($request->Body) != strtolower(self::HI) && strtolower($request->Body) != strtolower(self::RESTART)){
                 return;

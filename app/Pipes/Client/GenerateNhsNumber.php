@@ -29,7 +29,7 @@ class GenerateNhsNumber implements Pipe
 
         $facility =  $this->facility($content['facility_id']);
 
-        $facilityBranch = $this->facilityBranch($facility->id, str_replace("whatsapp:", "", config('twilio.twilio_number')));
+        $facilityBranch = $this->facilityBranch($facility->id, config('twilio.twilio_number'));
 
         $content['nhs_number'] = $this->generateNhsNumber($facility, $facilityBranch);
 
@@ -56,7 +56,7 @@ class GenerateNhsNumber implements Pipe
         $facilityBranch = FacilityBranch::whereFacilityId($facilityId)->wherePhone($phoneNumber)->first();
 
         if (!$facilityBranch) {
-            throw new NotFoundException('Facility Brancn Not Found');
+            throw new NotFoundException('Facility Branch Not Found');
         }
 
         return $facilityBranch;

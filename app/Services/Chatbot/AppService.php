@@ -67,7 +67,7 @@ class AppService extends InitService
 
         Log::info("chatbot nextQuestionId is $nextQuestionId");
 
-        $nextQuestion = $this->generateNextQuestion($nextQuestionId, $this->getActualWhatsappNumber($data->From), $this->getActualWhatsappNumber($data->To));
+        $nextQuestion = $this->generateNextQuestion($nextQuestionId, $this->getActualWhatsappNumber($data->From),$data->To);
 
         Log::info("chatbot next question \n" . $nextQuestion);
 
