@@ -69,7 +69,7 @@ class Whatsapp
         return $isImage ? array(
             "body" => $message,
             "from" => $number,
-            "MediaUrl" =>  asset("storage/media/$media"),
+            "MediaUrl" =>  asset("media/$media"),
             "statusCallback" => url("/api/status")
         ) : $this->hasNoImage($message, $number);
     }
